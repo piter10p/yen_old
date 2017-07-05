@@ -13,6 +13,15 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Headers\ResourceEngine">
+      <UniqueIdentifier>{24a425ad-6f85-43e3-b9c0-966152ba076b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\ResourceEngine">
+      <UniqueIdentifier>{9ecd9f24-901b-4b8c-aeab-edfe08164b68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\ResourceEngine\Resources">
+      <UniqueIdentifier>{a83848f8-39af-4d1e-9dae-bdd6f783f0bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -27,6 +36,12 @@
     <ClInclude Include="Engine.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="ResourceEngine.h">
+      <Filter>Headers\ResourceEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Headers\ResourceEngine\Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -37,6 +52,9 @@
     </ClCompile>
     <ClCompile Include="Engine.cpp">
       <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceEngine.cpp">
+      <Filter>Sources\ResourceEngine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

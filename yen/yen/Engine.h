@@ -1,8 +1,10 @@
 #pragma once
-class Engine
+namespace yen
 {
-public:
-	Engine();
-	~Engine();
-};
-
+	class Engine
+	{
+	public:
+		Engine();
+		~Engine();
+	};
+}
