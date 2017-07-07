@@ -22,6 +22,12 @@
     <Filter Include="Headers\ResourceEngine\Resources">
       <UniqueIdentifier>{a83848f8-39af-4d1e-9dae-bdd6f783f0bf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\ResourceEngine\Resources">
+      <UniqueIdentifier>{68fb4dd9-ff1e-441b-a6b4-883d0ee4b6d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\ResourceEngine\Resources\Manipulators">
+      <UniqueIdentifier>{8d66e84b-4b60-44a7-8de2-e3ffd5df74f8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -42,6 +48,18 @@
     <ClInclude Include="Resource.h">
       <Filter>Headers\ResourceEngine\Resources</Filter>
     </ClInclude>
+    <ClInclude Include="AnimationResource.h">
+      <Filter>Headers\ResourceEngine\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationResourceDef.h">
+      <Filter>Headers\ResourceEngine\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationManipulator.h">
+      <Filter>Headers\ResourceEngine\Resources\Manipulators</Filter>
+    </ClInclude>
+    <ClInclude Include="Manipulator.h">
+      <Filter>Headers\ResourceEngine\Resources\Manipulators</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -55,6 +73,9 @@
     </ClCompile>
     <ClCompile Include="ResourceEngine.cpp">
       <Filter>Sources\ResourceEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationResource.cpp">
+      <Filter>Sources\ResourceEngine\Resources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

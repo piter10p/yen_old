@@ -1,7 +1,9 @@
 #pragma once
 
 #include <vector>
-#include "Resource.h"
+#include "AnimationResource.h"
+#include "AnimationResourceDef.h"
+#include "AnimationManipulator.h"
 
 namespace yen
 {
@@ -11,7 +13,17 @@ namespace yen
 		ResourceEngine();
 		~ResourceEngine();
 
+		AnimationManipulator addAnimationResource(AnimationResourceDef);
+		bool removeAnimationResource(AnimationManipulator);
+
+	protected:
+		std::vector <AnimationResource*> animationResources;
+
 	private:
-		std::vector <Resource*> resources;
+		int idCounter;
+
+		int getId();
+
+		bool isIdSame(Manipulator*, Resource*);
 	};
 }
