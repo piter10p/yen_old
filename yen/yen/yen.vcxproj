@@ -146,21 +146,26 @@
     <ClInclude Include="AnimationManipulator.h" />
     <ClInclude Include="AnimationResource.h" />
     <ClInclude Include="AnimationResourceDef.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="ComponentManipulator.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="GraphicsComponent.h" />
     <ClInclude Include="GraphicsEngine.h" />
-    <ClInclude Include="Manipulator.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectManipulator.h" />
     <ClInclude Include="ObjectsManager.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ResourceEngine.h" />
+    <ClInclude Include="ResourceManipulator.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Vector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimationResource.cpp" />
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="GraphicsComponent.cpp" />
     <ClCompile Include="GraphicsEngine.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectsManager.cpp" />

@@ -12,6 +12,8 @@ namespace yen
 
 		ObjectManipulator createObject();
 		bool removeObject(ObjectManipulator);
+		ComponentManipulator attachComponent(ObjectManipulator, Component*);
+		bool removeComponent(ObjectManipulator, ComponentManipulator);
 
 	private:
 		std::vector <Object> objects;
@@ -21,5 +23,7 @@ namespace yen
 		int getNewId();
 
 		int getObjectListIndex(int id);
+
+		void clearAllObjects();
 	};
 }

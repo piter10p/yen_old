@@ -1,13 +1,13 @@
 #pragma once
-#include "Manipulator.h"
 #include "Object.h"
 
 namespace yen
 {
-	class ObjectManipulator :public Manipulator
+	class ObjectManipulator
 	{
 		friend class ObjectsManager;
 	protected:
 		Object *object;
+		int id;
 	};
 }

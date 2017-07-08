@@ -1,4 +1,9 @@
 #pragma once
+#include "Vector.h"
+#include "Component.h"
+#include <vector>
+#include "ComponentManipulator.h"
+
 namespace yen
 {
 	class Object
@@ -11,5 +16,23 @@ namespace yen
 
 	protected:
 		int id;
+		void setPosition(Vector);
+
+		ComponentManipulator addComponent(Component*);
+		bool removeComponent(ComponentManipulator);
+
+		void callComponentsStepFuncion();
+
+	private:
+		Vector position;
+
+		std::vector <Component*> components;
+
+		int componentsIdCounter;
+		int getNewComponentsId();
+
+		int getComponentListIndex(int id);
+
+		void removeAllComponents();
 	};
 }

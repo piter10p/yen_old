@@ -24,7 +24,7 @@ namespace yen
 
 		int getId();
 
-		bool isIdSame(Manipulator*, Resource*);
+		bool isIdSame(ResourceManipulator*, Resource*);
 
 		void clearAllResources();
 	};

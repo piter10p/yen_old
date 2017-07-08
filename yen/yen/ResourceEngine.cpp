@@ -44,7 +44,7 @@ int ResourceEngine::getId()
 	return idCounter - 1;
 }
 
-bool ResourceEngine::isIdSame(Manipulator* manipulator, Resource* resource)
+bool ResourceEngine::isIdSame(ResourceManipulator* manipulator, Resource* resource)
 {
 	if (manipulator->id == resource->id)
 		return true;
@@ -57,4 +57,5 @@ void ResourceEngine::clearAllResources()
 	{
 		delete animationResources[i];
 	}
+	animationResources.clear();
 }

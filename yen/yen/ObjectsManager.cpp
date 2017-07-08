@@ -11,6 +11,7 @@ ObjectsManager::ObjectsManager()
 
 ObjectsManager::~ObjectsManager()
 {
+	clearAllObjects();
 }
 
 ObjectManipulator ObjectsManager::createObject()
@@ -39,6 +40,16 @@ bool ObjectsManager::removeObject(ObjectManipulator manipulator)
 	return false;
 }
 
+ComponentManipulator ObjectsManager::attachComponent(ObjectManipulator manipulator, Component *component)
+{
+	return manipulator.object->addComponent(component);
+}
+
+bool ObjectsManager::removeComponent(ObjectManipulator objManipulator, ComponentManipulator comManipulator)
+{
+	return objManipulator.object->removeComponent(comManipulator);
+}
+
 int ObjectsManager::getNewId()
 {
 	this->idCounter++;
@@ -50,10 +61,17 @@ int ObjectsManager::getObjectListIndex(int id)
 {
 	for (int i = 0; i < objects.size(); i++)
 	{
-		if (objects[i].id = id)
-		{
-			i;
-		}
+		if (objects[i].id == id)
+			return i;
 	}
 	return -1;
+}
+
+void ObjectsManager::clearAllObjects()
+{
+	for (int i = 0; i < objects.size(); i++)
+	{
+		objects[i].removeAllComponents();
+	}
+	objects.clear();
 }
