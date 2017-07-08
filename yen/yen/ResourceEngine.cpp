@@ -11,10 +11,7 @@ ResourceEngine::ResourceEngine()
 
 ResourceEngine::~ResourceEngine()
 {
-	for each (AnimationResource* resource in animationResources)
-	{
-		delete resource;
-	}
+	clearAllResources();
 }
 
 AnimationManipulator ResourceEngine::addAnimationResource(AnimationResourceDef def)
@@ -29,18 +26,14 @@ AnimationManipulator ResourceEngine::addAnimationResource(AnimationResourceDef d
 
 bool ResourceEngine::removeAnimationResource(AnimationManipulator manipulator)
 {
-	int i = 0;
-
-	for each (AnimationResource* animationResource in animationResources)
+	for (unsigned int i = 0; i < animationResources.size(); i++)
 	{
-		if (isIdSame(&manipulator, animationResource))
+		if (isIdSame(&manipulator, animationResources[i]))
 		{
-			delete animationResource;
+			delete animationResources[i];
 			animationResources.erase(animationResources.begin() + i);
 			return true;
 		}
-
-		i++;
 	}
 	return false;
 }
@@ -56,4 +49,12 @@ bool ResourceEngine::isIdSame(Manipulator* manipulator, Resource* resource)
 	if (manipulator->id == resource->id)
 		return true;
 	return false;
+}
+
+void ResourceEngine::clearAllResources()
+{
+	for (unsigned int i = 0; i < animationResources.size(); i++)
+	{
+		delete animationResources[i];
+	}
 }

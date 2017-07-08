@@ -147,16 +147,25 @@
     <ClInclude Include="AnimationResource.h" />
     <ClInclude Include="AnimationResourceDef.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="GraphicsEngine.h" />
     <ClInclude Include="Manipulator.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="ObjectManipulator.h" />
+    <ClInclude Include="ObjectsManager.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ResourceEngine.h" />
+    <ClInclude Include="SceneManager.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimationResource.cpp" />
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="GraphicsEngine.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="ObjectsManager.cpp" />
     <ClCompile Include="ResourceEngine.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

@@ -25,8 +25,23 @@
     <Filter Include="Sources\ResourceEngine\Resources">
       <UniqueIdentifier>{68fb4dd9-ff1e-441b-a6b4-883d0ee4b6d0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headers\ResourceEngine\Resources\Manipulators">
+    <Filter Include="Headers\GraphicsEngine">
+      <UniqueIdentifier>{7a5614a8-f0e0-4199-80aa-7a4944e8c6a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\SceneModule">
+      <UniqueIdentifier>{612fe09e-1145-4bd0-af97-4d2e4e1078f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Manipulators">
       <UniqueIdentifier>{8d66e84b-4b60-44a7-8de2-e3ffd5df74f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\SceneManager">
+      <UniqueIdentifier>{0a4fab97-2d7d-4a78-b2a9-cf654981547f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\ObjectsManager">
+      <UniqueIdentifier>{c015b90d-ecbe-4078-8104-e24672313d35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\ObjectsManager">
+      <UniqueIdentifier>{0307fa60-b16f-4df4-b59b-7c0aabc566b6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -55,10 +70,25 @@
       <Filter>Headers\ResourceEngine\Resources</Filter>
     </ClInclude>
     <ClInclude Include="AnimationManipulator.h">
-      <Filter>Headers\ResourceEngine\Resources\Manipulators</Filter>
+      <Filter>Headers\Manipulators</Filter>
     </ClInclude>
     <ClInclude Include="Manipulator.h">
-      <Filter>Headers\ResourceEngine\Resources\Manipulators</Filter>
+      <Filter>Headers\Manipulators</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsEngine.h">
+      <Filter>Headers\GraphicsEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Headers\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectsManager.h">
+      <Filter>Headers\ObjectsManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Headers\ObjectsManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManipulator.h">
+      <Filter>Headers\Manipulators</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +106,18 @@
     </ClCompile>
     <ClCompile Include="AnimationResource.cpp">
       <Filter>Sources\ResourceEngine\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsEngine.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Sources\SceneModule</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectsManager.cpp">
+      <Filter>Sources\ObjectsManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Sources\ObjectsManager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
