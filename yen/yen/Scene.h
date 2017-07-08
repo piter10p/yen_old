@@ -15,12 +15,12 @@ namespace yen
 	protected:
 		int id;
 
-		void addObject(Object*);
-		Flag removeObject(ObjectManipulator);
+		Flag addObject(Object*);
+		Flag removeObject(Object*);
 
 	private:
 		std::vector <Object*> objects;
 
-		int getObjectListIndex(ObjectManipulator);
+		int getObjectListIndex(int id);
 	};
 }

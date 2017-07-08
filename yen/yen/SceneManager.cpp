@@ -36,6 +36,16 @@ Flag SceneManager::removeScene(SceneManipulator manipulator)
 	return Flag::ERROR_NOTHING_FOUND_ID;
 }
 
+Flag SceneManager::addObjectToScene(SceneManipulator sceneManipulator, ObjectManipulator objectManipulator)
+{
+	return sceneManipulator.scene->addObject(objectManipulator.object);
+}
+
+Flag SceneManager::removeObjectFromScene(SceneManipulator sceneManipulator, ObjectManipulator objectManipulator)
+{
+	return sceneManipulator.scene->removeObject(objectManipulator.object);
+}
+
 int SceneManager::getNewId()
 {
 	idCounter++;

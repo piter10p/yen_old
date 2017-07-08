@@ -6,7 +6,7 @@ namespace yen
 	class ObjectManipulator
 	{
 		friend class ObjectsManager;
-		friend class Scene;
+		friend class SceneManager;
 	protected:
 		Object *object;
 		int id;

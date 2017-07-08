@@ -14,6 +14,9 @@ namespace yen
 		SceneManipulator createScene();
 		Flag removeScene(SceneManipulator);
 
+		Flag addObjectToScene(SceneManipulator, ObjectManipulator);
+		Flag removeObjectFromScene(SceneManipulator, ObjectManipulator);
+
 	protected:
 		std::vector <Scene> scenes;
 
