@@ -16,7 +16,7 @@ namespace yen
 		int id;
 
 		void addObject(Object*);
-		bool removeObject(ObjectManipulator);	
+		Flag removeObject(ObjectManipulator);
 
 	private:
 		std::vector <Object*> objects;

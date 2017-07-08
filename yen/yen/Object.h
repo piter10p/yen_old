@@ -3,6 +3,7 @@
 #include "Component.h"
 #include <vector>
 #include "ComponentManipulator.h"
+#include "Flag.h"
 
 namespace yen
 {
@@ -20,7 +21,7 @@ namespace yen
 		void setPosition(Vector);
 
 		ComponentManipulator addComponent(Component*);
-		bool removeComponent(ComponentManipulator);
+		Flag removeComponent(ComponentManipulator);
 
 		void callComponentsStepFuncion();
 

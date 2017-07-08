@@ -12,7 +12,7 @@ namespace yen
 		~SceneManager();
 
 		SceneManipulator createScene();
-		bool removeScene(SceneManipulator);
+		Flag removeScene(SceneManipulator);
 
 	protected:
 		std::vector <Scene> scenes;

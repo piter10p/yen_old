@@ -28,16 +28,16 @@ ObjectManipulator ObjectsManager::createObject()
 	return manipulator;
 }
 
-bool ObjectsManager::removeObject(ObjectManipulator manipulator)
+Flag ObjectsManager::removeObject(ObjectManipulator manipulator)
 {
 	int index = getObjectListIndex(manipulator.id);
 
 	if (index != -1)
 	{
 		objects.erase(objects.begin() + index);
-		return true;
+		return Flag::OK;
 	}
-	return false;
+	return Flag::ERROR_NOTHING_FOUND_ID;
 }
 
 ComponentManipulator ObjectsManager::attachComponent(ObjectManipulator manipulator, Component *component)
@@ -45,7 +45,7 @@ ComponentManipulator ObjectsManager::attachComponent(ObjectManipulator manipulat
 	return manipulator.object->addComponent(component);
 }
 
-bool ObjectsManager::removeComponent(ObjectManipulator objManipulator, ComponentManipulator comManipulator)
+Flag ObjectsManager::removeComponent(ObjectManipulator objManipulator, ComponentManipulator comManipulator)
 {
 	return objManipulator.object->removeComponent(comManipulator);
 }

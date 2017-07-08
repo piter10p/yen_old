@@ -14,7 +14,7 @@ namespace yen
 		~ResourceEngine();
 
 		AnimationManipulator addAnimationResource(AnimationResourceDef);
-		bool removeAnimationResource(AnimationManipulator);
+		Flag removeAnimationResource(AnimationManipulator);
 
 	protected:
 		std::vector <AnimationResource*> animationResources;

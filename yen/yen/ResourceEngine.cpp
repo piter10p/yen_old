@@ -24,7 +24,7 @@ AnimationManipulator ResourceEngine::addAnimationResource(AnimationResourceDef d
 	return manipulator;
 }
 
-bool ResourceEngine::removeAnimationResource(AnimationManipulator manipulator)
+Flag ResourceEngine::removeAnimationResource(AnimationManipulator manipulator)
 {
 	for (unsigned int i = 0; i < animationResources.size(); i++)
 	{
@@ -32,10 +32,10 @@ bool ResourceEngine::removeAnimationResource(AnimationManipulator manipulator)
 		{
 			delete animationResources[i];
 			animationResources.erase(animationResources.begin() + i);
-			return true;
+			return Flag::OK;
 		}
 	}
-	return false;
+	return Flag::ERROR_NOTHING_FOUND_ID;
 }
 
 int ResourceEngine::getId()

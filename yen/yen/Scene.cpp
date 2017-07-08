@@ -17,15 +17,15 @@ void Scene::addObject(Object *object)
 	objects.push_back(object);
 }
 
-bool Scene::removeObject(ObjectManipulator manipulator)
+Flag Scene::removeObject(ObjectManipulator manipulator)
 {
 	int index = getObjectListIndex(manipulator);
 	if (index != -1)
 	{
 		objects.erase(objects.begin() + index);
-		return true;
+		return Flag::OK;
 	}
-	return false;
+	return Flag::ERROR_NOTHING_FOUND_ID;
 }
 
 int Scene::getObjectListIndex(ObjectManipulator manipulator)

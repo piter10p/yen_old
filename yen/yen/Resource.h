@@ -1,4 +1,6 @@
 #pragma once
+#include "Flag.h"
+
 namespace yen
 {
 	class Resource
@@ -6,7 +8,7 @@ namespace yen
 		friend class ResourceEngine;
 
 	protected:
-		virtual bool load() = 0;
+		virtual Flag load() = 0;
 
 		int id;
 	};

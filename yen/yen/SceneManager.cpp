@@ -25,15 +25,15 @@ SceneManipulator SceneManager::createScene()
 	return manipulator;
 }
 
-bool SceneManager::removeScene(SceneManipulator manipulator)
+Flag SceneManager::removeScene(SceneManipulator manipulator)
 {
 	int index = getSceneListIndex(manipulator.id);
 	if (index != -1)
 	{
 		scenes.erase(scenes.begin() + index);
-		return true;
+		return Flag::OK;
 	}
-	return false;
+	return Flag::ERROR_NOTHING_FOUND_ID;
 }
 
 int SceneManager::getNewId()

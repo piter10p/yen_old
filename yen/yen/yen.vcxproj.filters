@@ -117,7 +117,7 @@
     <ClInclude Include="SceneManipulator.h">
       <Filter>Headers\SceneManager</Filter>
     </ClInclude>
-    <ClInclude Include="Flags.h">
+    <ClInclude Include="Flag.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

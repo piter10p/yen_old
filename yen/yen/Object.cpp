@@ -34,16 +34,16 @@ ComponentManipulator Object::addComponent(Component *component)
 	return manipulator;
 }
 
-bool Object::removeComponent(ComponentManipulator manipulator)
+Flag Object::removeComponent(ComponentManipulator manipulator)
 {
 	int index = getComponentListIndex(manipulator.id);
 	if (index != -1)
 	{
 		delete components[index];
 		components.erase(components.begin() + index);
-		return true;
+		return Flag::OK;
 	}
-	return false;
+	return Flag::ERROR_NOTHING_FOUND_ID;
 }
 
 void Object::callComponentsStepFuncion()

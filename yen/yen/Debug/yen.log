@@ -1,13 +1,17 @@
 ﻿  yen.cpp
-  ObjectsManager.cpp
-i:\backup\pietras\yen\yen\yen\objectsmanager.cpp(61): warning C4018: '<': signed/unsigned mismatch
-  Object.cpp
-i:\backup\pietras\yen\yen\yen\object.cpp(46): warning C4018: '<': signed/unsigned mismatch
-i:\backup\pietras\yen\yen\yen\object.cpp(61): warning C4018: '<': signed/unsigned mismatch
-i:\backup\pietras\yen\yen\yen\object.cpp(71): warning C4018: '<': signed/unsigned mismatch
-  GraphicsComponent.cpp
-  Generating Code...
-  Skipping... (no relevant changes detected)
   SceneManager.cpp
+i:\backup\pietras\yen\yen\yen\scenemanager.cpp(47): warning C4018: '<': signed/unsigned mismatch
+  Scene.cpp
+i:\backup\pietras\yen\yen\yen\scene.cpp(33): warning C4018: '<': signed/unsigned mismatch
+  ResourceEngine.cpp
+  ObjectsManager.cpp
+i:\backup\pietras\yen\yen\yen\objectsmanager.cpp(62): warning C4018: '<': signed/unsigned mismatch
+i:\backup\pietras\yen\yen\yen\objectsmanager.cpp(72): warning C4018: '<': signed/unsigned mismatch
+  Object.cpp
+i:\backup\pietras\yen\yen\yen\object.cpp(51): warning C4018: '<': signed/unsigned mismatch
+i:\backup\pietras\yen\yen\yen\object.cpp(66): warning C4018: '<': signed/unsigned mismatch
+i:\backup\pietras\yen\yen\yen\object.cpp(76): warning C4018: '<': signed/unsigned mismatch
+  AnimationResource.cpp
+  Generating Code...
   yen.vcxproj -> I:\Backup\Pietras\yen\yen\Debug\yen.exe
   yen.vcxproj -> I:\Backup\Pietras\yen\yen\Debug\yen.pdb (Partial PDB)

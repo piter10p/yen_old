@@ -14,7 +14,7 @@ AnimationResource::~AnimationResource()
 {
 }
 
-bool AnimationResource::load()
+Flag AnimationResource::load()
 {
-	return true;
+	return Flag::OK;
 }

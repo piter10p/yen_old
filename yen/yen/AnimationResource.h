@@ -12,7 +12,7 @@ namespace yen
 		~AnimationResource();
 
 	protected:
-		bool load();
+		Flag load();
 
 		std::string path;
 	};

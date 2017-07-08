@@ -11,9 +11,9 @@ namespace yen
 		~ObjectsManager();
 
 		ObjectManipulator createObject();
-		bool removeObject(ObjectManipulator);
+		Flag removeObject(ObjectManipulator);
 		ComponentManipulator attachComponent(ObjectManipulator, Component*);
-		bool removeComponent(ObjectManipulator, ComponentManipulator);
+		Flag removeComponent(ObjectManipulator, ComponentManipulator);
 
 	private:
 		std::vector <Object> objects;
