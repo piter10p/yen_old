@@ -13,6 +13,7 @@ namespace yen
 		~Object();
 
 		friend class ObjectsManager;
+		friend class Scene;
 
 	protected:
 		int id;

@@ -28,9 +28,6 @@
     <Filter Include="Headers\GraphicsEngine">
       <UniqueIdentifier>{7a5614a8-f0e0-4199-80aa-7a4944e8c6a9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sources\SceneModule">
-      <UniqueIdentifier>{612fe09e-1145-4bd0-af97-4d2e4e1078f3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Headers\Manipulators">
       <UniqueIdentifier>{8d66e84b-4b60-44a7-8de2-e3ffd5df74f8}</UniqueIdentifier>
     </Filter>
@@ -51,6 +48,9 @@
     </Filter>
     <Filter Include="Sources\GraphicsEngine">
       <UniqueIdentifier>{a6c3a1c2-6d5f-4566-9224-e13b298003e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\SceneManager">
+      <UniqueIdentifier>{612fe09e-1145-4bd0-af97-4d2e4e1078f3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -111,6 +111,15 @@
     <ClInclude Include="GraphicsComponent.h">
       <Filter>Headers\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Headers\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManipulator.h">
+      <Filter>Headers\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Flags.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -129,7 +138,7 @@
       <Filter>Sources\ResourceEngine\Resources</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
-      <Filter>Sources\SceneModule</Filter>
+      <Filter>Sources\SceneManager</Filter>
     </ClCompile>
     <ClCompile Include="ObjectsManager.cpp">
       <Filter>Sources\ObjectsManager</Filter>
@@ -142,6 +151,9 @@
     </ClCompile>
     <ClCompile Include="GraphicsEngine.cpp">
       <Filter>Sources\GraphicsEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Sources\SceneManager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

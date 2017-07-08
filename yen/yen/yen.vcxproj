@@ -149,6 +149,7 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentManipulator.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="Flags.h" />
     <ClInclude Include="GraphicsComponent.h" />
     <ClInclude Include="GraphicsEngine.h" />
     <ClInclude Include="Object.h" />
@@ -157,7 +158,9 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ResourceEngine.h" />
     <ClInclude Include="ResourceManipulator.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="SceneManipulator.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Vector.h" />
@@ -170,6 +173,7 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectsManager.cpp" />
     <ClCompile Include="ResourceEngine.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

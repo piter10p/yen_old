@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "Object.h"
+#include "SceneManipulator.h"
 
 namespace yen
 {
@@ -10,7 +11,15 @@ namespace yen
 		SceneManager();
 		~SceneManager();
 
+		SceneManipulator createScene();
+		bool removeScene(SceneManipulator);
+
 	protected:
-		std::vector <Object> objects;
+		std::vector <Scene> scenes;
+
+		int idCounter;
+		int getNewId();
+
+		int getSceneListIndex(int id);
 	};
 }
