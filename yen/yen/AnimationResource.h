@@ -11,9 +11,9 @@ namespace yen
 		AnimationResource(AnimationResourceDef, int);
 		~AnimationResource();
 
-	protected:
 		Flag load();
 
+	private:
 		std::string path;
 	};
 }

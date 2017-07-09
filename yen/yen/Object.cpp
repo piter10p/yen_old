@@ -5,10 +5,7 @@ using namespace yen;
 
 Object::Object()
 {
-	this->position.x = 0;
-	this->position.y = 0;
-
-	this->componentsIdCounter = 0;
+	position.set(0.0f, 0.0f);
 }
 
 
@@ -19,19 +16,25 @@ Object::~Object()
 
 void Object::setPosition(Vector vector)
 {
-	this->position.x = vector.x;
-	this->position.y = vector.y;
+	position.copy(vector);
 }
 
-ComponentManipulator Object::addComponent(Component *component)
+Vector Object::getPosition()
 {
-	component->id = getNewComponentsId();
+	return position;
+}
+
+Flag Object::addComponent(ComponentManipulator *manipulator, Component *component)
+{
+	if (isAnyComponentOfThisType(component->getType()))
+		return Flag::ERROR_COMPONENT_WITH_THIS_TYPE_HAS_BEEN_ADDED_ALREADY;
+
+	component->setId(getNewId());
 	components.push_back(component);
 
-	ComponentManipulator manipulator;
-	manipulator.id = component->id;
+	manipulator->id = component->getId();
 
-	return manipulator;
+	return Flag::OK;
 }
 
 Flag Object::removeComponent(ComponentManipulator manipulator)
@@ -54,18 +57,33 @@ void Object::callComponentsStepFuncion()
 	}
 }
 
-int Object::getNewComponentsId()
+bool Object::test()
 {
-	componentsIdCounter++;
+	class TestComponent : public Component
+	{
+	public: void step() {};
+	protected: std::string type = "TestComponent";
+	};
 
-	return componentsIdCounter - 1;
+	TestComponent *component = new TestComponent();
+
+	ComponentManipulator manipulator;
+	Flag flag = addComponent(&manipulator, component);
+	if (flag != Flag::OK)
+		return false;
+
+	flag = removeComponent(manipulator);
+	if (flag != Flag::OK)
+		return false;
+	
+	return true;
 }
 
 int Object::getComponentListIndex(int id)
 {
 	for (int i = 0; i < components.size(); i++)
 	{
-		if (components[i]->id == id)
+		if (components[i]->getId() == id)
 			return i;
 	}
 	return -1;
@@ -78,4 +96,14 @@ void Object::removeAllComponents()
 		delete components[i];
 	}
 	components.clear();
+}
+
+bool Object::isAnyComponentOfThisType(const std::string type)
+{
+	for (int i = 0; i < components.size(); i++)
+	{
+		if (components[i]->getType() == type)
+			return true;
+		return false;
+	}
 }

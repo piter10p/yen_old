@@ -5,7 +5,6 @@ using namespace yen;
 
 ResourceManager::ResourceManager()
 {
-	idCounter = 0;
 }
 
 
@@ -16,11 +15,12 @@ ResourceManager::~ResourceManager()
 
 AnimationManipulator ResourceManager::addAnimationResource(AnimationResourceDef def)
 {
-	AnimationResource *resource = new AnimationResource(def, getId());
+	AnimationResource resource(def, getNewId());
 	animationResources.push_back(resource);
+
 	AnimationManipulator manipulator;
-	manipulator.animationResource = resource;
-	manipulator.id = resource->id;
+	manipulator.animationResource = &animationResources[getIndexOfAnimationResourcesListObject(resource.getId())];
+	manipulator.id = resource.getId();
 	return manipulator;
 }
 
@@ -28,9 +28,8 @@ Flag ResourceManager::removeAnimationResource(AnimationManipulator manipulator)
 {
 	for (unsigned int i = 0; i < animationResources.size(); i++)
 	{
-		if (isIdSame(&manipulator, animationResources[i]))
+		if (isIdSame(&manipulator, &animationResources[i]))
 		{
-			delete animationResources[i];
 			animationResources.erase(animationResources.begin() + i);
 			return Flag::OK;
 		}
@@ -38,24 +37,37 @@ Flag ResourceManager::removeAnimationResource(AnimationManipulator manipulator)
 	return Flag::ERROR_NOTHING_FOUND_ID;
 }
 
-int ResourceManager::getId()
+bool ResourceManager::test()
 {
-	idCounter++;
-	return idCounter - 1;
+	AnimationResourceDef def;
+	def.path = "ASD";
+
+	AnimationManipulator manipulator = addAnimationResource(def);
+	Flag flag = removeAnimationResource(manipulator);
+
+	if (flag == Flag::OK)
+		return true;
+	return false;
 }
 
 bool ResourceManager::isIdSame(ResourceManipulator* manipulator, Resource* resource)
 {
-	if (manipulator->id == resource->id)
+	if (manipulator->id == resource->getId())
 		return true;
 	return false;
 }
 
 void ResourceManager::clearAllResources()
 {
-	for (unsigned int i = 0; i < animationResources.size(); i++)
-	{
-		delete animationResources[i];
-	}
 	animationResources.clear();
+}
+
+int ResourceManager::getIndexOfAnimationResourcesListObject(int id)
+{
+	for (int i = 0; i < animationResources.size(); i++)
+	{
+		if (animationResources[i].getId() == id)
+			return i;
+	}
+	return -1;
 }

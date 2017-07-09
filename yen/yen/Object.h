@@ -4,37 +4,36 @@
 #include <vector>
 #include "ComponentManipulator.h"
 #include "Flag.h"
+#include "Id.h"
+#include "IdSetter.h"
 
 namespace yen
 {
-	class Object
+	class Object: public Id, public IdSetter
 	{
 	public:
 		Object();
 		~Object();
 
-		friend class ObjectsManager;
-		friend class Scene;
-
-	protected:
-		int id;
 		void setPosition(Vector);
+		Vector getPosition();
 
-		ComponentManipulator addComponent(Component*);
+		Flag addComponent(ComponentManipulator *, Component *);
 		Flag removeComponent(ComponentManipulator);
 
 		void callComponentsStepFuncion();
+
+		void removeAllComponents();
+
+		bool test();
 
 	private:
 		Vector position;
 
 		std::vector <Component*> components;
 
-		int componentsIdCounter;
-		int getNewComponentsId();
-
 		int getComponentListIndex(int id);
 
-		void removeAllComponents();
+		bool isAnyComponentOfThisType(const std::string type);
 	};
 }

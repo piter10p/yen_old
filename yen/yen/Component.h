@@ -1,15 +1,20 @@
 #pragma once
 #include <string>
+#include "Id.h"
 
 namespace yen
 {
-	class Component
+	class Component: public Id
 	{
-		friend class Object;
-	protected:
+	public:
 		virtual void step() = 0;
 
-		int id;
+		const std::string getType()
+		{
+			return type;
+		}
+
+	protected:
 		const std::string type;
 	};
 }

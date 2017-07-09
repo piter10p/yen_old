@@ -1,13 +1,14 @@
 #pragma once
 
-#include <vector>
+#include "Manager.h"
 #include "AnimationResource.h"
 #include "AnimationResourceDef.h"
 #include "AnimationManipulator.h"
+#include "IdSetter.h"
 
 namespace yen
 {
-	class ResourceManager
+	class ResourceManager: public Manager, public IdSetter
 	{
 	public:
 		ResourceManager();
@@ -16,16 +17,14 @@ namespace yen
 		AnimationManipulator addAnimationResource(AnimationResourceDef);
 		Flag removeAnimationResource(AnimationManipulator);
 
+		bool test();
+
 	protected:
-		std::vector <AnimationResource*> animationResources;
+		std::vector <AnimationResource> animationResources;
 
 	private:
-		int idCounter;
-
-		int getId();
-
 		bool isIdSame(ResourceManipulator*, Resource*);
-
 		void clearAllResources();
+		int getIndexOfAnimationResourcesListObject(int id);
 	};
 }

@@ -14,7 +14,7 @@ Scene::~Scene()
 
 Flag Scene::addObject(Object *object)
 {
-	if (getObjectListIndex(object->id) != -1)
+	if (getIndexOfObjectsListObject(object->getId()) != -1)
 		return Flag::ERROR_THING_WITH_THIS_ID_IS_ALREADY_EXISTS;
 	objects.push_back(object);
 	return Flag::OK;
@@ -22,7 +22,7 @@ Flag Scene::addObject(Object *object)
 
 Flag Scene::removeObject(Object* object)
 {
-	int index = getObjectListIndex(object->id);
+	int index = getIndexOfObjectsListObject(object->getId());
 	if (index != -1)
 	{
 		objects.erase(objects.begin() + index);
@@ -31,11 +31,26 @@ Flag Scene::removeObject(Object* object)
 	return Flag::ERROR_NOTHING_FOUND_ID;
 }
 
-int Scene::getObjectListIndex(int id)
+bool Scene::test()
+{
+	Object object;
+	
+	Flag flag = addObject(&object);
+	if (flag != Flag::OK)
+		return false;
+
+	flag = removeObject(&object);
+	if (flag != Flag::OK)
+		return false;
+
+	return true;
+}
+
+int Scene::getIndexOfObjectsListObject(int id)
 {
 	for (int i = 0; i < objects.size(); i++)
 	{
-		if (objects[i]->id == id)
+		if (objects[i]->getId() == id)
 			return i;
 	}
 	return -1;

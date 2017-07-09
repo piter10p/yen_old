@@ -15,12 +15,12 @@ SceneManager::~SceneManager()
 SceneManipulator SceneManager::createScene()
 {
 	Scene scene;
-	scene.id = getNewId();
+	scene.setId(getNewId()) ;
 	scenes.push_back(scene);
 
 	SceneManipulator manipulator;
-	manipulator.id = scene.id;
-	manipulator.scene = &scenes[getSceneListIndex(scene.id)];
+	manipulator.id = scene.getId();
+	manipulator.scene = &scenes[getSceneListIndex(scene.getId())];
 
 	return manipulator;
 }
@@ -46,6 +46,16 @@ Flag SceneManager::removeObjectFromScene(SceneManipulator sceneManipulator, Obje
 	return sceneManipulator.scene->removeObject(objectManipulator.object);
 }
 
+bool SceneManager::test()
+{
+	SceneManipulator manipulator = createScene();
+	Flag flag = removeScene(manipulator);
+	if (flag != Flag::OK)
+		return false;
+
+	return true;
+}
+
 int SceneManager::getNewId()
 {
 	idCounter++;
@@ -56,7 +66,7 @@ int SceneManager::getSceneListIndex(int id)
 {
 	for (int i = 0; i < scenes.size(); i++)
 	{
-		if (scenes[i].id == id)
+		if (scenes[i].getId() == id)
 			return i;
 	}
 	return -1;

@@ -1,10 +1,11 @@
 #pragma once
 #include <vector>
 #include "ObjectManipulator.h"
+#include "IdSetter.h"
 
 namespace yen
 {
-	class ObjectsManager
+	class ObjectsManager: public IdSetter
 	{
 	public:
 		ObjectsManager();
@@ -12,15 +13,13 @@ namespace yen
 
 		ObjectManipulator createObject();
 		Flag removeObject(ObjectManipulator);
-		ComponentManipulator attachComponent(ObjectManipulator, Component*);
+		Flag attachComponent(ComponentManipulator *out, ObjectManipulator, Component*);
 		Flag removeComponent(ObjectManipulator, ComponentManipulator);
+
+		bool test();
 
 	private:
 		std::vector <Object> objects;
-
-		int idCounter;
-
-		int getNewId();
 
 		int getObjectListIndex(int id);
 

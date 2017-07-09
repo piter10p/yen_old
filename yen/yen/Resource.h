@@ -1,15 +1,12 @@
 #pragma once
 #include "Flag.h"
+#include "Id.h"
 
 namespace yen
 {
-	class Resource
+	class Resource :public Id
 	{
-		friend class ResourceManager;
-
-	protected:
+	public:
 		virtual Flag load() = 0;
-
-		int id;
 	};
 }

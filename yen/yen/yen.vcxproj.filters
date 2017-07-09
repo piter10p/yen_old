@@ -52,6 +52,12 @@
     <Filter Include="Headers\ResourceManager\Resources">
       <UniqueIdentifier>{a83848f8-39af-4d1e-9dae-bdd6f783f0bf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headers\Others">
+      <UniqueIdentifier>{7a820c90-599a-4703-abd2-57bbaf13b8aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Others">
+      <UniqueIdentifier>{b6db74da-d637-42d8-a015-05ae7516a1e9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -96,9 +102,6 @@
     <ClInclude Include="Component.h">
       <Filter>Headers\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Vector.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="ComponentManipulator.h">
       <Filter>Headers\Manipulators</Filter>
     </ClInclude>
@@ -111,14 +114,26 @@
     <ClInclude Include="Scene.h">
       <Filter>Headers\SceneManager</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManipulator.h">
-      <Filter>Headers\SceneManager</Filter>
-    </ClInclude>
-    <ClInclude Include="Flag.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="ResourceManager.h">
       <Filter>Headers\ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Id.h">
+      <Filter>Headers\Others</Filter>
+    </ClInclude>
+    <ClInclude Include="Flag.h">
+      <Filter>Headers\Others</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager.h">
+      <Filter>Headers\Others</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManipulator.h">
+      <Filter>Headers\Manipulators</Filter>
+    </ClInclude>
+    <ClInclude Include="IdSetter.h">
+      <Filter>Headers\Others</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.h">
+      <Filter>Headers\Others</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +169,15 @@
     </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
       <Filter>Sources\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Id.cpp">
+      <Filter>Sources\Others</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager.cpp">
+      <Filter>Sources\Others</Filter>
+    </ClCompile>
+    <ClCompile Include="IdSetter.cpp">
+      <Filter>Sources\Others</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

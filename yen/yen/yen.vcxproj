@@ -152,6 +152,9 @@
     <ClInclude Include="Flag.h" />
     <ClInclude Include="GraphicsComponent.h" />
     <ClInclude Include="GraphicsEngine.h" />
+    <ClInclude Include="Id.h" />
+    <ClInclude Include="IdSetter.h" />
+    <ClInclude Include="Manager.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectManipulator.h" />
     <ClInclude Include="ObjectsManager.h" />
@@ -170,6 +173,9 @@
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="GraphicsComponent.cpp" />
     <ClCompile Include="GraphicsEngine.cpp" />
+    <ClCompile Include="Id.cpp" />
+    <ClCompile Include="IdSetter.cpp" />
+    <ClCompile Include="Manager.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectsManager.cpp" />
     <ClCompile Include="ResourceManager.cpp" />

@@ -1,3 +1,28 @@
-﻿  ResourceManager.cpp
+﻿  stdafx.cpp
+  yen.cpp
+  SceneManager.cpp
+i:\backup\pietras\yen\yen\yen\scenemanager.cpp(67): warning C4018: '<': signed/unsigned mismatch
+  Scene.cpp
+i:\backup\pietras\yen\yen\yen\scene.cpp(51): warning C4018: '<': signed/unsigned mismatch
+  ResourceManager.cpp
+i:\backup\pietras\yen\yen\yen\resourcemanager.cpp(67): warning C4018: '<': signed/unsigned mismatch
+  ObjectsManager.cpp
+i:\backup\pietras\yen\yen\yen\objectsmanager.cpp(63): warning C4018: '<': signed/unsigned mismatch
+i:\backup\pietras\yen\yen\yen\objectsmanager.cpp(73): warning C4018: '<': signed/unsigned mismatch
+  Object.cpp
+i:\backup\pietras\yen\yen\yen\object.cpp(54): warning C4018: '<': signed/unsigned mismatch
+i:\backup\pietras\yen\yen\yen\object.cpp(84): warning C4018: '<': signed/unsigned mismatch
+i:\backup\pietras\yen\yen\yen\object.cpp(94): warning C4018: '<': signed/unsigned mismatch
+i:\backup\pietras\yen\yen\yen\object.cpp(103): warning C4018: '<': signed/unsigned mismatch
+  Manager.cpp
+i:\backup\pietras\yen\yen\yen\manager.cpp(8): warning C4018: '<': signed/unsigned mismatch
+  IdSetter.cpp
+  Id.cpp
+  GraphicsEngine.cpp
+  GraphicsComponent.cpp
+  Engine.cpp
+  AnimationResource.cpp
+  Generating Code...
+i:\backup\pietras\yen\yen\yen\object.cpp(109): warning C4715: 'yen::Object::isAnyComponentOfThisType': not all control paths return a value
   yen.vcxproj -> I:\Backup\Pietras\yen\yen\Debug\yen.exe
   yen.vcxproj -> I:\Backup\Pietras\yen\yen\Debug\yen.pdb (Partial PDB)

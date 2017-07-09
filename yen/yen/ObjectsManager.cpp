@@ -5,7 +5,6 @@ using namespace yen;
 
 ObjectsManager::ObjectsManager()
 {
-	this->idCounter = 0;
 }
 
 
@@ -17,13 +16,13 @@ ObjectsManager::~ObjectsManager()
 ObjectManipulator ObjectsManager::createObject()
 {
 	Object object;
-	object.id = getNewId();
+	object.setId(getNewId());
 
 	objects.push_back(object);
 
 	ObjectManipulator manipulator;
-	manipulator.id = object.id;
-	manipulator.object = &objects[getObjectListIndex(object.id)];
+	manipulator.id = object.getId();
+	manipulator.object = &objects[getObjectListIndex(object.getId())];
 
 	return manipulator;
 }
@@ -40,9 +39,9 @@ Flag ObjectsManager::removeObject(ObjectManipulator manipulator)
 	return Flag::ERROR_NOTHING_FOUND_ID;
 }
 
-ComponentManipulator ObjectsManager::attachComponent(ObjectManipulator manipulator, Component *component)
+Flag ObjectsManager::attachComponent(ComponentManipulator *comManipulator, ObjectManipulator objManipulator, Component *component)
 {
-	return manipulator.object->addComponent(component);
+	return objManipulator.object->addComponent(comManipulator, component);
 }
 
 Flag ObjectsManager::removeComponent(ObjectManipulator objManipulator, ComponentManipulator comManipulator)
@@ -50,18 +49,20 @@ Flag ObjectsManager::removeComponent(ObjectManipulator objManipulator, Component
 	return objManipulator.object->removeComponent(comManipulator);
 }
 
-int ObjectsManager::getNewId()
+bool ObjectsManager::test()
 {
-	this->idCounter++;
-
-	return this->idCounter - 1;
+	ObjectManipulator manipulator = createObject();
+	Flag flag = removeObject(manipulator);
+	if (flag != Flag::OK)
+		return false;
+	return true;
 }
 
 int ObjectsManager::getObjectListIndex(int id)
 {
 	for (int i = 0; i < objects.size(); i++)
 	{
-		if (objects[i].id == id)
+		if (objects[i].getId() == id)
 			return i;
 	}
 	return -1;

@@ -1,26 +1,24 @@
 #pragma once
 #include "ObjectManipulator.h"
 #include <vector>
+#include "Id.h"
 
 namespace yen
 {
-	class Scene
+	class Scene :public Id
 	{
 	public:
 		Scene();
 		~Scene();
 
-		friend class SceneManager;
-
-	protected:
-		int id;
-
 		Flag addObject(Object*);
 		Flag removeObject(Object*);
+
+		bool test();
 
 	private:
 		std::vector <Object*> objects;
 
-		int getObjectListIndex(int id);
+		int getIndexOfObjectsListObject(int id);
 	};
 }
