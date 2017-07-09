@@ -31,6 +31,43 @@ Flag Scene::removeObject(Object* object)
 	return Flag::ERROR_NOTHING_FOUND_ID;
 }
 
+void Scene::freeze()
+{
+	freezed = true;
+}
+
+void Scene::unFreeze()
+{
+	freezed = false;
+}
+
+bool Scene::isFreezed()
+{
+	return freezed;
+}
+
+void Scene::everyCodeStepUpdate()
+{
+	if (!freezed)
+	{
+		for (unsigned int i = 0; i < objects.size(); i++)
+		{
+			objects[i]->everyCodeStepUpdate();
+		}
+	}
+}
+
+void Scene::everyFrameRenderUpdate()
+{
+	if (!freezed)
+	{
+		for (unsigned int i = 0; i < objects.size(); i++)
+		{
+			objects[i]->everyFrameRenderUpdate();
+		}
+	}
+}
+
 bool Scene::test()
 {
 	Object object;

@@ -46,6 +46,37 @@ Flag SceneManager::removeObjectFromScene(SceneManipulator sceneManipulator, Obje
 	return sceneManipulator.scene->removeObject(objectManipulator.object);
 }
 
+void SceneManager::freezeScene(SceneManipulator manipulator)
+{
+	manipulator.scene->freeze();
+}
+
+void SceneManager::unFreezeScene(SceneManipulator manipulator)
+{
+	manipulator.scene->unFreeze();
+}
+
+bool SceneManager::isSceneFreezed(SceneManipulator manipulator)
+{
+	return manipulator.scene->isFreezed();
+}
+
+void SceneManager::everyCodeStepUpdate()
+{
+	for (unsigned int i = 0; i < scenes.size(); i++)
+	{
+		scenes[i].everyCodeStepUpdate();
+	}
+}
+
+void SceneManager::everyFrameRenderUpdate()
+{
+	for (unsigned int i = 0; i < scenes.size(); i++)
+	{
+		scenes[i].everyFrameRenderUpdate();
+	}
+}
+
 bool SceneManager::test()
 {
 	SceneManipulator manipulator = createScene();
