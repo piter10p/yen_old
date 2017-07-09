@@ -11,6 +11,8 @@ namespace yen
 		~GraphicsComponent();
 
 	protected:
+		const std::string type = "GraphicsComponent";
+
 		void step();
 	};
 }

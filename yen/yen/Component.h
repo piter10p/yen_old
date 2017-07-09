@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 namespace yen
 {
@@ -8,5 +9,6 @@ namespace yen
 	protected:
 		virtual void step() = 0;
 		int id;
+		const std::string type;
 	};
 }
