@@ -15,7 +15,7 @@ Scene::~Scene()
 Flag Scene::addObject(Object *object)
 {
 	if (getObjectListIndex(object->id) != -1)
-		return Flag::ERROR_THING_WITH_THIS_ID_HAS_ALREADY_BEEN_ADDED;
+		return Flag::ERROR_THING_WITH_THIS_ID_IS_ALREADY_EXISTS;
 	objects.push_back(object);
 	return Flag::OK;
 }

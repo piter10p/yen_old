@@ -8,6 +8,7 @@ namespace yen
 		friend class Object;
 	protected:
 		virtual void step() = 0;
+
 		int id;
 		const std::string type;
 	};
