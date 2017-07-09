@@ -7,11 +7,11 @@
 
 namespace yen
 {
-	class ResourceEngine
+	class ResourceManager
 	{
 	public:
-		ResourceEngine();
-		~ResourceEngine();
+		ResourceManager();
+		~ResourceManager();
 
 		AnimationManipulator addAnimationResource(AnimationResourceDef);
 		Flag removeAnimationResource(AnimationManipulator);

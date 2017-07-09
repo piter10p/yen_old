@@ -156,7 +156,7 @@
     <ClInclude Include="ObjectManipulator.h" />
     <ClInclude Include="ObjectsManager.h" />
     <ClInclude Include="Resource.h" />
-    <ClInclude Include="ResourceEngine.h" />
+    <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="ResourceManipulator.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
@@ -172,7 +172,7 @@
     <ClCompile Include="GraphicsEngine.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectsManager.cpp" />
-    <ClCompile Include="ResourceEngine.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="stdafx.cpp">

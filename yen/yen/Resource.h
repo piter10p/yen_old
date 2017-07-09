@@ -5,7 +5,7 @@ namespace yen
 {
 	class Resource
 	{
-		friend class ResourceEngine;
+		friend class ResourceManager;
 
 	protected:
 		virtual Flag load() = 0;

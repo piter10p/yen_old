@@ -1,20 +1,20 @@
 #include "stdafx.h"
-#include "ResourceEngine.h"
+#include "ResourceManager.h"
 
 using namespace yen;
 
-ResourceEngine::ResourceEngine()
+ResourceManager::ResourceManager()
 {
 	idCounter = 0;
 }
 
 
-ResourceEngine::~ResourceEngine()
+ResourceManager::~ResourceManager()
 {
 	clearAllResources();
 }
 
-AnimationManipulator ResourceEngine::addAnimationResource(AnimationResourceDef def)
+AnimationManipulator ResourceManager::addAnimationResource(AnimationResourceDef def)
 {
 	AnimationResource *resource = new AnimationResource(def, getId());
 	animationResources.push_back(resource);
@@ -24,7 +24,7 @@ AnimationManipulator ResourceEngine::addAnimationResource(AnimationResourceDef d
 	return manipulator;
 }
 
-Flag ResourceEngine::removeAnimationResource(AnimationManipulator manipulator)
+Flag ResourceManager::removeAnimationResource(AnimationManipulator manipulator)
 {
 	for (unsigned int i = 0; i < animationResources.size(); i++)
 	{
@@ -38,20 +38,20 @@ Flag ResourceEngine::removeAnimationResource(AnimationManipulator manipulator)
 	return Flag::ERROR_NOTHING_FOUND_ID;
 }
 
-int ResourceEngine::getId()
+int ResourceManager::getId()
 {
 	idCounter++;
 	return idCounter - 1;
 }
 
-bool ResourceEngine::isIdSame(ResourceManipulator* manipulator, Resource* resource)
+bool ResourceManager::isIdSame(ResourceManipulator* manipulator, Resource* resource)
 {
 	if (manipulator->id == resource->id)
 		return true;
 	return false;
 }
 
-void ResourceEngine::clearAllResources()
+void ResourceManager::clearAllResources()
 {
 	for (unsigned int i = 0; i < animationResources.size(); i++)
 	{

@@ -13,18 +13,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Headers\ResourceEngine">
-      <UniqueIdentifier>{24a425ad-6f85-43e3-b9c0-966152ba076b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sources\ResourceEngine">
-      <UniqueIdentifier>{9ecd9f24-901b-4b8c-aeab-edfe08164b68}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headers\ResourceEngine\Resources">
-      <UniqueIdentifier>{a83848f8-39af-4d1e-9dae-bdd6f783f0bf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sources\ResourceEngine\Resources">
-      <UniqueIdentifier>{68fb4dd9-ff1e-441b-a6b4-883d0ee4b6d0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Headers\GraphicsEngine">
       <UniqueIdentifier>{7a5614a8-f0e0-4199-80aa-7a4944e8c6a9}</UniqueIdentifier>
     </Filter>
@@ -52,6 +40,18 @@
     <Filter Include="Sources\SceneManager">
       <UniqueIdentifier>{612fe09e-1145-4bd0-af97-4d2e4e1078f3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\ResourceManager">
+      <UniqueIdentifier>{9ecd9f24-901b-4b8c-aeab-edfe08164b68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\ResourceManager\Resources">
+      <UniqueIdentifier>{68fb4dd9-ff1e-441b-a6b4-883d0ee4b6d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\ResourceManager">
+      <UniqueIdentifier>{24a425ad-6f85-43e3-b9c0-966152ba076b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\ResourceManager\Resources">
+      <UniqueIdentifier>{a83848f8-39af-4d1e-9dae-bdd6f783f0bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -66,17 +66,14 @@
     <ClInclude Include="Engine.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="ResourceEngine.h">
-      <Filter>Headers\ResourceEngine</Filter>
-    </ClInclude>
     <ClInclude Include="Resource.h">
-      <Filter>Headers\ResourceEngine\Resources</Filter>
+      <Filter>Headers\ResourceManager\Resources</Filter>
     </ClInclude>
     <ClInclude Include="AnimationResource.h">
-      <Filter>Headers\ResourceEngine\Resources</Filter>
+      <Filter>Headers\ResourceManager\Resources</Filter>
     </ClInclude>
     <ClInclude Include="AnimationResourceDef.h">
-      <Filter>Headers\ResourceEngine\Resources</Filter>
+      <Filter>Headers\ResourceManager\Resources</Filter>
     </ClInclude>
     <ClInclude Include="AnimationManipulator.h">
       <Filter>Headers\Manipulators</Filter>
@@ -120,6 +117,9 @@
     <ClInclude Include="Flag.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Headers\ResourceManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -131,11 +131,8 @@
     <ClCompile Include="Engine.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="ResourceEngine.cpp">
-      <Filter>Sources\ResourceEngine</Filter>
-    </ClCompile>
     <ClCompile Include="AnimationResource.cpp">
-      <Filter>Sources\ResourceEngine\Resources</Filter>
+      <Filter>Sources\ResourceManager\Resources</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
       <Filter>Sources\SceneManager</Filter>
@@ -154,6 +151,9 @@
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Sources\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Sources\ResourceManager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

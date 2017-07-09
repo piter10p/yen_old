@@ -3,7 +3,7 @@ namespace yen
 {
 	class ResourceManipulator
 	{
-		friend class ResourceEngine;
+		friend class ResourceManager;
 	protected:
 		int id;
 	};
