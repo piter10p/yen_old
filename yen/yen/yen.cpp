@@ -13,7 +13,8 @@ int main()
 {
 	yen::Engine engine;
 
-	engine.initialize();
+	EngineConfiguration configuration;
+	engine.initialize(configuration);
 
 	if (engine.run() == yen::Flag::OK)
 	{

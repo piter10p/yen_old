@@ -15,8 +15,8 @@ namespace yen
 		Object();
 		~Object();
 
-		void setPosition(Vector);
-		Vector getPosition();
+		void setPosition(fVector);
+		fVector getPosition();
 
 		Flag addComponent(ComponentManipulator *, Component *);
 		Flag removeComponent(ComponentManipulator);
@@ -29,7 +29,7 @@ namespace yen
 		bool test();
 
 	private:
-		Vector position;
+		fVector position;
 
 		std::vector <Component*> components;
 

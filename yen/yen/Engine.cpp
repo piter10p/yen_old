@@ -16,7 +16,7 @@ Engine::~Engine()
 
 void Engine::step()
 {
-	if (isRunning)
+	if (running)
 	{
 		sceneManager->codeStepUpdate();
 	}
@@ -34,7 +34,7 @@ void Engine::initialize(EngineConfiguration configuration)
 		sceneManager = new SceneManager();
 		graphicsEngine = new GraphicsEngine();
 
-		graphicsEngine->initialize(settings.resolution, settings.fullScreen, configuration.windowName);
+		graphicsEngine->initialize(settings.graphicsSettings, configuration.windowName);
 
 		initialized = true;
 	}
@@ -67,11 +67,13 @@ const std::string Engine::getVersion()
 
 void Engine::reInitialize()
 {
-	graphicsEngine->reInitialize(settings.resolution, settings.fullScreen, configuration.windowName);
+	graphicsEngine->reInitialize(settings.graphicsSettings, configuration.windowName);
 }
 
 void Engine::setDefaultSettings()
 {
-	settings.resolution.set(600, 600);
-	settings.fullScreen = false;
+	settings.graphicsSettings.resolution.set(600, 600);
+	settings.graphicsSettings.fullScreen = false;
+	settings.graphicsSettings.fpsLock = 0;
+	settings.graphicsSettings.vSync = false;
 }

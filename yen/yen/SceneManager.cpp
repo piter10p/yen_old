@@ -69,8 +69,6 @@ void SceneManager::codeStepUpdate()
 	}
 }
 
-}
-
 bool SceneManager::test()
 {
 	SceneManipulator manipulator = createScene();

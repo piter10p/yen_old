@@ -3,12 +3,16 @@
 
 namespace yen
 {
-	struct Settings
+	struct GraphicsSettings
 	{
 		uVector resolution;
 		bool fullScreen;
+		unsigned int fpsLock;
+		bool vSync;
+	};
 
-		bool fpsLock;
-		unsigned int fpsLockValueinHz;
+	struct Settings
+	{
+		GraphicsSettings graphicsSettings;
 	};
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "GraphicsEngine.h"
+#include "SFML\Graphics.hpp"
 
 namespace yen
 {
@@ -14,5 +15,8 @@ namespace yen
 
 	protected:
 		const std::string type = "GraphicsComponent";
+
+	private:
+		GraphicsEngine *graphicsEngine;
 	};
 }

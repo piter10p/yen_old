@@ -14,12 +14,12 @@ Object::~Object()
 	removeAllComponents();
 }
 
-void Object::setPosition(Vector vector)
+void Object::setPosition(fVector vector)
 {
 	position.copy(vector);
 }
 
-Vector Object::getPosition()
+fVector Object::getPosition()
 {
 	return position;
 }
@@ -53,15 +53,7 @@ void Object::codeStepUpdate()
 {
 	for (int  i = 0; i < components.size(); i++)
 	{
-		components[i]->everyCodeStepUpdate();
-	}
-}
-
-void Object::frameRenderUpdate()
-{
-	for (int i = 0; i < components.size(); i++)
-	{
-		components[i]->everyFrameRenderUpdate();
+		components[i]->codeStepUpdate();
 	}
 }
 
@@ -69,7 +61,7 @@ bool Object::test()
 {
 	class TestComponent : public Component
 	{
-	public: void step() {};
+	public: void codeStepUpdate() {};
 	protected: std::string type = "TestComponent";
 	};
 

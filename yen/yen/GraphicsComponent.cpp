@@ -5,6 +5,7 @@ using namespace yen;
 
 GraphicsComponent::GraphicsComponent(GraphicsEngine *engine)
 {
+	graphicsEngine = engine;
 }
 
 

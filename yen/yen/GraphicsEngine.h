@@ -3,6 +3,8 @@
 #include "SFML\Graphics.hpp"
 #include <string>
 #include "Flag.h"
+#include "Settings.h"
+//#include "GraphicsComponent.h"
 
 namespace yen
 {
@@ -12,8 +14,10 @@ namespace yen
 		GraphicsEngine();
 		~GraphicsEngine();
 
-		void initialize(uVector resolution, bool fullScreen, std::string windowName);
-		void reInitialize(uVector resolution, bool fullScreen, std::string windowName);
+		void initialize(GraphicsSettings settings, std::string windowName);
+		void reInitialize(GraphicsSettings settings, std::string windowName);
+
+		void draw();
 
 		Flag renderFrame();
 
