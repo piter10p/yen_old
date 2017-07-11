@@ -12,12 +12,7 @@ GraphicsComponent::~GraphicsComponent()
 {
 }
 
-void GraphicsComponent::everyCodeStepUpdate()
-{
-
-}
-
-void GraphicsComponent::everyFrameRenderUpdate()
+void GraphicsComponent::codeStepUpdate()
 {
 
 }

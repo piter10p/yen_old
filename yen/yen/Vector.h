@@ -2,7 +2,7 @@
 
 namespace yen
 {
-	class Vector
+	class fVector
 	{
 	public:
 		float getX()
@@ -21,7 +21,7 @@ namespace yen
 			this->y = y;
 		}
 
-		void copy(Vector vector)
+		void copy(fVector vector)
 		{
 			this->x = vector.x;
 			this->y = vector.y;
@@ -30,5 +30,35 @@ namespace yen
 	private:
 		float x;
 		float y;
+	};
+
+	class uVector
+	{
+	public:
+		unsigned int getX()
+		{
+			return x;
+		}
+
+		unsigned int getY()
+		{
+			return y;
+		}
+
+		void set(unsigned int x, unsigned int y)
+		{
+			this->x = x;
+			this->y = y;
+		}
+
+		void copy(uVector vector)
+		{
+			this->x = vector.x;
+			this->y = vector.y;
+		}
+
+	private:
+		unsigned int x;
+		unsigned int y;
 	};
 }

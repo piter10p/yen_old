@@ -46,24 +46,13 @@ bool Scene::isFreezed()
 	return freezed;
 }
 
-void Scene::everyCodeStepUpdate()
+void Scene::codeStepUpdate()
 {
 	if (!freezed)
 	{
 		for (unsigned int i = 0; i < objects.size(); i++)
 		{
-			objects[i]->everyCodeStepUpdate();
-		}
-	}
-}
-
-void Scene::everyFrameRenderUpdate()
-{
-	if (!freezed)
-	{
-		for (unsigned int i = 0; i < objects.size(); i++)
-		{
-			objects[i]->everyFrameRenderUpdate();
+			objects[i]->codeStepUpdate();
 		}
 	}
 }

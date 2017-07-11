@@ -10,8 +10,7 @@ namespace yen
 		GraphicsComponent(GraphicsEngine*);
 		~GraphicsComponent();
 
-		void everyCodeStepUpdate();
-		void everyFrameRenderUpdate();
+		void codeStepUpdate();
 
 	protected:
 		const std::string type = "GraphicsComponent";

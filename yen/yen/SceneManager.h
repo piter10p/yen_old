@@ -21,8 +21,7 @@ namespace yen
 		void unFreezeScene(SceneManipulator);
 		bool isSceneFreezed(SceneManipulator);
 
-		void everyCodeStepUpdate();
-		void everyFrameRenderUpdate();
+		void codeStepUpdate();
 
 		bool test();
 

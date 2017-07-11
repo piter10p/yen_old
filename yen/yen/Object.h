@@ -21,8 +21,8 @@ namespace yen
 		Flag addComponent(ComponentManipulator *, Component *);
 		Flag removeComponent(ComponentManipulator);
 
-		void everyCodeStepUpdate();
-		void everyFrameRenderUpdate();
+		void codeStepUpdate();
+		void frameRenderUpdate();
 
 		void removeAllComponents();
 

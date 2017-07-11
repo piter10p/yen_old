@@ -18,8 +18,7 @@ namespace yen
 		void unFreeze();
 		bool isFreezed();
 
-		void everyCodeStepUpdate();
-		void everyFrameRenderUpdate();
+		void codeStepUpdate();
 
 		bool test();
 

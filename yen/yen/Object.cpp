@@ -49,7 +49,7 @@ Flag Object::removeComponent(ComponentManipulator manipulator)
 	return Flag::ERROR_NOTHING_FOUND_ID;
 }
 
-void Object::everyCodeStepUpdate()
+void Object::codeStepUpdate()
 {
 	for (int  i = 0; i < components.size(); i++)
 	{
@@ -57,7 +57,7 @@ void Object::everyCodeStepUpdate()
 	}
 }
 
-void Object::everyFrameRenderUpdate()
+void Object::frameRenderUpdate()
 {
 	for (int i = 0; i < components.size(); i++)
 	{

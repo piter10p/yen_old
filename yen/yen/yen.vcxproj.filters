@@ -58,6 +58,9 @@
     <Filter Include="Sources\Others">
       <UniqueIdentifier>{b6db74da-d637-42d8-a015-05ae7516a1e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headers\Others\Vectors">
+      <UniqueIdentifier>{d24b21b7-0da2-4bb6-a17f-6f1da847a46e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -133,6 +136,12 @@
       <Filter>Headers\Others</Filter>
     </ClInclude>
     <ClInclude Include="Vector.h">
+      <Filter>Headers\Others\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Settings.h">
+      <Filter>Headers\Others</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineConfiguration.h">
       <Filter>Headers\Others</Filter>
     </ClInclude>
   </ItemGroup>

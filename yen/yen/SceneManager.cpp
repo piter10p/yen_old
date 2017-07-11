@@ -61,20 +61,14 @@ bool SceneManager::isSceneFreezed(SceneManipulator manipulator)
 	return manipulator.scene->isFreezed();
 }
 
-void SceneManager::everyCodeStepUpdate()
+void SceneManager::codeStepUpdate()
 {
 	for (unsigned int i = 0; i < scenes.size(); i++)
 	{
-		scenes[i].everyCodeStepUpdate();
+		scenes[i].codeStepUpdate();
 	}
 }
 
-void SceneManager::everyFrameRenderUpdate()
-{
-	for (unsigned int i = 0; i < scenes.size(); i++)
-	{
-		scenes[i].everyFrameRenderUpdate();
-	}
 }
 
 bool SceneManager::test()
