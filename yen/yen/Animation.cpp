@@ -47,7 +47,7 @@ unsigned int Animation::getFrameRate()
 
 Frame* Animation::getActualFrame()
 {
-	if (timer.isTimeElapsed())
+	if (timer.isTimeElapsed() && frameRate != 0)
 	{
 		increaseActualFrameIdNumer();
 	}

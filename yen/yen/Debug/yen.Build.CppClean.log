@@ -5,6 +5,7 @@ i:\backup\pietras\yen\yen\yen\debug\stdafx.obj
 i:\backup\pietras\yen\yen\yen\debug\animation.obj
 i:\backup\pietras\yen\yen\yen\debug\animationresource.obj
 i:\backup\pietras\yen\yen\yen\debug\engine.obj
+i:\backup\pietras\yen\yen\yen\debug\filesystem.obj
 i:\backup\pietras\yen\yen\yen\debug\frame.obj
 i:\backup\pietras\yen\yen\yen\debug\graphicscomponent.obj
 i:\backup\pietras\yen\yen\yen\debug\graphicsengine.obj
@@ -12,10 +13,12 @@ i:\backup\pietras\yen\yen\yen\debug\id.obj
 i:\backup\pietras\yen\yen\yen\debug\idsetter.obj
 i:\backup\pietras\yen\yen\yen\debug\manager.obj
 i:\backup\pietras\yen\yen\yen\debug\object.obj
+i:\backup\pietras\yen\yen\yen\debug\objectaccessinterface.obj
 i:\backup\pietras\yen\yen\yen\debug\objectsmanager.obj
 i:\backup\pietras\yen\yen\yen\debug\resourcemanager.obj
 i:\backup\pietras\yen\yen\yen\debug\scene.obj
 i:\backup\pietras\yen\yen\yen\debug\scenemanager.obj
+i:\backup\pietras\yen\yen\yen\debug\time.obj
 i:\backup\pietras\yen\yen\yen\debug\yen.obj
 i:\backup\pietras\yen\yen\debug\yen.ilk
 i:\backup\pietras\yen\yen\debug\yen.exe

@@ -2,6 +2,7 @@
 #include "Resource.h"
 #include <string>
 #include "AnimationResourceDef.h"
+#include "Animation.h"
 
 namespace yen
 {
@@ -12,6 +13,11 @@ namespace yen
 		~AnimationResource();
 
 		Flag load();
+		void setFrameRate(unsigned int);
+
+		friend class GraphicsComponent;
+	protected:
+		Animation animation;
 
 	private:
 		std::string path;

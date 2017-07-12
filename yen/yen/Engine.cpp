@@ -12,13 +12,15 @@ Engine::~Engine()
 {
 	delete graphicsEngine;
 	delete sceneManager;
+	delete resourceManager;
+	delete objectsManager;
 }
 
 void Engine::step()
 {
 	if (running)
 	{
-		sceneManager->codeStepUpdate();
+		graphicsEngine->renderFrame();
 	}
 }
 
@@ -33,8 +35,10 @@ void Engine::initialize(EngineConfiguration configuration)
 	{
 		sceneManager = new SceneManager();
 		graphicsEngine = new GraphicsEngine();
+		resourceManager = new ResourceManager();
+		objectsManager = new ObjectsManager();
 
-		graphicsEngine->initialize(settings.graphicsSettings, configuration.windowName);
+		graphicsEngine->initialize(settings.graphicsSettings, configuration.windowName, sceneManager);
 
 		initialized = true;
 	}
@@ -67,7 +71,7 @@ const std::string Engine::getVersion()
 
 void Engine::reInitialize()
 {
-	graphicsEngine->reInitialize(settings.graphicsSettings, configuration.windowName);
+	graphicsEngine->reInitialize(settings.graphicsSettings, configuration.windowName, sceneManager);
 }
 
 void Engine::setDefaultSettings()

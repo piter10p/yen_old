@@ -14,6 +14,10 @@ namespace yen
 		Flag addObject(Object*);
 		Flag removeObject(Object*);
 
+		Flag load();
+
+		void initialization();
+
 		void freeze();
 		void unFreeze();
 		bool isFreezed();
@@ -24,7 +28,8 @@ namespace yen
 
 	private:
 		std::vector <Object*> objects;
-		bool freezed = false;
+		bool freezed = true;
+		bool initialized = false;
 
 		int getIndexOfObjectsListObject(int id);
 	};

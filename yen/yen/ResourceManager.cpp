@@ -21,6 +21,7 @@ AnimationManipulator ResourceManager::addAnimationResource(AnimationResourceDef 
 	AnimationManipulator manipulator;
 	manipulator.animationResource = &animationResources[getIndexOfAnimationResourcesListObject(resource.getId())];
 	manipulator.id = resource.getId();
+	manipulator.animationResource->setFrameRate(def.frameRate);
 	return manipulator;
 }
 

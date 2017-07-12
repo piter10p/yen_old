@@ -135,23 +135,29 @@
     <ClInclude Include="Settings.h">
       <Filter>Headers\Others</Filter>
     </ClInclude>
-    <ClInclude Include="EngineConfiguration.h">
-      <Filter>Headers\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Vector.h">
       <Filter>Headers\Others</Filter>
     </ClInclude>
     <ClInclude Include="Frame.h">
       <Filter>Headers\GraphicsEngine</Filter>
     </ClInclude>
-    <ClInclude Include="Animation.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="FileSystem.h">
       <Filter>Headers\Others</Filter>
     </ClInclude>
     <ClInclude Include="Time.h">
       <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderObject.h">
+      <Filter>Headers\GraphicsEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Headers\GraphicsEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectAccessInterface.h">
+      <Filter>Headers\ObjectsManager</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineConfiguration.h">
+      <Filter>Headers\Others</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -200,14 +206,17 @@
     <ClCompile Include="Frame.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="Animation.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
     <ClCompile Include="FileSystem.cpp">
       <Filter>Sources\Others</Filter>
     </ClCompile>
     <ClCompile Include="Time.cpp">
       <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Sources\GraphicsEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectAccessInterface.cpp">
+      <Filter>Sources\ObjectsManager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

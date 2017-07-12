@@ -7,6 +7,7 @@ namespace yen
 	class AnimationManipulator :public ResourceManipulator
 	{
 		friend class ResourceManager;
+		friend class GraphicsComponent;
 	protected:
 		AnimationResource *animationResource;
 		int id;

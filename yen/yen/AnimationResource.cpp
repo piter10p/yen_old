@@ -16,5 +16,10 @@ AnimationResource::~AnimationResource()
 
 Flag AnimationResource::load()
 {
-	return Flag::OK;
+	return animation.load(path);
+}
+
+void AnimationResource::setFrameRate(unsigned int frameRate)
+{
+	animation.setFrameRate(frameRate);
 }

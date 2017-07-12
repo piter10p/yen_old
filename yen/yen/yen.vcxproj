@@ -160,8 +160,10 @@
     <ClInclude Include="IdSetter.h" />
     <ClInclude Include="Manager.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="ObjectAccessInterface.h" />
     <ClInclude Include="ObjectManipulator.h" />
     <ClInclude Include="ObjectsManager.h" />
+    <ClInclude Include="RenderObject.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="ResourceManipulator.h" />
@@ -186,6 +188,7 @@
     <ClCompile Include="IdSetter.cpp" />
     <ClCompile Include="Manager.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="ObjectAccessInterface.cpp" />
     <ClCompile Include="ObjectsManager.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Scene.cpp" />

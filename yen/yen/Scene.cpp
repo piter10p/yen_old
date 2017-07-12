@@ -31,6 +31,29 @@ Flag Scene::removeObject(Object* object)
 	return Flag::ERROR_NOTHING_FOUND_ID;
 }
 
+Flag Scene::load()
+{
+	for (unsigned int i = 0; i < objects.size(); i++)
+	{
+		Flag flag = objects[i]->load();
+		if (flag != Flag::OK)
+			return flag;
+	}
+	initialized = false;
+	return Flag::OK;
+}
+
+void Scene::initialization()
+{
+	for (unsigned int i = 0; i < objects.size(); i++)
+	{
+		objects[i]->initialization();
+	}
+
+	initialized = true;
+	freezed = false;
+}
+
 void Scene::freeze()
 {
 	freezed = true;

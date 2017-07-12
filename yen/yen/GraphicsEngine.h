@@ -4,7 +4,8 @@
 #include <string>
 #include "Flag.h"
 #include "Settings.h"
-//#include "GraphicsComponent.h"
+#include "RenderObject.h"
+#include "SceneManager.h"
 
 namespace yen
 {
@@ -14,10 +15,10 @@ namespace yen
 		GraphicsEngine();
 		~GraphicsEngine();
 
-		void initialize(GraphicsSettings settings, std::string windowName);
-		void reInitialize(GraphicsSettings settings, std::string windowName);
+		void initialize(GraphicsSettings settings, std::string windowName, SceneManager*);
+		void reInitialize(GraphicsSettings settings, std::string windowName, SceneManager*);
 
-		void draw();
+		void draw(RenderObject);
 
 		Flag renderFrame();
 
@@ -25,6 +26,7 @@ namespace yen
 		uVector resolution;
 		bool fullScreen;
 		std::string windowName;
+		SceneManager *sceneManager;
 
 		sf::RenderWindow window;
 	};

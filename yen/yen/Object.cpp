@@ -53,15 +53,39 @@ void Object::codeStepUpdate()
 {
 	for (int  i = 0; i < components.size(); i++)
 	{
-		components[i]->codeStepUpdate();
+		components[i]->codeStepUpdate(objectAccessInterface);
 	}
+}
+
+void Object::initialization()
+{
+	fillObjectAccessInterface();
+
+	for (int i = 0; i < components.size(); i++)
+	{
+		components[i]->initialization(objectAccessInterface);
+	}
+}
+
+Flag Object::load()
+{
+	for (int i = 0; i < components.size(); i++)
+	{
+		Flag flag = components[i]->load();
+		if (flag != Flag::OK)
+			return flag;
+	}
+	return Flag::OK;
 }
 
 bool Object::test()
 {
 	class TestComponent : public Component
 	{
-	public: void codeStepUpdate() {};
+	public:
+		void codeStepUpdate(ObjectAccessInterface) {};
+		void initialization(ObjectAccessInterface) {};
+		Flag load() { return Flag::OK; };
 	protected: std::string type = "TestComponent";
 	};
 
@@ -106,4 +130,10 @@ bool Object::isAnyComponentOfThisType(const std::string type)
 			return true;
 		return false;
 	}
+	return false;
+}
+
+void Object::fillObjectAccessInterface()
+{
+	objectAccessInterface.position = &this->position;
 }

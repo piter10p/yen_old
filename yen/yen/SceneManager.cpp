@@ -46,6 +46,16 @@ Flag SceneManager::removeObjectFromScene(SceneManipulator sceneManipulator, Obje
 	return sceneManipulator.scene->removeObject(objectManipulator.object);
 }
 
+Flag SceneManager::loadScene(SceneManipulator manipulator)
+{
+	return manipulator.scene->load();
+}
+
+void SceneManager::initializeScene(SceneManipulator manipulator)
+{
+	manipulator.scene->initialization();
+}
+
 void SceneManager::freezeScene(SceneManipulator manipulator)
 {
 	manipulator.scene->freeze();

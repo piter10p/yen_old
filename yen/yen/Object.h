@@ -22,7 +22,8 @@ namespace yen
 		Flag removeComponent(ComponentManipulator);
 
 		void codeStepUpdate();
-		void frameRenderUpdate();
+		void initialization();
+		Flag load();
 
 		void removeAllComponents();
 
@@ -30,11 +31,13 @@ namespace yen
 
 	private:
 		fVector position;
-
 		std::vector <Component*> components;
+		ObjectAccessInterface objectAccessInterface;
 
 		int getComponentListIndex(int id);
-
 		bool isAnyComponentOfThisType(const std::string type);
+		void fillObjectAccessInterface();
+
+		
 	};
 }

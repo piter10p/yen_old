@@ -27,6 +27,38 @@ namespace yen
 			this->y = vector.y;
 		}
 
+		void operator+=(fVector &vectorIn)
+		{
+			this->x += vectorIn.getX();
+			this->y += vectorIn.getY();
+		}
+
+		fVector operator+(fVector &vectorIn)
+		{
+			fVector vectorOut;
+
+			vectorOut.x = this->x + vectorIn.getX();
+			vectorOut.y = this->y + vectorIn.getY();
+
+			return vectorOut;
+		}
+
+		void operator-=(fVector &vectorIn)
+		{
+			this->x -= vectorIn.getX();
+			this->y -= vectorIn.getY();
+		}
+
+		fVector operator-(fVector &vectorIn)
+		{
+			fVector vectorOut;
+
+			vectorOut.x = this->x - vectorIn.getX();
+			vectorOut.y = this->y - vectorIn.getY();
+
+			return vectorOut;
+		}
+
 	private:
 		float x;
 		float y;

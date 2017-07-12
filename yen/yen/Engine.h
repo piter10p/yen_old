@@ -2,7 +2,9 @@
 #include "SceneManager.h"
 #include "GraphicsEngine.h"
 #include "Settings.h"
+#include "ResourceManager.h"
 #include "EngineConfiguration.h"
+#include "ObjectsManager.h"
 
 namespace yen
 {
@@ -23,6 +25,8 @@ namespace yen
 
 		GraphicsEngine *graphicsEngine;
 		SceneManager *sceneManager;
+		ResourceManager *resourceManager;
+		ObjectsManager *objectsManager;
 
 	private:
 		bool running = false;
