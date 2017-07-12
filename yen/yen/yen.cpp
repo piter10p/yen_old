@@ -7,11 +7,13 @@
 #include <cstdlib>
 #include "Engine.h"
 #include "Flag.h"
+#include "Animation.h"
+#include "SFML\Graphics.hpp"
 
 
 int main()
 {
-	yen::Engine engine;
+	/*yen::Engine engine;
 
 	EngineConfiguration configuration;
 	engine.initialize(configuration);
@@ -22,7 +24,7 @@ int main()
 		{
 			engine.step();
 		}
-	}
+	}*/
 
 	system("PAUSE");
 	return 0;

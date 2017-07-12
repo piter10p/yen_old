@@ -151,6 +151,7 @@
     <ClInclude Include="ComponentManipulator.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="EngineConfiguration.h" />
+    <ClInclude Include="FileSystem.h" />
     <ClInclude Include="Flag.h" />
     <ClInclude Include="Frame.h" />
     <ClInclude Include="GraphicsComponent.h" />
@@ -170,12 +171,14 @@
     <ClInclude Include="Settings.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Time.h" />
     <ClInclude Include="Vector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AnimationResource.cpp" />
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="FileSystem.cpp" />
     <ClCompile Include="Frame.cpp" />
     <ClCompile Include="GraphicsComponent.cpp" />
     <ClCompile Include="GraphicsEngine.cpp" />
@@ -193,6 +196,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Time.cpp" />
     <ClCompile Include="yen.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

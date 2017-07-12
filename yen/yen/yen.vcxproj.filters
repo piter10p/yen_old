@@ -147,6 +147,12 @@
     <ClInclude Include="Animation.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="FileSystem.h">
+      <Filter>Headers\Others</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -195,6 +201,12 @@
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="Animation.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="FileSystem.cpp">
+      <Filter>Sources\Others</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>
