@@ -19,12 +19,11 @@ namespace yen
 
 		void setAnimation(AnimationManipulator);
 
-	protected:
-		const std::string type = "GraphicsComponent";
-
 	private:
 		GraphicsEngine *graphicsEngine;
 		AnimationResource *animationResource;
 		sf::Sprite sprite;
+
+		sf::Vector2f calculateSpritePosition(fVector objectPosition, fVector cameraPosition);
 	};
 }

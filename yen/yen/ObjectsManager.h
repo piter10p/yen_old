@@ -19,7 +19,7 @@ namespace yen
 		bool test();
 
 	private:
-		std::vector <Object> objects;
+		std::vector <Object*> objects;
 
 		int getObjectListIndex(int id);
 

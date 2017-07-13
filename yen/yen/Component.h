@@ -21,6 +21,6 @@ namespace yen
 		}
 
 	protected:
-		const std::string type;
+		std::string type;
 	};
 }

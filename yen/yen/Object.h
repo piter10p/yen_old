@@ -21,11 +21,13 @@ namespace yen
 		Flag addComponent(ComponentManipulator *, Component *);
 		Flag removeComponent(ComponentManipulator);
 
-		void codeStepUpdate();
+		void codeStepUpdate(fVector cameraPos);
 		void initialization();
 		Flag load();
 
 		void removeAllComponents();
+
+		bool haveComponentofType(const std::string);
 
 		bool test();
 

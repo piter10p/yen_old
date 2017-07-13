@@ -15,16 +15,16 @@ GraphicsEngine::~GraphicsEngine()
 
 void GraphicsEngine::initialize(GraphicsSettings settings, std::string windowName, SceneManager *sceneManager)
 {
-	this->resolution = resolution;
-	this->fullScreen = fullScreen;
+	this->resolution = settings.resolution;
+	this->fullScreen = settings.fullScreen;
 	this->windowName = windowName;
 
 	this->sceneManager = sceneManager;
 
-	if(fullScreen)
-		window.create(sf::VideoMode(settings.resolution.getX(), settings.resolution.getY()), windowName, sf::Style::Titlebar);
+	if(this->fullScreen)
+		window.create(sf::VideoMode(resolution.getX(), resolution.getY()), this->windowName, sf::Style::Fullscreen);
 	else
-		window.create(sf::VideoMode(settings.resolution.getX(), settings.resolution.getY()), windowName, sf::Style::Fullscreen);
+		window.create(sf::VideoMode(resolution.getX(), resolution.getY()), this->windowName, sf::Style::Titlebar);
 }
 
 void GraphicsEngine::reInitialize(GraphicsSettings settings, std::string windowName, SceneManager *sceneManager)

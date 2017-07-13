@@ -56,6 +56,11 @@ void SceneManager::initializeScene(SceneManipulator manipulator)
 	manipulator.scene->initialization();
 }
 
+Flag SceneManager::setActiveCameraofScene(SceneManipulator sManipulator, ObjectManipulator oManipulator)
+{
+	return sManipulator.scene->setActiveCamera(oManipulator.object);
+}
+
 void SceneManager::freezeScene(SceneManipulator manipulator)
 {
 	manipulator.scene->freeze();
@@ -87,12 +92,6 @@ bool SceneManager::test()
 		return false;
 
 	return true;
-}
-
-int SceneManager::getNewId()
-{
-	idCounter++;
-	return idCounter - 1;
 }
 
 int SceneManager::getSceneListIndex(int id)

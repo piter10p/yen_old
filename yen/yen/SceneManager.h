@@ -2,10 +2,11 @@
 #include <vector>
 #include "Object.h"
 #include "SceneManipulator.h"
+#include "IdSetter.h"
 
 namespace yen
 {
-	class SceneManager
+	class SceneManager: public IdSetter
 	{
 	public:
 		SceneManager();
@@ -21,6 +22,8 @@ namespace yen
 
 		void initializeScene(SceneManipulator);
 
+		Flag setActiveCameraofScene(SceneManipulator, ObjectManipulator);
+
 		void freezeScene(SceneManipulator);
 		void unFreezeScene(SceneManipulator);
 		bool isSceneFreezed(SceneManipulator);
@@ -31,9 +34,6 @@ namespace yen
 
 	protected:
 		std::vector <Scene> scenes;
-
-		int idCounter;
-		int getNewId();
 
 		int getSceneListIndex(int id);
 	};

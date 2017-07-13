@@ -14,10 +14,28 @@
 #include "GraphicsComponent.h"
 #include "AnimationManipulator.h"
 #include "ComponentManipulator.h"
+#include "CameraComponent.h"
 
 
 int main()
 {
+	class MoveComponent : public yen::Component
+	{
+	public:
+		MoveComponent()
+		{
+			type = "MoveComponent";
+		}
+
+		void codeStepUpdate(yen::ObjectAccessInterface) {}
+		void initialization(yen::ObjectAccessInterface i)
+		{
+			i.setPosition(yen::fVector(-50.0f, -100.0f));
+		}
+
+		yen::Flag load() {return yen::Flag::OK;}
+	};
+
 	yen::Engine engine;
 
 	EngineConfiguration configuration;
@@ -26,32 +44,46 @@ int main()
 	yen::AnimationResourceDef animationDef;
 	animationDef.path = "data\\anim";
 	animationDef.frameRate = 60;
-	yen::AnimationManipulator aManipulator = engine.resourceManager->addAnimationResource(animationDef);
+	yen::AnimationManipulator animation = engine.resourceManager->addAnimationResource(animationDef);
+
+	yen::ObjectManipulator camera = engine.objectsManager->createObject();
+	yen::CameraComponent cameraComponent;
+	MoveComponent moveComponent;
+	yen::ComponentManipulator cameraComponentManipulator;
+	yen::ComponentManipulator moveComponentManipulator;
+	if (engine.objectsManager->attachComponent(&cameraComponentManipulator, camera, &cameraComponent) != yen::Flag::OK)
+		std::cout << "1" << std::endl;
+	if (engine.objectsManager->attachComponent(&moveComponentManipulator, camera, &moveComponent) != yen::Flag::OK)
+		std::cout << "2" << std::endl;
+
+
+	yen::ObjectManipulator cube = engine.objectsManager->createObject();
+	yen::GraphicsComponent graphicsComponent(engine.graphicsEngine);
+	graphicsComponent.setAnimation(animation);
+	yen::ComponentManipulator graphicsComponentManipulator;
+	if (engine.objectsManager->attachComponent(&graphicsComponentManipulator, cube, &graphicsComponent) != yen::Flag::OK)
+		std::cout << "3" << std::endl;
+
+
+	yen::SceneManipulator scene = engine.sceneManager->createScene();
+	if(engine.sceneManager->addObjectToScene(scene, camera) != yen::Flag::OK)
+		std::cout << "4" << std::endl;
+	if (engine.sceneManager->addObjectToScene(scene, cube) != yen::Flag::OK)
+		std::cout << "5" << std::endl;
+	if(engine.sceneManager->setActiveCameraofScene(scene, camera) != yen::Flag::OK)
+		std::cout << "6" << std::endl;
+		
 	
-	yen::ObjectManipulator oManipulator = engine.objectsManager->createObject();
-	yen::GraphicsComponent gComponent(engine.graphicsEngine);
-	gComponent.setAnimation(aManipulator);
-	yen::ComponentManipulator cManipulator;
-	engine.objectsManager->attachComponent(&cManipulator, oManipulator, &gComponent);
 
-	yen::SceneManipulator sManipulator = engine.sceneManager->createScene();
-	engine.sceneManager->addObjectToScene(sManipulator, oManipulator);
+	if(engine.sceneManager->loadScene(scene) != yen::Flag::OK)
+		std::cout << "7" << std::endl;
+	engine.sceneManager->initializeScene(scene);
 
-	engine.sceneManager->loadScene(sManipulator);
-	engine.sceneManager->initializeScene(sManipulator);
-
-	yen::time::LoopTimer timer;
-	timer.setElapseTime(4);
-	timer.start();
-	
 	if (engine.run() == yen::Flag::OK)
 	{
 		while (engine.isRunning())
 		{
 			engine.step();
-
-			if (timer.isTimeElapsed())
-				engine.stop();
 		}
 	}
 

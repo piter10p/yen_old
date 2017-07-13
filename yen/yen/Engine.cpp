@@ -76,7 +76,7 @@ void Engine::reInitialize()
 
 void Engine::setDefaultSettings()
 {
-	settings.graphicsSettings.resolution.set(600, 600);
+	settings.graphicsSettings.resolution.set(800, 600);
 	settings.graphicsSettings.fullScreen = false;
 	settings.graphicsSettings.fpsLock = 0;
 	settings.graphicsSettings.vSync = false;

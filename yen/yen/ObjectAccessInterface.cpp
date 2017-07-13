@@ -28,12 +28,7 @@ fVector ObjectAccessInterface::getPosition()
 	return *this->position;
 }
 
-uVector ObjectAccessInterface::getGraphicsPosition()
+fVector ObjectAccessInterface::getCameraPosition()
 {
-	boost::numeric::converter <unsigned int, float> converter;
-	uVector gPosition;
-	unsigned int gPosX = converter(this->getPosition().getX());
-	unsigned int gPosY = converter(this->getPosition().getY());
-	gPosition.set(gPosX, gPosY);
-	return gPosition;
+	return cameraPosition;
 }

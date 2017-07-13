@@ -18,6 +18,8 @@ namespace yen
 
 		void initialization();
 
+		Flag setActiveCamera(Object*);
+
 		void freeze();
 		void unFreeze();
 		bool isFreezed();
@@ -30,7 +32,9 @@ namespace yen
 		std::vector <Object*> objects;
 		bool freezed = true;
 		bool initialized = false;
+		Object *activeCamera;
 
 		int getIndexOfObjectsListObject(int id);
+		bool haveActiveCamera();
 	};
 }

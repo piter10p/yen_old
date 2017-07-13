@@ -147,6 +147,7 @@
     <ClInclude Include="AnimationManipulator.h" />
     <ClInclude Include="AnimationResource.h" />
     <ClInclude Include="AnimationResourceDef.h" />
+    <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentManipulator.h" />
     <ClInclude Include="Engine.h" />
@@ -179,6 +180,7 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AnimationResource.cpp" />
+    <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="FileSystem.cpp" />
     <ClCompile Include="Frame.cpp" />

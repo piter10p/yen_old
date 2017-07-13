@@ -33,6 +33,9 @@ Flag Scene::removeObject(Object* object)
 
 Flag Scene::load()
 {
+	if (!haveActiveCamera())
+		return Flag::ERROR_SCENE_DONT_HAVE_CAMERA;
+
 	for (unsigned int i = 0; i < objects.size(); i++)
 	{
 		Flag flag = objects[i]->load();
@@ -52,6 +55,16 @@ void Scene::initialization()
 
 	initialized = true;
 	freezed = false;
+}
+
+Flag Scene::setActiveCamera(Object* object)
+{
+	if (object->haveComponentofType("CameraComponent"))
+	{
+		activeCamera = object;
+		return Flag::OK;
+	}
+	return Flag::ERROR_OBJECT_DONT_HAVE_COMPONENT_OF_THIS_TYPE;
 }
 
 void Scene::freeze()
@@ -75,7 +88,7 @@ void Scene::codeStepUpdate()
 	{
 		for (unsigned int i = 0; i < objects.size(); i++)
 		{
-			objects[i]->codeStepUpdate();
+			objects[i]->codeStepUpdate(activeCamera->getPosition());
 		}
 	}
 }
@@ -103,4 +116,11 @@ int Scene::getIndexOfObjectsListObject(int id)
 			return i;
 	}
 	return -1;
+}
+
+bool Scene::haveActiveCamera()
+{
+	if (activeCamera->haveComponentofType("CameraComponent"))
+		return true;
+	return false;
 }

@@ -7,6 +7,7 @@ using namespace yen;
 GraphicsComponent::GraphicsComponent(GraphicsEngine *engine)
 {
 	graphicsEngine = engine;
+	type = "GraphicsComponent";
 }
 
 
@@ -19,10 +20,7 @@ void GraphicsComponent::codeStepUpdate(ObjectAccessInterface objectAccessInterfa
 	Frame *frame = animationResource->animation.getActualFrame();
 	sprite.setTexture(*frame->getTexture());
 
-	sf::Vector2f position;
-	position.x = (objectAccessInterface.getPosition().getX());
-	position.y = (objectAccessInterface.getPosition().getY());
-	sprite.setPosition(position);
+	sprite.setPosition(calculateSpritePosition(objectAccessInterface.getPosition(), objectAccessInterface.getCameraPosition()));
 
 	RenderObject rObject;
 	rObject.sprite = &sprite;
@@ -43,4 +41,11 @@ Flag GraphicsComponent::load()
 void GraphicsComponent::setAnimation(AnimationManipulator manipulator)
 {
 	animationResource = manipulator.animationResource;
+}
+
+sf::Vector2f GraphicsComponent::calculateSpritePosition(fVector objectPosition, fVector cameraPosition)
+{
+	objectPosition -= cameraPosition;
+
+	return sf::Vector2f(objectPosition.getX(), objectPosition.getY());
 }

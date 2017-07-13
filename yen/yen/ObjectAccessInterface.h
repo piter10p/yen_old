@@ -13,10 +13,11 @@ namespace yen
 		void move(fVector);
 
 		fVector getPosition();
-		uVector getGraphicsPosition();
+		fVector getCameraPosition();
 
 		friend class Object;
 	protected:
 		fVector *position;
+		fVector cameraPosition;
 	};
 }

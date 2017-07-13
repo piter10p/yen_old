@@ -49,8 +49,10 @@ Flag Object::removeComponent(ComponentManipulator manipulator)
 	return Flag::ERROR_NOTHING_FOUND_ID;
 }
 
-void Object::codeStepUpdate()
+void Object::codeStepUpdate(fVector cameraPos)
 {
+	objectAccessInterface.cameraPosition = cameraPos;
+
 	for (int  i = 0; i < components.size(); i++)
 	{
 		components[i]->codeStepUpdate(objectAccessInterface);
@@ -76,6 +78,16 @@ Flag Object::load()
 			return flag;
 	}
 	return Flag::OK;
+}
+
+bool Object::haveComponentofType(const std::string type)
+{
+	for (int i = 0; i < components.size(); i++)
+	{
+		if (components[i]->getType() == type)
+			return true;
+	}
+	return false;
 }
 
 bool Object::test()
@@ -115,10 +127,6 @@ int Object::getComponentListIndex(int id)
 
 void Object::removeAllComponents()
 {
-	for (int i = 0; i < components.size(); i++)
-	{
-		delete components[i];
-	}
 	components.clear();
 }
 

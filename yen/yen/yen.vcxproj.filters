@@ -159,6 +159,9 @@
     <ClInclude Include="EngineConfiguration.h">
       <Filter>Headers\Others</Filter>
     </ClInclude>
+    <ClInclude Include="CameraComponent.h">
+      <Filter>Headers\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -217,6 +220,9 @@
     </ClCompile>
     <ClCompile Include="ObjectAccessInterface.cpp">
       <Filter>Sources\ObjectsManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraComponent.cpp">
+      <Filter>Sources\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -5,6 +5,18 @@ namespace yen
 	class fVector
 	{
 	public:
+		fVector()
+		{
+			x = 0.0f;
+			y = 0.0f;
+		}
+
+		fVector(float x, float y)
+		{
+			this->x = x;
+			this->y = y;
+		}
+
 		float getX()
 		{
 			return x;
@@ -67,6 +79,18 @@ namespace yen
 	class uVector
 	{
 	public:
+		uVector()
+		{
+			x = 0.0f;
+			y = 0.0f;
+		}
+
+		uVector(unsigned int x, unsigned int y)
+		{
+			this->x = x;
+			this->y = y;
+		}
+
 		unsigned int getX()
 		{
 			return x;

@@ -15,14 +15,14 @@ ObjectsManager::~ObjectsManager()
 
 ObjectManipulator ObjectsManager::createObject()
 {
-	Object object;
-	object.setId(getNewId());
+	Object *object = new Object();
+	object->setId(getNewId());
 
 	objects.push_back(object);
 
 	ObjectManipulator manipulator;
-	manipulator.id = object.getId();
-	manipulator.object = &objects[getObjectListIndex(object.getId())];
+	manipulator.id = object->getId();
+	manipulator.object = objects[getObjectListIndex(object->getId())];
 
 	return manipulator;
 }
@@ -62,7 +62,7 @@ int ObjectsManager::getObjectListIndex(int id)
 {
 	for (int i = 0; i < objects.size(); i++)
 	{
-		if (objects[i].getId() == id)
+		if (objects[i]->getId() == id)
 			return i;
 	}
 	return -1;
@@ -72,7 +72,8 @@ void ObjectsManager::clearAllObjects()
 {
 	for (int i = 0; i < objects.size(); i++)
 	{
-		objects[i].removeAllComponents();
+		objects[i]->removeAllComponents();
+		delete objects[i];
 	}
 	objects.clear();
 }
