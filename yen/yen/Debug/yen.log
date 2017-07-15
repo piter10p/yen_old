@@ -1,4 +1,4 @@
-﻿  yen.cpp
+﻿  ObjectAccessInterface.cpp
 i:\backup\pietras\yen\yen\yen\vector.h(84): warning C4244: '=': conversion from 'float' to 'unsigned int', possible loss of data
 i:\backup\pietras\yen\yen\yen\vector.h(85): warning C4244: '=': conversion from 'float' to 'unsigned int', possible loss of data
   yen.vcxproj -> I:\Backup\Pietras\yen\yen\Debug\yen.exe
