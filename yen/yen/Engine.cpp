@@ -1,10 +1,12 @@
 #include "stdafx.h"
 #include "Engine.h"
+#include "Logger.h"
 
 using namespace yen;
 
 Engine::Engine()
 {
+	Logger::prepareFile();
 }
 
 
@@ -26,6 +28,8 @@ void Engine::step()
 
 void Engine::initialize(EngineConfiguration configuration)
 {
+	Logger::infoLog(0, "Engine initialization");
+
 	setDefaultSettings();
 	this->configuration = configuration;
 
@@ -42,6 +46,10 @@ void Engine::initialize(EngineConfiguration configuration)
 
 		initialized = true;
 	}
+
+	Logger::infoLog(0, "Engine initialized");
+	Logger::insertReturn();
+
 }
 
 Flag Engine::run()

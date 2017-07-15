@@ -1,0 +1,10 @@
+==============================================
+|| YEN Log File || Sat Jul 15 15:59:31 2017 ||
+==============================================
+
+
+[@]> Engine initialization
+	[@]> Graphics Engine initialization
+		[@]> Creating window
+[@]> Engine initialized
+

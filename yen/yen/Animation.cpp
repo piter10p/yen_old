@@ -27,7 +27,7 @@ Flag Animation::load(std::string path)
 		Frame frame;
 
 		if (frame.load(filePath) != Flag::OK)
-			return Flag::ERROR_CAN_NOT_LOAD_FILE;
+			return Flag::ERROR_CAN_NOT_OPEN_FILE;
 
 		frames.push_back(frame);
 	}

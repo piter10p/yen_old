@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GraphicsEngine.h"
 #include "SceneManager.h"
+#include "Logger.h"
 
 using namespace yen;
 
@@ -15,12 +16,15 @@ GraphicsEngine::~GraphicsEngine()
 
 void GraphicsEngine::initialize(GraphicsSettings settings, std::string windowName, SceneManager *sceneManager)
 {
+	Logger::infoLog(1, "Graphics Engine initialization");
+
 	this->resolution = settings.resolution;
 	this->fullScreen = settings.fullScreen;
 	this->windowName = windowName;
 
 	this->sceneManager = sceneManager;
 
+	Logger::infoLog(2, "Creating window");
 	if(this->fullScreen)
 		window.create(sf::VideoMode(resolution.getX(), resolution.getY()), this->windowName, sf::Style::Fullscreen);
 	else
