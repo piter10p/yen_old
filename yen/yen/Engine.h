@@ -1,10 +1,11 @@
 #pragma once
 #include "SceneManager.h"
 #include "GraphicsEngine.h"
-#include "Settings.h"
 #include "ResourceManager.h"
 #include "EngineConfiguration.h"
 #include "ObjectsManager.h"
+#include "SettingsManager.h"
+#include "InputManager.h"
 
 namespace yen
 {
@@ -27,16 +28,16 @@ namespace yen
 		SceneManager *sceneManager;
 		ResourceManager *resourceManager;
 		ObjectsManager *objectsManager;
+		SettingsManager *settingsManager;
+		InputManager *inputManager;
+
 
 	private:
 		bool running = false;
 		bool initialized = false;
-		Settings settings;
 		EngineConfiguration configuration;
 		const std::string version = "TEST_BUILD";
 
 		void reInitialize();
-
-		void setDefaultSettings();
 	};
 }

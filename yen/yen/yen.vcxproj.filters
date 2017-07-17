@@ -58,6 +58,18 @@
     <Filter Include="Sources\Others">
       <UniqueIdentifier>{b6db74da-d637-42d8-a015-05ae7516a1e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headers\InputManager">
+      <UniqueIdentifier>{bcd461a4-38f0-4f9f-b543-67307baeee05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\InputManager">
+      <UniqueIdentifier>{9583516b-3e08-447f-b18a-7b0f27508088}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\InputManager\Inputs">
+      <UniqueIdentifier>{b3bcdde2-6906-4cf9-b9ca-d8235b1d07fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\InputManager\Inputs">
+      <UniqueIdentifier>{08e8e864-41e3-4694-80ea-fe1613f525f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -165,6 +177,24 @@
     <ClInclude Include="Time.h">
       <Filter>Headers\Others</Filter>
     </ClInclude>
+    <ClInclude Include="SettingsManager.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Headers\InputManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Headers\InputManager\Inputs</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardInput.h">
+      <Filter>Headers\InputManager\Inputs</Filter>
+    </ClInclude>
+    <ClInclude Include="Keys.h">
+      <Filter>Headers\InputManager</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManipulator.h">
+      <Filter>Headers\InputManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -229,6 +259,21 @@
     </ClCompile>
     <ClCompile Include="Time.cpp">
       <Filter>Sources\Others</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingsManager.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Sources\InputManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Sources\InputManager\Inputs</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyboardInput.cpp">
+      <Filter>Sources\InputManager\Inputs</Filter>
+    </ClCompile>
+    <ClCompile Include="Keys.cpp">
+      <Filter>Sources\InputManager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

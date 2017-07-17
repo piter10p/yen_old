@@ -7,8 +7,7 @@ namespace yen
 	public:
 		fVector()
 		{
-			x = 0.0f;
-			y = 0.0f;
+			zero();
 		}
 
 		fVector(float x, float y)
@@ -37,6 +36,12 @@ namespace yen
 		{
 			this->x = vector.x;
 			this->y = vector.y;
+		}
+
+		void zero()
+		{
+			this->x = 0.0f;
+			this->y = 0.0f;
 		}
 
 		void operator+=(fVector &vectorIn)
@@ -81,8 +86,7 @@ namespace yen
 	public:
 		uVector()
 		{
-			x = 0.0f;
-			y = 0.0f;
+			zero();
 		}
 
 		uVector(unsigned int x, unsigned int y)
@@ -111,6 +115,12 @@ namespace yen
 		{
 			this->x = vector.x;
 			this->y = vector.y;
+		}
+
+		void zero()
+		{
+			this->x = 0;
+			this->y = 0;
 		}
 
 	private:

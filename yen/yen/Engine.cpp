@@ -12,10 +12,15 @@ Engine::Engine()
 
 Engine::~Engine()
 {
-	delete graphicsEngine;
-	delete sceneManager;
-	delete resourceManager;
-	delete objectsManager;
+	if (initialized)
+	{
+		delete graphicsEngine;
+		delete sceneManager;
+		delete resourceManager;
+		delete objectsManager;
+		delete settingsManager;
+		delete inputManager;
+	}
 }
 
 void Engine::step()
@@ -30,19 +35,22 @@ void Engine::initialize(EngineConfiguration configuration)
 {
 	Logger::infoLog(0, "Engine initialization");
 
-	setDefaultSettings();
 	this->configuration = configuration;
 
 	if (initialized)
 		reInitialize();
 	else
 	{
+		inputManager = new InputManager();
 		sceneManager = new SceneManager();
-		graphicsEngine = new GraphicsEngine();
+		graphicsEngine = new GraphicsEngine(sceneManager, inputManager);
 		resourceManager = new ResourceManager();
 		objectsManager = new ObjectsManager();
+		settingsManager = new SettingsManager();
 
-		graphicsEngine->initialize(settings.graphicsSettings, configuration.windowName, sceneManager);
+		settingsManager->setDefaults();
+
+		graphicsEngine->initialize(settingsManager->getGraphicsSettings(), configuration.windowName);
 
 		initialized = true;
 	}
@@ -79,13 +87,5 @@ const std::string Engine::getVersion()
 
 void Engine::reInitialize()
 {
-	graphicsEngine->reInitialize(settings.graphicsSettings, configuration.windowName, sceneManager);
-}
-
-void Engine::setDefaultSettings()
-{
-	settings.graphicsSettings.resolution.set(800, 600);
-	settings.graphicsSettings.fullScreen = false;
-	settings.graphicsSettings.fpsLock = 0;
-	settings.graphicsSettings.vSync = false;
+	graphicsEngine->reInitialize(settingsManager->getGraphicsSettings(), configuration.windowName);
 }

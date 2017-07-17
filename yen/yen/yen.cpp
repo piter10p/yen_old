@@ -27,13 +27,33 @@ int main()
 			type = "MoveComponent";
 		}
 
-		void codeStepUpdate(yen::ObjectAccessInterface) {}
+		void codeStepUpdate(yen::ObjectAccessInterface i)
+		{
+			if (timer.isTimeElapsed())
+			{
+				i.move(moveVector);
+				moveVector.zero();
+			}
+		}
 		void initialization(yen::ObjectAccessInterface i)
 		{
-			i.setPosition(yen::fVector(-50.0f, -100.0f));
+			i.setPosition(yen::fVector(0.0f, 0.0f));
+
+			timer.setElapseTime(0.001f);
+			timer.start();
+		}
+
+		void move(yen::fVector moveVector)
+		{
+			this->moveVector = moveVector;
 		}
 
 		yen::Flag load() {return yen::Flag::OK;}
+
+	private:
+		yen::fVector moveVector;
+
+		yen::time::FixedTimeLoopTimer timer;
 	};
 
 	yen::Engine engine;
@@ -73,17 +93,52 @@ int main()
 	if(engine.sceneManager->setActiveCameraofScene(scene, camera) != yen::Flag::OK)
 		std::cout << "6" << std::endl;
 		
-	
+	yen::InputDef leftKeyDef;
+	leftKeyDef.type = yen::InputType::KEYBOARD_KEY;
+	leftKeyDef.name = "leftKey";
+	leftKeyDef.key = yen::inputs::Key::Left;
+	yen::InputDef rightKeyDef;
+	rightKeyDef.type = yen::InputType::KEYBOARD_KEY;
+	rightKeyDef.name = "rightKey";
+	rightKeyDef.key = yen::inputs::Key::Right;
+	yen::InputDef escapeKeyDef;
+	escapeKeyDef.type = yen::InputType::KEYBOARD_KEY;
+	escapeKeyDef.name = "escapeKay";
+	escapeKeyDef.key = yen::inputs::Key::Escape;
+	yen::InputManipulator leftKey;
+	yen::InputManipulator rightKey;
+	yen::InputManipulator escapeKey;
+	if (engine.inputManager->createInput(&leftKey, leftKeyDef) != yen::Flag::OK)
+		std::cout << "7" << std::endl;
+	if (engine.inputManager->createInput(&rightKey, rightKeyDef) != yen::Flag::OK)
+		std::cout << "8" << std::endl;
+	if (engine.inputManager->createInput(&escapeKey, escapeKeyDef) != yen::Flag::OK)
+		std::cout << "9" << std::endl;
+
 
 	if(engine.sceneManager->loadScene(scene) != yen::Flag::OK)
-		std::cout << "7" << std::endl;
+		std::cout << "10" << std::endl;
 	engine.sceneManager->initializeScene(scene);
+
+	yen::time::LoopTimer timer;
+	timer.setElapseTime(5);
+	timer.start();
 
 	if (engine.run() == yen::Flag::OK)
 	{
 		while (engine.isRunning())
 		{
 			engine.step();
+
+			if (engine.inputManager->isKeyPressed(leftKey))
+				moveComponent.move(yen::fVector(2.0f, 0.0f));
+			if (engine.inputManager->isKeyPressed(rightKey))
+				moveComponent.move(yen::fVector(-2.0f, 0.0f));
+			if (engine.inputManager->isKeyPressed(escapeKey))
+				engine.stop();
+
+			//if (timer.isTimeElapsed())
+				//engine.stop();
 		}
 	}
 

@@ -6,26 +6,25 @@
 #include "Settings.h"
 #include "RenderObject.h"
 #include "SceneManager.h"
+#include "InputManager.h"
 
 namespace yen
 {
 	class GraphicsEngine
 	{
 	public:
-		GraphicsEngine();
+		GraphicsEngine(SceneManager*, InputManager*);
 		~GraphicsEngine();
 
-		void initialize(GraphicsSettings settings, std::string windowName, SceneManager*);
-		void reInitialize(GraphicsSettings settings, std::string windowName, SceneManager*);
+		void initialize(GraphicsSettings settings, std::string windowName);
+		void reInitialize(GraphicsSettings settings, std::string windowName);
 
 		void draw(RenderObject);
 
 		Flag renderFrame();
 
 	private:
-		uVector resolution;
-		bool fullScreen;
-		std::string windowName;
+		InputManager *inputsManager;
 		SceneManager *sceneManager;
 
 		sf::RenderWindow window;
