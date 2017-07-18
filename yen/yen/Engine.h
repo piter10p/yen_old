@@ -6,6 +6,7 @@
 #include "ObjectsManager.h"
 #include "SettingsManager.h"
 #include "InputManager.h"
+#include "PhysicsEngine.h"
 
 namespace yen
 {
@@ -30,6 +31,7 @@ namespace yen
 		ObjectsManager *objectsManager;
 		SettingsManager *settingsManager;
 		InputManager *inputManager;
+		PhysicsEngine *physicsEngine;
 
 
 	private:

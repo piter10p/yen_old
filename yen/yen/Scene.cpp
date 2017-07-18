@@ -3,8 +3,11 @@
 
 using namespace yen;
 
-Scene::Scene()
+Scene::Scene(PhysicsEngine *physicsEngine)
 {
+	this->physicsEngine = physicsEngine;
+
+	worldManipulator = physicsEngine->createWorld();
 }
 
 
@@ -54,7 +57,7 @@ void Scene::initialization()
 	}
 
 	initialized = true;
-	freezed = false;
+	unFreeze();
 }
 
 Flag Scene::setActiveCamera(Object* object)
@@ -70,11 +73,13 @@ Flag Scene::setActiveCamera(Object* object)
 void Scene::freeze()
 {
 	freezed = true;
+	physicsEngine->freezeWorld(worldManipulator);
 }
 
 void Scene::unFreeze()
 {
 	freezed = false;
+	physicsEngine->unFreezeWorld(worldManipulator);
 }
 
 bool Scene::isFreezed()
@@ -91,6 +96,11 @@ void Scene::codeStepUpdate()
 			objects[i]->codeStepUpdate(activeCamera->getPosition());
 		}
 	}
+}
+
+void Scene::setGravity(fVector vector)
+{
+	physicsEngine->setWorldGravity(worldManipulator, vector);
 }
 
 bool Scene::test()

@@ -1,3 +1,18 @@
 ﻿  yen.cpp
+i:\backup\pietras\yen\yen\yen\physicsengine.h(40): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  SceneManager.cpp
+i:\backup\pietras\yen\yen\yen\physicsengine.h(40): warning C4305: 'initializing': truncation from 'double' to 'const float'
+i:\backup\pietras\yen\yen\yen\scenemanager.cpp(105): warning C4018: '<': signed/unsigned mismatch
+  Scene.cpp
+i:\backup\pietras\yen\yen\yen\physicsengine.h(40): warning C4305: 'initializing': truncation from 'double' to 'const float'
+i:\backup\pietras\yen\yen\yen\scene.cpp(123): warning C4018: '<': signed/unsigned mismatch
+  Engine.cpp
+i:\backup\pietras\yen\yen\yen\physicsengine.h(40): warning C4305: 'initializing': truncation from 'double' to 'const float'
+i:\backup\pietras\yen\yen\yen\logger.h(31): warning C4091: 'static ': ignored on left of 'yen::Logger' when no variable is declared
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  SettingsManager.cpp
+  GraphicsEngine.cpp
+  GraphicsComponent.cpp
   yen.vcxproj -> I:\Backup\Pietras\yen\yen\Debug\yen.exe
   yen.vcxproj -> I:\Backup\Pietras\yen\yen\Debug\yen.pdb (Partial PDB)

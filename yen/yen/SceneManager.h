@@ -3,13 +3,14 @@
 #include "Object.h"
 #include "SceneManipulator.h"
 #include "IdSetter.h"
+#include "PhysicsEngine.h"
 
 namespace yen
 {
 	class SceneManager: public IdSetter
 	{
 	public:
-		SceneManager();
+		SceneManager(PhysicsEngine*);
 		~SceneManager();
 
 		SceneManipulator createScene();
@@ -21,6 +22,8 @@ namespace yen
 		Flag loadScene(SceneManipulator);
 
 		void initializeScene(SceneManipulator);
+
+		void setSceneGravity(SceneManipulator, fVector);
 
 		Flag setActiveCameraofScene(SceneManipulator, ObjectManipulator);
 
@@ -34,6 +37,7 @@ namespace yen
 
 	protected:
 		std::vector <Scene> scenes;
+		PhysicsEngine *physicsEngine;
 
 		int getSceneListIndex(int id);
 	};

@@ -17,11 +17,6 @@ PhysicsEngine::~PhysicsEngine()
 
 void PhysicsEngine::initialize()
 {
-	for (unsigned int i = 0; i < worlds.size(); i++)
-	{
-		worlds[i]->unFreeze();
-	}
-
 	timer.start();
 }
 

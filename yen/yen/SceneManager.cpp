@@ -3,8 +3,9 @@
 
 using namespace yen;
 
-SceneManager::SceneManager()
+SceneManager::SceneManager(PhysicsEngine *physicsEngine)
 {
+	this->physicsEngine = physicsEngine;
 }
 
 
@@ -14,7 +15,7 @@ SceneManager::~SceneManager()
 
 SceneManipulator SceneManager::createScene()
 {
-	Scene scene;
+	Scene scene(physicsEngine);
 	scene.setId(getNewId()) ;
 	scenes.push_back(scene);
 
@@ -54,6 +55,11 @@ Flag SceneManager::loadScene(SceneManipulator manipulator)
 void SceneManager::initializeScene(SceneManipulator manipulator)
 {
 	manipulator.scene->initialization();
+}
+
+void SceneManager::setSceneGravity(SceneManipulator manipulator, fVector vector)
+{
+	manipulator.scene->setGravity(vector);
 }
 
 Flag SceneManager::setActiveCameraofScene(SceneManipulator sManipulator, ObjectManipulator oManipulator)

@@ -20,6 +20,7 @@ Engine::~Engine()
 		delete objectsManager;
 		delete settingsManager;
 		delete inputManager;
+		delete physicsEngine;
 	}
 }
 
@@ -28,6 +29,7 @@ void Engine::step()
 	if (running)
 	{
 		graphicsEngine->renderFrame();
+		physicsEngine->step();
 	}
 }
 
@@ -41,8 +43,9 @@ void Engine::initialize(EngineConfiguration configuration)
 		reInitialize();
 	else
 	{
+		physicsEngine = new PhysicsEngine();
 		inputManager = new InputManager();
-		sceneManager = new SceneManager();
+		sceneManager = new SceneManager(physicsEngine);
 		graphicsEngine = new GraphicsEngine(sceneManager, inputManager);
 		resourceManager = new ResourceManager();
 		objectsManager = new ObjectsManager();
@@ -51,6 +54,7 @@ void Engine::initialize(EngineConfiguration configuration)
 		settingsManager->setDefaults();
 
 		graphicsEngine->initialize(settingsManager->getGraphicsSettings(), configuration.windowName);
+		physicsEngine->initialize();
 
 		initialized = true;
 	}

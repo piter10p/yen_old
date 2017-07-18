@@ -86,6 +86,7 @@ int main()
 
 
 	yen::SceneManipulator scene = engine.sceneManager->createScene();
+	engine.sceneManager->setSceneGravity(scene, yen::fVector(0.0f, 10.0f));
 	if(engine.sceneManager->addObjectToScene(scene, camera) != yen::Flag::OK)
 		std::cout << "4" << std::endl;
 	if (engine.sceneManager->addObjectToScene(scene, cube) != yen::Flag::OK)
