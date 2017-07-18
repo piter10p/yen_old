@@ -70,6 +70,12 @@
     <Filter Include="Sources\InputManager\Inputs">
       <UniqueIdentifier>{08e8e864-41e3-4694-80ea-fe1613f525f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headers\PhysicsEngine">
+      <UniqueIdentifier>{2346282a-afce-44df-9c8d-451bee354bc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\PhysicsEngine">
+      <UniqueIdentifier>{3b3298a0-ee0d-43ce-83cd-f43850bee378}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -195,6 +201,21 @@
     <ClInclude Include="InputManipulator.h">
       <Filter>Headers\InputManager</Filter>
     </ClInclude>
+    <ClInclude Include="PhysicsEngine.h">
+      <Filter>Headers\PhysicsEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="BodyDef.h">
+      <Filter>Headers\PhysicsEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>Headers\PhysicsEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="BodyManipulator.h">
+      <Filter>Headers\PhysicsEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldManipulator.h">
+      <Filter>Headers\PhysicsEngine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -274,6 +295,12 @@
     </ClCompile>
     <ClCompile Include="Keys.cpp">
       <Filter>Sources\InputManager</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsEngine.cpp">
+      <Filter>Sources\PhysicsEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>Sources\PhysicsEngine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

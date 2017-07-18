@@ -120,10 +120,6 @@ int main()
 		std::cout << "10" << std::endl;
 	engine.sceneManager->initializeScene(scene);
 
-	yen::time::LoopTimer timer;
-	timer.setElapseTime(5);
-	timer.start();
-
 	if (engine.run() == yen::Flag::OK)
 	{
 		while (engine.isRunning())
@@ -136,9 +132,6 @@ int main()
 				moveComponent.move(yen::fVector(-2.0f, 0.0f));
 			if (engine.inputManager->isKeyPressed(escapeKey))
 				engine.stop();
-
-			//if (timer.isTimeElapsed())
-				//engine.stop();
 		}
 	}
 

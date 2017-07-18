@@ -88,12 +88,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>I:\Backup\Pietras\Visual Studio Projects\Biblioteki\boost_1_64_0;I:\Backup\Pietras\Visual Studio Projects\Biblioteki\SFML-2.4.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>I:\Backup\Pietras\Visual Studio Projects\Biblioteki\Box2D-master\Box2D\Box2D;I:\Backup\Pietras\Visual Studio Projects\Biblioteki\boost_1_64_0;I:\Backup\Pietras\Visual Studio Projects\Biblioteki\SFML-2.4.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>I:\Backup\Pietras\Visual Studio Projects\Biblioteki\boost_1_64_0\stage\win32\lib;I:\Backup\Pietras\Visual Studio Projects\Biblioteki\SFML-2.4.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-audio-d.lib;sfml-graphics-d.lib;sfml-main-d.lib;sfml-network-d.lib;sfml-system-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>I:\Backup\Pietras\Visual Studio Projects\Biblioteki\Box2D-master\Box2D\Build\vs2015\bin\x32\Debug;I:\Backup\Pietras\Visual Studio Projects\Biblioteki\boost_1_64_0\stage\win32\lib;I:\Backup\Pietras\Visual Studio Projects\Biblioteki\SFML-2.4.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-audio-d.lib;sfml-graphics-d.lib;sfml-main-d.lib;sfml-network-d.lib;sfml-system-d.lib;sfml-window-d.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -115,7 +115,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>I:\Backup\Pietras\Visual Studio Projects\Biblioteki\boost_1_64_0;I:\Backup\Pietras\Visual Studio Projects\Biblioteki\SFML-2.4.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>I:\Backup\Pietras\Visual Studio Projects\Biblioteki\Box2D-master\Box2D\Box2D;I:\Backup\Pietras\Visual Studio Projects\Biblioteki\boost_1_64_0;I:\Backup\Pietras\Visual Studio Projects\Biblioteki\SFML-2.4.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -147,6 +147,8 @@
     <ClInclude Include="AnimationManipulator.h" />
     <ClInclude Include="AnimationResource.h" />
     <ClInclude Include="AnimationResourceDef.h" />
+    <ClInclude Include="BodyDef.h" />
+    <ClInclude Include="BodyManipulator.h" />
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentManipulator.h" />
@@ -170,6 +172,7 @@
     <ClInclude Include="ObjectAccessInterface.h" />
     <ClInclude Include="ObjectManipulator.h" />
     <ClInclude Include="ObjectsManager.h" />
+    <ClInclude Include="PhysicsEngine.h" />
     <ClInclude Include="RenderObject.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ResourceManager.h" />
@@ -183,6 +186,8 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Vector.h" />
+    <ClInclude Include="World.h" />
+    <ClInclude Include="WorldManipulator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
@@ -204,6 +209,7 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectAccessInterface.cpp" />
     <ClCompile Include="ObjectsManager.cpp" />
+    <ClCompile Include="PhysicsEngine.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -215,6 +221,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Time.cpp" />
+    <ClCompile Include="World.cpp" />
     <ClCompile Include="yen.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

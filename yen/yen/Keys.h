@@ -112,7 +112,7 @@ namespace yen
 			Pause,        ///< The Pause key
 		};
 
-		static class InputsConverter
+		class InputsConverter
 		{
 		public:
 			static sf::Keyboard::Key keyToSfKey(Key);
