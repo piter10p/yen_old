@@ -191,6 +191,7 @@
     <ClInclude Include="Vector.h" />
     <ClInclude Include="World.h" />
     <ClInclude Include="WorldManipulator.h" />
+    <ClInclude Include="yen.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />

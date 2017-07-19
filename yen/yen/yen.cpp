@@ -5,14 +5,7 @@
 #include <cmath>
 #include <iostream>
 #include <cstdlib>
-#include "Engine.h"
-#include "Flag.h"
-#include "Animation.h"
-#include "AnimationResourceDef.h"
-#include "SceneManipulator.h"
-#include "ObjectManipulator.h"
-#include "AnimationManipulator.h"
-#include "Components.h"
+#include "yen.h"
 
 
 int main()
@@ -23,7 +16,7 @@ int main()
 	engine.initialize(configuration);
 
 	yen::AnimationResourceDef animationDef;
-	animationDef.path = "data\\anim";
+	animationDef.path = "I:\\Backup\\Pietras\\data\\anim";
 	animationDef.frameRate = 60;
 	yen::AnimationManipulator animation = engine.resourceManager->addAnimationResource(animationDef);
 

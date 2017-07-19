@@ -225,6 +225,9 @@
     <ClInclude Include="Components.h">
       <Filter>Headers\Components</Filter>
     </ClInclude>
+    <ClInclude Include="yen.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
