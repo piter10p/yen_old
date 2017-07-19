@@ -59,9 +59,9 @@ void Object::codeStepUpdate(fVector cameraPos)
 	}
 }
 
-void Object::initialization()
+void Object::initialization(WorldManipulator worldManipulator)
 {
-	fillObjectAccessInterface();
+	fillObjectAccessInterface(worldManipulator);
 
 	for (int i = 0; i < components.size(); i++)
 	{
@@ -141,7 +141,8 @@ bool Object::isAnyComponentOfThisType(const std::string type)
 	return false;
 }
 
-void Object::fillObjectAccessInterface()
+void Object::fillObjectAccessInterface(WorldManipulator worldManipulator)
 {
 	objectAccessInterface.position = &this->position;
+	objectAccessInterface.worldManipulator = worldManipulator;
 }

@@ -53,7 +53,7 @@ void Scene::initialization()
 {
 	for (unsigned int i = 0; i < objects.size(); i++)
 	{
-		objects[i]->initialization();
+		objects[i]->initialization(worldManipulator);
 	}
 
 	initialized = true;

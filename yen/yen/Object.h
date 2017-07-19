@@ -22,7 +22,7 @@ namespace yen
 		Flag removeComponent(ComponentManipulator);
 
 		void codeStepUpdate(fVector cameraPos);
-		void initialization();
+		void initialization(WorldManipulator);
 		Flag load();
 
 		void removeAllComponents();
@@ -38,7 +38,7 @@ namespace yen
 
 		int getComponentListIndex(int id);
 		bool isAnyComponentOfThisType(const std::string type);
-		void fillObjectAccessInterface();
+		void fillObjectAccessInterface(WorldManipulator);
 
 		
 	};

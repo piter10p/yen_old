@@ -3,7 +3,7 @@
 
 namespace yen
 {
-	class CameraComponent: public Component
+	class CameraComponent : public Component
 	{
 	public:
 		CameraComponent();

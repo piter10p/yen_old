@@ -11,51 +11,12 @@
 #include "AnimationResourceDef.h"
 #include "SceneManipulator.h"
 #include "ObjectManipulator.h"
-#include "GraphicsComponent.h"
 #include "AnimationManipulator.h"
-#include "ComponentManipulator.h"
-#include "CameraComponent.h"
+#include "Components.h"
 
 
 int main()
 {
-	class MoveComponent : public yen::Component
-	{
-	public:
-		MoveComponent()
-		{
-			type = "MoveComponent";
-		}
-
-		void codeStepUpdate(yen::ObjectAccessInterface i)
-		{
-			if (timer.isTimeElapsed())
-			{
-				i.move(moveVector);
-				moveVector.zero();
-			}
-		}
-		void initialization(yen::ObjectAccessInterface i)
-		{
-			i.setPosition(yen::fVector(0.0f, 0.0f));
-
-			timer.setElapseTime(0.001f);
-			timer.start();
-		}
-
-		void move(yen::fVector moveVector)
-		{
-			this->moveVector = moveVector;
-		}
-
-		yen::Flag load() {return yen::Flag::OK;}
-
-	private:
-		yen::fVector moveVector;
-
-		yen::time::FixedTimeLoopTimer timer;
-	};
-
 	yen::Engine engine;
 
 	EngineConfiguration configuration;
@@ -68,7 +29,7 @@ int main()
 
 	yen::ObjectManipulator camera = engine.objectsManager->createObject();
 	yen::CameraComponent cameraComponent;
-	MoveComponent moveComponent;
+	yen::MoveComponent moveComponent(yen::fVector(-100.0f, 0.0f));
 	yen::ComponentManipulator cameraComponentManipulator;
 	yen::ComponentManipulator moveComponentManipulator;
 	if (engine.objectsManager->attachComponent(&cameraComponentManipulator, camera, &cameraComponent) != yen::Flag::OK)
@@ -77,22 +38,31 @@ int main()
 		std::cout << "2" << std::endl;
 
 
+	yen::SceneManipulator scene = engine.sceneManager->createScene();
+	engine.sceneManager->setSceneGravity(scene, yen::fVector(0.0f, 10.0f));
+
+
 	yen::ObjectManipulator cube = engine.objectsManager->createObject();
 	yen::GraphicsComponent graphicsComponent(engine.graphicsEngine);
 	graphicsComponent.setAnimation(animation);
+	yen::BodyDef bodyDef;
+	bodyDef.type = yen::BodyType::DYNAMIC;
+	bodyDef.shapeSize = yen::fVector(10.0f, 10.0f);
+	yen::PhysicsComponent physicsComponent(engine.physicsEngine, bodyDef, yen::fVector(5.0f, 5.0f));
 	yen::ComponentManipulator graphicsComponentManipulator;
 	if (engine.objectsManager->attachComponent(&graphicsComponentManipulator, cube, &graphicsComponent) != yen::Flag::OK)
 		std::cout << "3" << std::endl;
-
-
-	yen::SceneManipulator scene = engine.sceneManager->createScene();
-	engine.sceneManager->setSceneGravity(scene, yen::fVector(0.0f, 10.0f));
-	if(engine.sceneManager->addObjectToScene(scene, camera) != yen::Flag::OK)
+	yen::ComponentManipulator physicsComponentManipulator;
+	if (engine.objectsManager->attachComponent(&physicsComponentManipulator, cube, &physicsComponent) != yen::Flag::OK)
 		std::cout << "4" << std::endl;
-	if (engine.sceneManager->addObjectToScene(scene, cube) != yen::Flag::OK)
+
+
+	if(engine.sceneManager->addObjectToScene(scene, camera) != yen::Flag::OK)
 		std::cout << "5" << std::endl;
-	if(engine.sceneManager->setActiveCameraofScene(scene, camera) != yen::Flag::OK)
+	if (engine.sceneManager->addObjectToScene(scene, cube) != yen::Flag::OK)
 		std::cout << "6" << std::endl;
+	if(engine.sceneManager->setActiveCameraofScene(scene, camera) != yen::Flag::OK)
+		std::cout << "7" << std::endl;
 		
 	yen::InputDef leftKeyDef;
 	leftKeyDef.type = yen::InputType::KEYBOARD_KEY;
@@ -110,15 +80,15 @@ int main()
 	yen::InputManipulator rightKey;
 	yen::InputManipulator escapeKey;
 	if (engine.inputManager->createInput(&leftKey, leftKeyDef) != yen::Flag::OK)
-		std::cout << "7" << std::endl;
-	if (engine.inputManager->createInput(&rightKey, rightKeyDef) != yen::Flag::OK)
 		std::cout << "8" << std::endl;
-	if (engine.inputManager->createInput(&escapeKey, escapeKeyDef) != yen::Flag::OK)
+	if (engine.inputManager->createInput(&rightKey, rightKeyDef) != yen::Flag::OK)
 		std::cout << "9" << std::endl;
+	if (engine.inputManager->createInput(&escapeKey, escapeKeyDef) != yen::Flag::OK)
+		std::cout << "10" << std::endl;
 
 
 	if(engine.sceneManager->loadScene(scene) != yen::Flag::OK)
-		std::cout << "10" << std::endl;
+		std::cout << "11" << std::endl;
 	engine.sceneManager->initializeScene(scene);
 
 	if (engine.run() == yen::Flag::OK)

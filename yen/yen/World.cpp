@@ -67,6 +67,11 @@ bool World::isFreezed()
 	return freezed;
 }
 
+b2Vec2 World::getBodyPosition(BodyManipulator manipulator)
+{
+	return manipulator.body->GetPosition();
+}
+
 void World::testPrintBodiesPosition()
 {
 	for (unsigned int i = 0; i < bodies.size(); i++)

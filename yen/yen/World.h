@@ -25,13 +25,15 @@ namespace yen
 		void unFreeze();
 		bool isFreezed();
 
+		b2Vec2 getBodyPosition(BodyManipulator);
+
 		void testPrintBodiesPosition();
 
 	private:
 		b2World *world;
 		b2Vec2 gravityVector = b2Vec2(0.0f, 0.0f);
 
-		const float32 deltaTime = 0.01f;
+		const float32 deltaTime = 0.001f;
 		const int velocityIt = 8, positionIt = 3;
 
 		bool freezed = true;

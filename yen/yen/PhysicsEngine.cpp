@@ -48,7 +48,7 @@ Flag PhysicsEngine::removeWorld(WorldManipulator manipulator)
 
 void PhysicsEngine::setWorldGravity(WorldManipulator manipulator, fVector vector)
 {
-	manipulator.world->setGravity(yenfVectorTob2Vec2(vector));
+	manipulator.world->setGravity(yenfVectorTob2Vec2(vector, false));
 }
 
 void PhysicsEngine::step()
@@ -69,7 +69,7 @@ void PhysicsEngine::freezeWorld(WorldManipulator worldManipulator)
 
 void PhysicsEngine::unFreezeWorld(WorldManipulator worldManipulator)
 {
-	worldManipulator.world->freeze();
+	worldManipulator.world->unFreeze();
 }
 
 bool PhysicsEngine::isWorldFreezed(WorldManipulator worldManipulator)
@@ -77,6 +77,10 @@ bool PhysicsEngine::isWorldFreezed(WorldManipulator worldManipulator)
 	return worldManipulator.world->isFreezed();
 }
 
+fVector PhysicsEngine::getBodyPosition(WorldManipulator worldManipulator, BodyManipulator bodyManipulator)
+{
+	return b2Vec2ToYenfVector(worldManipulator.world->getBodyPosition(bodyManipulator), true);
+}
 
 BodyManipulator PhysicsEngine::createBody(WorldManipulator worldManipulator, BodyDef def)
 {
@@ -122,7 +126,7 @@ b2FixtureDef PhysicsEngine::createFixtureDef(BodyDef bodyDef)
 b2BodyDef PhysicsEngine::createBodyDef(BodyDef bodyDef)
 {
 	b2BodyDef def;
-	def.position = yenfVectorTob2Vec2(bodyDef.position);
+	def.position = yenfVectorTob2Vec2(bodyDef.position, true);
 	if (bodyDef.type == BodyType::STATIC)
 		def.type = b2BodyType::b2_staticBody;
 	if (bodyDef.type == BodyType::DYNAMIC)
@@ -132,7 +136,7 @@ b2BodyDef PhysicsEngine::createBodyDef(BodyDef bodyDef)
 
 b2PolygonShape* PhysicsEngine::createShape(BodyDef bodyDef)
 {
-	b2Vec2 shapeSize = yenfVectorTob2Vec2(bodyDef.shapeSize);
+	b2Vec2 shapeSize = yenfVectorTob2Vec2(bodyDef.shapeSize, true);
 	shapeSize.x = shapeSize.x / 2.0f;
 	shapeSize.y = shapeSize.y / 2.0f;
 
@@ -161,16 +165,29 @@ float PhysicsEngine::radians2degrees(float radians)
 	return 180.0f * radians / b2_pi;
 }
 
-b2Vec2 PhysicsEngine::yenfVectorTob2Vec2(fVector vectorIn)
+b2Vec2 PhysicsEngine::yenfVectorTob2Vec2(fVector vectorIn, bool pixels2Meters)
 {
 	b2Vec2 vectorOut;
-	vectorOut.x = pixels2Meters(vectorIn.getX());
-	vectorOut.y = pixels2Meters(vectorIn.getY());
+
+	if (pixels2Meters)
+	{
+		vectorOut.x = PhysicsEngine::pixels2Meters(vectorIn.getX());
+		vectorOut.y = PhysicsEngine::pixels2Meters(vectorIn.getY());
+	}
+	else
+	{
+		vectorOut.x = vectorIn.getX();
+		vectorOut.y = vectorIn.getY();
+	}
+	
 
 	return vectorOut;
 }
 
-fVector PhysicsEngine::b2Vec2ToYenfVector(b2Vec2 vectorIn)
+fVector PhysicsEngine::b2Vec2ToYenfVector(b2Vec2 vectorIn, bool meters2Pixels)
 {
-	return fVector(meters2pixels(vectorIn.x), meters2pixels(vectorIn.y));
+	if (meters2Pixels)
+		return fVector(meters2pixels(vectorIn.x), meters2pixels(vectorIn.y));
+	else
+		return fVector(vectorIn.x, vectorIn.y);
 }

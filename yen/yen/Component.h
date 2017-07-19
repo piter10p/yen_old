@@ -6,7 +6,7 @@
 
 namespace yen
 {
-	class Component: public Id
+	class Component : public Id
 	{
 	public:
 		virtual ~Component() {};

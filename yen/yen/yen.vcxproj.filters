@@ -216,6 +216,15 @@
     <ClInclude Include="WorldManipulator.h">
       <Filter>Headers\PhysicsEngine</Filter>
     </ClInclude>
+    <ClInclude Include="PhysicsComponent.h">
+      <Filter>Headers\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveComponent.h">
+      <Filter>Headers\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components.h">
+      <Filter>Headers\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -301,6 +310,12 @@
     </ClCompile>
     <ClCompile Include="World.cpp">
       <Filter>Sources\PhysicsEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsComponent.cpp">
+      <Filter>Sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveComponent.cpp">
+      <Filter>Sources\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

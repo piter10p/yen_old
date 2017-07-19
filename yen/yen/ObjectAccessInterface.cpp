@@ -32,3 +32,8 @@ fVector ObjectAccessInterface::getCameraPosition()
 {
 	return cameraPosition;
 }
+
+WorldManipulator ObjectAccessInterface::getWorldManipulator()
+{
+	return worldManipulator;
+}

@@ -1,5 +1,6 @@
 #pragma once
 #include "Vector.h"
+#include "WorldManipulator.h"
 
 namespace yen
 {
@@ -15,9 +16,12 @@ namespace yen
 		fVector getPosition();
 		fVector getCameraPosition();
 
+		WorldManipulator getWorldManipulator();
+
 		friend class Object;
 	protected:
 		fVector *position;
 		fVector cameraPosition;
+		WorldManipulator worldManipulator;
 	};
 }

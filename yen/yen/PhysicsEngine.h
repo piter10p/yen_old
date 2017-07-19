@@ -29,6 +29,8 @@ namespace yen
 		void unFreezeWorld(WorldManipulator);
 		bool isWorldFreezed(WorldManipulator);
 
+		fVector getBodyPosition(WorldManipulator, BodyManipulator);
+
 		BodyManipulator createBody(WorldManipulator, BodyDef);
 		Flag removeBody(WorldManipulator, BodyManipulator);
 
@@ -37,7 +39,7 @@ namespace yen
 	private:	
 		std::vector <World*> worlds;
 
-		const float stepTime = 0.01;
+		const float stepTime = 0.001f;
 		time::FixedTimeLoopTimer timer;
 
 		void clearWorlds();
@@ -52,7 +54,7 @@ namespace yen
 		static float degrees2radians(float);
 		static float radians2degrees(float);
 
-		static b2Vec2 yenfVectorTob2Vec2(fVector);
-		static fVector b2Vec2ToYenfVector(b2Vec2);
+		static b2Vec2 yenfVectorTob2Vec2(fVector, bool pixels2Meters);
+		static fVector b2Vec2ToYenfVector(b2Vec2, bool meters2Pixels);
 	};
 }
