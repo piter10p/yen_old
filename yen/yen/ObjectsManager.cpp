@@ -13,10 +13,11 @@ ObjectsManager::~ObjectsManager()
 	clearAllObjects();
 }
 
-ObjectManipulator ObjectsManager::createObject()
+ObjectManipulator ObjectsManager::createObject(fVector position)
 {
 	Object *object = new Object();
 	object->setId(getNewId());
+	object->setPosition(position);
 
 	objects.push_back(object);
 
@@ -49,9 +50,14 @@ Flag ObjectsManager::removeComponent(ObjectManipulator objManipulator, Component
 	return objManipulator.object->removeComponent(comManipulator);
 }
 
+void ObjectsManager::setLoadDistance(ObjectManipulator manipulator, float distance)
+{
+	manipulator.object->setLoadDistance(distance);
+}
+
 bool ObjectsManager::test()
 {
-	ObjectManipulator manipulator = createObject();
+	ObjectManipulator manipulator = createObject(fVector(0.0f, 0.0f));
 	Flag flag = removeObject(manipulator);
 	if (flag != Flag::OK)
 		return false;

@@ -13,6 +13,7 @@ namespace yen
 		~AnimationResource();
 
 		Flag load();
+		void unLoad();
 		void setFrameRate(unsigned int);
 
 		friend class GraphicsComponent;

@@ -30,6 +30,8 @@ namespace yen
 		bool isWorldFreezed(WorldManipulator);
 
 		fVector getBodyPosition(WorldManipulator, BodyManipulator);
+		void unActivateBody(WorldManipulator, BodyManipulator);
+		void avtivateBody(WorldManipulator, BodyManipulator);
 
 		BodyManipulator createBody(WorldManipulator, BodyDef);
 		Flag removeBody(WorldManipulator, BodyManipulator);

@@ -15,9 +15,7 @@ namespace yen
 		Flag addObject(Object*);
 		Flag removeObject(Object*);
 
-		Flag load();
-
-		void initialization();
+		Flag initialization();
 
 		Flag setActiveCamera(Object*);
 
@@ -25,7 +23,7 @@ namespace yen
 		void unFreeze();
 		bool isFreezed();
 
-		void codeStepUpdate();
+		Flag codeStepUpdate();
 		void setGravity(fVector);
 
 		bool test();
@@ -41,5 +39,10 @@ namespace yen
 
 		int getIndexOfObjectsListObject(int id);
 		bool haveActiveCamera();
+		bool isObjectInLoadRange(Object*);
+		bool isObjectHasToBeLoaded(Object*);
+		bool isObjectHasToBeUnLoaded(Object*);
+
+		Flag loadObjects();
 	};
 }

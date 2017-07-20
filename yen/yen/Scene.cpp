@@ -34,30 +34,19 @@ Flag Scene::removeObject(Object* object)
 	return Flag::ERROR_NOTHING_FOUND_ID;
 }
 
-Flag Scene::load()
+Flag Scene::initialization()
 {
 	if (!haveActiveCamera())
 		return Flag::ERROR_SCENE_DONT_HAVE_CAMERA;
 
-	for (unsigned int i = 0; i < objects.size(); i++)
-	{
-		Flag flag = objects[i]->load();
-		if (flag != Flag::OK)
-			return flag;
-	}
-	initialized = false;
-	return Flag::OK;
-}
+	Flag flag = loadObjects();
+	if (flag != Flag::OK)
+		return flag;
 
-void Scene::initialization()
-{
-	for (unsigned int i = 0; i < objects.size(); i++)
-	{
-		objects[i]->initialization(worldManipulator);
-	}
 
 	initialized = true;
 	unFreeze();
+	return Flag::OK;
 }
 
 Flag Scene::setActiveCamera(Object* object)
@@ -87,15 +76,21 @@ bool Scene::isFreezed()
 	return freezed;
 }
 
-void Scene::codeStepUpdate()
+Flag Scene::codeStepUpdate()
 {
 	if (!freezed)
 	{
+		Flag flag = loadObjects();
+		if (flag != Flag::OK)
+			return flag;
+
 		for (unsigned int i = 0; i < objects.size(); i++)
 		{
 			objects[i]->codeStepUpdate(activeCamera->getPosition());
 		}
 	}
+
+	return Flag::OK;
 }
 
 void Scene::setGravity(fVector vector)
@@ -131,6 +126,52 @@ int Scene::getIndexOfObjectsListObject(int id)
 bool Scene::haveActiveCamera()
 {
 	if (activeCamera->haveComponentofType("CameraComponent"))
+		return true;
+	return false;
+}
+
+Flag Scene::loadObjects()
+{
+	for (unsigned int i = 0; i < objects.size(); i++)
+	{
+		if (isObjectHasToBeLoaded(objects[i]))
+		{
+			Flag flag = objects[i]->load();
+			if (flag != Flag::OK)
+				return flag;
+			objects[i]->initialization(worldManipulator);
+		}
+		else if(isObjectHasToBeUnLoaded(objects[i]))
+		{
+			objects[i]->unLoad();
+		}
+	}
+
+	return Flag::OK;
+}
+
+bool Scene::isObjectInLoadRange(Object* object)
+{
+	float loadDistance = object->getLoadDistance();
+
+	if (loadDistance == 0.0f)
+		return true;
+
+	if (fVector::getDistance(activeCamera->getPosition(), object->getPosition()) <= loadDistance)
+		return true;
+	return false;
+}
+
+bool Scene::isObjectHasToBeLoaded(Object* object)
+{
+	if (!object->isLoaded() && isObjectInLoadRange(object))
+		return true;
+	return false;
+}
+
+bool Scene::isObjectHasToBeUnLoaded(Object* object)
+{
+	if (object->isLoaded() && !isObjectInLoadRange(object))
 		return true;
 	return false;
 }

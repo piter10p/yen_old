@@ -16,6 +16,7 @@ namespace yen
 		void codeStepUpdate(ObjectAccessInterface);
 		void initialization(ObjectAccessInterface);
 		Flag load();
+		void unLoad();
 
 		void setAnimation(AnimationManipulator);
 

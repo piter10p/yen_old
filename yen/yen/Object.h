@@ -24,8 +24,14 @@ namespace yen
 		void codeStepUpdate(fVector cameraPos);
 		void initialization(WorldManipulator);
 		Flag load();
+		void unLoad();
 
 		void removeAllComponents();
+
+		void setLoadDistance(float distance);
+		float getLoadDistance();
+
+		bool isLoaded();
 
 		bool haveComponentofType(const std::string);
 
@@ -39,7 +45,8 @@ namespace yen
 		int getComponentListIndex(int id);
 		bool isAnyComponentOfThisType(const std::string type);
 		void fillObjectAccessInterface(WorldManipulator);
-
+		float loadDistance = 0.0f;
+		bool loaded = false;
 		
 	};
 }

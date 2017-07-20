@@ -1,4 +1,5 @@
 #pragma once
+#include <cmath>
 
 namespace yen
 {
@@ -42,6 +43,11 @@ namespace yen
 		{
 			this->x = 0.0f;
 			this->y = 0.0f;
+		}
+
+		static float getDistance(fVector vector1, fVector vector2)
+		{
+			return sqrt(pow((vector1.getY() - vector1.getX()), 2.0f) + pow((vector2.getY() - vector2.getX()), 2.0f)); // square root( (A.y - A.x)^2 + (B.y - B.x)^2 )
 		}
 
 		void operator+=(fVector &vectorIn)

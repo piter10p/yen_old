@@ -21,6 +21,9 @@ namespace yen
 		BodyManipulator createBody(b2BodyDef, b2FixtureDef);
 		Flag removeBody(BodyManipulator);
 
+		void unActivateBody(BodyManipulator);
+		void activateBody(BodyManipulator);
+
 		void freeze();
 		void unFreeze();
 		bool isFreezed();

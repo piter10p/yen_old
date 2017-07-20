@@ -48,7 +48,7 @@ Flag PhysicsEngine::removeWorld(WorldManipulator manipulator)
 
 void PhysicsEngine::setWorldGravity(WorldManipulator manipulator, fVector vector)
 {
-	manipulator.world->setGravity(yenfVectorTob2Vec2(vector, false));
+	manipulator.world->setGravity(yenfVectorTob2Vec2(vector, true));
 }
 
 void PhysicsEngine::step()
@@ -80,6 +80,16 @@ bool PhysicsEngine::isWorldFreezed(WorldManipulator worldManipulator)
 fVector PhysicsEngine::getBodyPosition(WorldManipulator worldManipulator, BodyManipulator bodyManipulator)
 {
 	return b2Vec2ToYenfVector(worldManipulator.world->getBodyPosition(bodyManipulator), true);
+}
+
+void PhysicsEngine::unActivateBody(WorldManipulator worldManipulator, BodyManipulator bodyManipulator)
+{
+	worldManipulator.world->unActivateBody(bodyManipulator);
+}
+
+void PhysicsEngine::avtivateBody(WorldManipulator worldManipulator, BodyManipulator bodyManipulator)
+{
+	worldManipulator.world->activateBody(bodyManipulator);
 }
 
 BodyManipulator PhysicsEngine::createBody(WorldManipulator worldManipulator, BodyDef def)

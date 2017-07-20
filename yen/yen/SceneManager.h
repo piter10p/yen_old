@@ -19,9 +19,7 @@ namespace yen
 		Flag addObjectToScene(SceneManipulator, ObjectManipulator);
 		Flag removeObjectFromScene(SceneManipulator, ObjectManipulator);
 
-		Flag loadScene(SceneManipulator);
-
-		void initializeScene(SceneManipulator);
+		Flag initializeScene(SceneManipulator);
 
 		void setSceneGravity(SceneManipulator, fVector);
 
@@ -31,7 +29,7 @@ namespace yen
 		void unFreezeScene(SceneManipulator);
 		bool isSceneFreezed(SceneManipulator);
 
-		void codeStepUpdate();
+		Flag codeStepUpdate();
 
 		bool test();
 

@@ -20,22 +20,21 @@ int main()
 	animationDef.frameRate = 60;
 	yen::AnimationManipulator animation = engine.resourceManager->addAnimationResource(animationDef);
 
-	yen::ObjectManipulator camera = engine.objectsManager->createObject();
+	yen::ObjectManipulator camera = engine.objectsManager->createObject(yen::fVector(-100.0f, 0.0f));
 	yen::CameraComponent cameraComponent;
 	yen::MoveComponent moveComponent(yen::fVector(-100.0f, 0.0f));
 	yen::ComponentManipulator cameraComponentManipulator;
 	yen::ComponentManipulator moveComponentManipulator;
-	if (engine.objectsManager->attachComponent(&cameraComponentManipulator, camera, &cameraComponent) != yen::Flag::OK)
-		std::cout << "1" << std::endl;
-	if (engine.objectsManager->attachComponent(&moveComponentManipulator, camera, &moveComponent) != yen::Flag::OK)
-		std::cout << "2" << std::endl;
+	engine.objectsManager->attachComponent(&cameraComponentManipulator, camera, &cameraComponent);
+	engine.objectsManager->attachComponent(&moveComponentManipulator, camera, &moveComponent);
 
 
 	yen::SceneManipulator scene = engine.sceneManager->createScene();
 	engine.sceneManager->setSceneGravity(scene, yen::fVector(0.0f, 10.0f));
 
 
-	yen::ObjectManipulator cube = engine.objectsManager->createObject();
+	yen::ObjectManipulator cube = engine.objectsManager->createObject(yen::fVector(0.0f, 0.0f));
+	engine.objectsManager->setLoadDistance(cube, 200.0f);
 	yen::GraphicsComponent graphicsComponent(engine.graphicsEngine);
 	graphicsComponent.setAnimation(animation);
 	yen::BodyDef bodyDef;
@@ -43,19 +42,14 @@ int main()
 	bodyDef.shapeSize = yen::fVector(10.0f, 10.0f);
 	yen::PhysicsComponent physicsComponent(engine.physicsEngine, bodyDef, yen::fVector(5.0f, 5.0f));
 	yen::ComponentManipulator graphicsComponentManipulator;
-	if (engine.objectsManager->attachComponent(&graphicsComponentManipulator, cube, &graphicsComponent) != yen::Flag::OK)
-		std::cout << "3" << std::endl;
+	engine.objectsManager->attachComponent(&graphicsComponentManipulator, cube, &graphicsComponent);
 	yen::ComponentManipulator physicsComponentManipulator;
-	if (engine.objectsManager->attachComponent(&physicsComponentManipulator, cube, &physicsComponent) != yen::Flag::OK)
-		std::cout << "4" << std::endl;
+	engine.objectsManager->attachComponent(&physicsComponentManipulator, cube, &physicsComponent);
 
 
-	if(engine.sceneManager->addObjectToScene(scene, camera) != yen::Flag::OK)
-		std::cout << "5" << std::endl;
-	if (engine.sceneManager->addObjectToScene(scene, cube) != yen::Flag::OK)
-		std::cout << "6" << std::endl;
-	if(engine.sceneManager->setActiveCameraofScene(scene, camera) != yen::Flag::OK)
-		std::cout << "7" << std::endl;
+	engine.sceneManager->addObjectToScene(scene, camera);
+	engine.sceneManager->addObjectToScene(scene, cube);
+	engine.sceneManager->setActiveCameraofScene(scene, camera);
 		
 	yen::InputDef leftKeyDef;
 	leftKeyDef.type = yen::InputType::KEYBOARD_KEY;
@@ -69,19 +63,19 @@ int main()
 	escapeKeyDef.type = yen::InputType::KEYBOARD_KEY;
 	escapeKeyDef.name = "escapeKay";
 	escapeKeyDef.key = yen::inputs::Key::Escape;
+	yen::InputDef SpaceKeyDef;
+	SpaceKeyDef.type = yen::InputType::KEYBOARD_KEY;
+	SpaceKeyDef.name = "spaceKey";
+	SpaceKeyDef.key = yen::inputs::Key::Space;
 	yen::InputManipulator leftKey;
 	yen::InputManipulator rightKey;
 	yen::InputManipulator escapeKey;
-	if (engine.inputManager->createInput(&leftKey, leftKeyDef) != yen::Flag::OK)
-		std::cout << "8" << std::endl;
-	if (engine.inputManager->createInput(&rightKey, rightKeyDef) != yen::Flag::OK)
-		std::cout << "9" << std::endl;
-	if (engine.inputManager->createInput(&escapeKey, escapeKeyDef) != yen::Flag::OK)
-		std::cout << "10" << std::endl;
+	yen::InputManipulator spaceKey;
+	engine.inputManager->createInput(&leftKey, leftKeyDef);
+	engine.inputManager->createInput(&rightKey, rightKeyDef);
+	engine.inputManager->createInput(&escapeKey, escapeKeyDef);
+	engine.inputManager->createInput(&spaceKey, SpaceKeyDef);
 
-
-	if(engine.sceneManager->loadScene(scene) != yen::Flag::OK)
-		std::cout << "11" << std::endl;
 	engine.sceneManager->initializeScene(scene);
 
 	if (engine.run() == yen::Flag::OK)
@@ -91,11 +85,12 @@ int main()
 			engine.step();
 
 			if (engine.inputManager->isKeyPressed(leftKey))
-				moveComponent.move(yen::fVector(2.0f, 0.0f));
+				moveComponent.move(yen::fVector(0.1f, 0.0f));
 			if (engine.inputManager->isKeyPressed(rightKey))
-				moveComponent.move(yen::fVector(-2.0f, 0.0f));
+				moveComponent.move(yen::fVector(-0.1f, 0.0f));
 			if (engine.inputManager->isKeyPressed(escapeKey))
 				engine.stop();
+				
 		}
 	}
 

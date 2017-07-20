@@ -47,14 +47,9 @@ Flag SceneManager::removeObjectFromScene(SceneManipulator sceneManipulator, Obje
 	return sceneManipulator.scene->removeObject(objectManipulator.object);
 }
 
-Flag SceneManager::loadScene(SceneManipulator manipulator)
+Flag SceneManager::initializeScene(SceneManipulator manipulator)
 {
-	return manipulator.scene->load();
-}
-
-void SceneManager::initializeScene(SceneManipulator manipulator)
-{
-	manipulator.scene->initialization();
+	return manipulator.scene->initialization();
 }
 
 void SceneManager::setSceneGravity(SceneManipulator manipulator, fVector vector)
@@ -82,12 +77,17 @@ bool SceneManager::isSceneFreezed(SceneManipulator manipulator)
 	return manipulator.scene->isFreezed();
 }
 
-void SceneManager::codeStepUpdate()
+Flag SceneManager::codeStepUpdate()
 {
 	for (unsigned int i = 0; i < scenes.size(); i++)
 	{
-		scenes[i].codeStepUpdate();
+		Flag flag = scenes[i].codeStepUpdate();
+
+		if (flag != Flag::OK)
+			return flag;
 	}
+
+	return Flag::OK;
 }
 
 bool SceneManager::test()

@@ -27,11 +27,21 @@ void PhysicsComponent::codeStepUpdate(ObjectAccessInterface accessInterface)
 
 void PhysicsComponent::initialization(ObjectAccessInterface accessInterface)
 {
-	bodyManipulator = physicsEngine->createBody(accessInterface.getWorldManipulator(), bodyDef);
-	worldManipulator = accessInterface.getWorldManipulator();
+   	if (!initialized)
+	{
+		bodyManipulator = physicsEngine->createBody(accessInterface.getWorldManipulator(), bodyDef);
+		worldManipulator = accessInterface.getWorldManipulator();
+		initialized = true;
+	}
+	physicsEngine->avtivateBody(worldManipulator, bodyManipulator);
 }
 
 Flag PhysicsComponent::load()
 {
 	return Flag::OK;
+}
+
+void PhysicsComponent::unLoad()
+{
+	physicsEngine->unActivateBody(worldManipulator, bodyManipulator);
 }

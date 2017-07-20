@@ -19,6 +19,11 @@ Flag AnimationResource::load()
 	return animation.load(path);
 }
 
+void AnimationResource::unLoad()
+{
+	
+}
+
 void AnimationResource::setFrameRate(unsigned int frameRate)
 {
 	animation.setFrameRate(frameRate);

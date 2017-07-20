@@ -11,10 +11,11 @@ namespace yen
 		ObjectsManager();
 		~ObjectsManager();
 
-		ObjectManipulator createObject();
+		ObjectManipulator createObject(fVector position);
 		Flag removeObject(ObjectManipulator);
 		Flag attachComponent(ComponentManipulator *out, ObjectManipulator, Component*);
 		Flag removeComponent(ObjectManipulator, ComponentManipulator);
+		void setLoadDistance(ObjectManipulator, float);
 
 		bool test();
 

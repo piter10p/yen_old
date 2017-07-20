@@ -52,6 +52,16 @@ Flag World::removeBody(BodyManipulator manipulator)
 	return Flag::ERROR_NO_BODY_FOUNDED;
 }
 
+void World::unActivateBody(BodyManipulator manipulator)
+{
+	manipulator.body->SetActive(false);
+}
+
+void World::activateBody(BodyManipulator manipulator)
+{
+	manipulator.body->SetActive(true);
+}
+
 void World::freeze()
 {
 	freezed = true;

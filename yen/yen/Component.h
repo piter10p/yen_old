@@ -14,6 +14,7 @@ namespace yen
 		virtual void codeStepUpdate(ObjectAccessInterface) = 0;
 		virtual void initialization(ObjectAccessInterface) = 0;
 		virtual Flag load() = 0;
+		virtual void unLoad() = 0;
 
 		const std::string getType()
 		{

@@ -35,6 +35,11 @@ Flag Animation::load(std::string path)
 	return Flag::OK;
 }
 
+void Animation::unLoad()
+{
+	frames.clear();
+}
+
 void Animation::setFrameRate(unsigned int frameRate)
 {
 	this->frameRate = frameRate;

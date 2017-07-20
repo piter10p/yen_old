@@ -12,6 +12,7 @@ namespace yen
 		void codeStepUpdate(ObjectAccessInterface);
 		void initialization(ObjectAccessInterface);
 		Flag load();
+		void unLoad();
 
 	private:
 		PhysicsEngine *physicsEngine;
@@ -19,5 +20,6 @@ namespace yen
 		BodyManipulator bodyManipulator;
 		WorldManipulator worldManipulator;
 		fVector centerOffset;
+		bool initialized = false;
 	};
 }

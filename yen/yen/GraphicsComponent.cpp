@@ -49,3 +49,8 @@ sf::Vector2f GraphicsComponent::calculateSpritePosition(fVector objectPosition, 
 
 	return sf::Vector2f(objectPosition.getX(), objectPosition.getY());
 }
+
+void GraphicsComponent::unLoad()
+{
+
+}

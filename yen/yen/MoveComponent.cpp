@@ -33,6 +33,10 @@ Flag MoveComponent::load()
 	return Flag::OK;
 }
 
+void MoveComponent::unLoad()
+{
+}
+
 void MoveComponent::move(fVector vector)
 {
 	position += vector;

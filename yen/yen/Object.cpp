@@ -51,11 +51,14 @@ Flag Object::removeComponent(ComponentManipulator manipulator)
 
 void Object::codeStepUpdate(fVector cameraPos)
 {
-	objectAccessInterface.cameraPosition = cameraPos;
-
-	for (int  i = 0; i < components.size(); i++)
+	if (loaded)
 	{
-		components[i]->codeStepUpdate(objectAccessInterface);
+		objectAccessInterface.cameraPosition = cameraPos;
+
+		for (int i = 0; i < components.size(); i++)
+		{
+			components[i]->codeStepUpdate(objectAccessInterface);
+		}
 	}
 }
 
@@ -77,7 +80,18 @@ Flag Object::load()
 		if (flag != Flag::OK)
 			return flag;
 	}
+	loaded = true;
 	return Flag::OK;
+}
+
+void Object::unLoad()
+{
+	for (int i = 0; i < components.size(); i++)
+	{
+		components[i]->unLoad();
+	}
+
+	loaded = false;
 }
 
 bool Object::haveComponentofType(const std::string type)
@@ -98,6 +112,7 @@ bool Object::test()
 		void codeStepUpdate(ObjectAccessInterface) {};
 		void initialization(ObjectAccessInterface) {};
 		Flag load() { return Flag::OK; };
+		void unLoad() {};
 	protected: std::string type = "TestComponent";
 	};
 
@@ -128,6 +143,21 @@ int Object::getComponentListIndex(int id)
 void Object::removeAllComponents()
 {
 	components.clear();
+}
+
+void Object::setLoadDistance(float distance)
+{
+	this->loadDistance = distance;
+}
+
+float Object::getLoadDistance()
+{
+	return loadDistance;
+}
+
+bool Object::isLoaded()
+{
+	return loaded;
 }
 
 bool Object::isAnyComponentOfThisType(const std::string type)
