@@ -19,6 +19,9 @@ int main()
 	animationDef.path = "I:\\Backup\\Pietras\\data\\anim";
 	animationDef.frameRate = 60;
 	yen::AnimationManipulator animation = engine.resourceManager->addAnimationResource(animationDef);
+	animationDef.path += "2";
+	animationDef.frameRate = 0;
+	yen::AnimationManipulator animation2 = engine.resourceManager->addAnimationResource(animationDef);
 
 	yen::ObjectManipulator camera = engine.objectsManager->createObject(yen::fVector(-100.0f, 0.0f));
 	yen::CameraComponent cameraComponent;
@@ -36,7 +39,9 @@ int main()
 	yen::ObjectManipulator cube = engine.objectsManager->createObject(yen::fVector(0.0f, 0.0f));
 	engine.objectsManager->setLoadDistance(cube, 200.0f);
 	yen::GraphicsComponent graphicsComponent(engine.graphicsEngine);
-	graphicsComponent.setAnimation(animation);
+	graphicsComponent.addAnimation(animation);
+	graphicsComponent.addAnimation(animation2);
+	graphicsComponent.setActualAnimation(animation);
 	yen::BodyDef bodyDef;
 	bodyDef.type = yen::BodyType::DYNAMIC;
 	bodyDef.shapeSize = yen::fVector(10.0f, 10.0f);
@@ -90,6 +95,8 @@ int main()
 				moveComponent.move(yen::fVector(-0.1f, 0.0f));
 			if (engine.inputManager->isKeyPressed(escapeKey))
 				engine.stop();
+			if (engine.inputManager->isKeyPressed(spaceKey))
+				graphicsComponent.setActualAnimation(animation2);
 				
 		}
 	}

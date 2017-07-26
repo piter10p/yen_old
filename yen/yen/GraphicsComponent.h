@@ -2,8 +2,7 @@
 #include "Component.h"
 #include "GraphicsEngine.h"
 #include "SFML\Graphics.hpp"
-#include "AnimationManipulator.h"
-#include "Animation.h"
+#include "AnimationManager.h"
 
 namespace yen
 {
@@ -18,11 +17,13 @@ namespace yen
 		Flag load();
 		void unLoad();
 
-		void setAnimation(AnimationManipulator);
+		Flag setActualAnimation(AnimationManipulator);
+		Flag addAnimation(AnimationManipulator);
+		Flag removeAnimation(AnimationManipulator);
 
 	private:
 		GraphicsEngine *graphicsEngine;
-		AnimationResource *animationResource;
+		AnimationManager animationManager;
 		sf::Sprite sprite;
 
 		sf::Vector2f calculateSpritePosition(fVector objectPosition, fVector cameraPosition);

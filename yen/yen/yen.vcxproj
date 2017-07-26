@@ -144,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="AnimationManager.h" />
     <ClInclude Include="AnimationManipulator.h" />
     <ClInclude Include="AnimationResource.h" />
     <ClInclude Include="AnimationResourceDef.h" />
@@ -195,6 +196,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="AnimationManager.cpp" />
     <ClCompile Include="AnimationResource.cpp" />
     <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="Engine.cpp" />

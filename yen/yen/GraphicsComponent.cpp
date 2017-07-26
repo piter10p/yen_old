@@ -17,7 +17,7 @@ GraphicsComponent::~GraphicsComponent()
 
 void GraphicsComponent::codeStepUpdate(ObjectAccessInterface objectAccessInterface)
 {
-	Frame *frame = animationResource->animation.getActualFrame();
+	Frame *frame = animationManager.getActualFrame();
 	sprite.setTexture(*frame->getTexture());
 
 	sprite.setPosition(calculateSpritePosition(objectAccessInterface.getPosition(), objectAccessInterface.getCameraPosition()));
@@ -30,17 +30,27 @@ void GraphicsComponent::codeStepUpdate(ObjectAccessInterface objectAccessInterfa
 
 void GraphicsComponent::initialization(ObjectAccessInterface objectAccessInterface)
 {
-	animationResource->animation.start();
+	animationManager.start();
 }
 
 Flag GraphicsComponent::load()
 {
-	return animationResource->load();
+	return animationManager.load();
 }
 
-void GraphicsComponent::setAnimation(AnimationManipulator manipulator)
+Flag GraphicsComponent::setActualAnimation(AnimationManipulator manipulator)
 {
-	animationResource = manipulator.animationResource;
+	return animationManager.setActualAnimation(manipulator);
+}
+
+Flag GraphicsComponent::addAnimation(AnimationManipulator manipulator)
+{
+	return animationManager.addAnimation(manipulator);
+}
+
+Flag GraphicsComponent::removeAnimation(AnimationManipulator manipulator)
+{
+	return animationManager.removeAnimation(manipulator);
 }
 
 sf::Vector2f GraphicsComponent::calculateSpritePosition(fVector objectPosition, fVector cameraPosition)
@@ -52,5 +62,5 @@ sf::Vector2f GraphicsComponent::calculateSpritePosition(fVector objectPosition, 
 
 void GraphicsComponent::unLoad()
 {
-
+	animationManager.unLoad();
 }

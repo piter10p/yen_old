@@ -3,6 +3,7 @@
 #include "Id.h"
 #include "ObjectAccessInterface.h"
 #include "Flag.h"
+#include <vector>
 
 namespace yen
 {
@@ -16,6 +17,12 @@ namespace yen
 		virtual Flag load() = 0;
 		virtual void unLoad() = 0;
 
+		void setObjectData(std::vector<Component*>*components)
+		{
+			this->components = components->data();
+			componentsSize = components->size();
+		}
+
 		const std::string getType()
 		{
 			return type;
@@ -23,5 +30,20 @@ namespace yen
 
 	protected:
 		std::string type;
+		Component **components;
+		int componentsSize;
+
+		Flag getComponent(Component *out, std::string type)
+		{
+			for (unsigned int i = 0; i < componentsSize; i++)
+			{
+				if (components[i]->getType() == type)
+				{
+					out = components[i];
+					return Flag::OK;
+				}
+			}
+			return Flag::ERROR_OBJECT_DONT_HAVE_COMPONENT_OF_THIS_TYPE;
+		}
 	};
 }

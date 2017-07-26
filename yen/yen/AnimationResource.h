@@ -16,7 +16,7 @@ namespace yen
 		void unLoad();
 		void setFrameRate(unsigned int);
 
-		friend class GraphicsComponent;
+		friend class AnimationManager;
 	protected:
 		Animation animation;
 

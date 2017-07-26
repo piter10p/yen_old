@@ -20,11 +20,10 @@ namespace yen
 		bool test();
 
 	protected:
-		std::vector <AnimationResource> animationResources;
+		std::vector <AnimationResource*> animationResources;
 
 	private:
 		bool isIdSame(ResourceManipulator*, Resource*);
 		void clearAllResources();
-		int getIndexOfAnimationResourcesListObject(int id);
 	};
 }
