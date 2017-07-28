@@ -5,7 +5,7 @@
 
 namespace yen
 {
-	static class Logger
+	class Logger
 	{
 	public:
 		static Flag log(unsigned int indentation, std::string sign, std::string message);

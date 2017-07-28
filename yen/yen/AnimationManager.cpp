@@ -41,7 +41,7 @@ Flag AnimationManager::removeAnimation(AnimationManipulator manipulator)
 {
 	for (unsigned int i = 0; i < animations.size(); i++)
 	{
-		if (animations[i]->getId() == manipulator.id)
+		if (animations[i]->getId() == manipulator.getId())
 		{
 			animations.erase(animations.begin() + i);
 			return Flag::OK;
@@ -90,7 +90,7 @@ bool AnimationManager::isAnimationAdded(AnimationManipulator manipulator)
 {
 	for (unsigned int i = 0; i < animations.size(); i++)
 	{
-		if (animations[i]->getId() == manipulator.id)
+		if (animations[i]->getId() == manipulator.getId())
 			return true;
 	}
 	return false;

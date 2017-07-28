@@ -82,6 +82,12 @@
     <Filter Include="Sources\GraphicsEngine\Animation Manager">
       <UniqueIdentifier>{64370144-5e2d-40e6-b2ae-2a30181c2c33}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headers\ResourceManager\Languages">
+      <UniqueIdentifier>{4bb412d0-86da-42bb-855c-3b908ed85d0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\ResourceManager\Languages">
+      <UniqueIdentifier>{8d7e48c3-a751-44df-a695-d7c69c38cdc1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -93,16 +99,10 @@
     <ClInclude Include="targetver.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Engine.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="Resource.h">
       <Filter>Headers\ResourceManager\Resources</Filter>
     </ClInclude>
     <ClInclude Include="AnimationResource.h">
-      <Filter>Headers\ResourceManager\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationResourceDef.h">
       <Filter>Headers\ResourceManager\Resources</Filter>
     </ClInclude>
     <ClInclude Include="AnimationManipulator.h">
@@ -127,9 +127,6 @@
       <Filter>Headers\Components</Filter>
     </ClInclude>
     <ClInclude Include="ComponentManipulator.h">
-      <Filter>Headers\Manipulators</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceManipulator.h">
       <Filter>Headers\Manipulators</Filter>
     </ClInclude>
     <ClInclude Include="GraphicsComponent.h">
@@ -240,6 +237,24 @@
     <ClInclude Include="Paths.h">
       <Filter>Headers\Others</Filter>
     </ClInclude>
+    <ClInclude Include="Language.h">
+      <Filter>Headers\ResourceManager\Languages</Filter>
+    </ClInclude>
+    <ClInclude Include="StringResource.h">
+      <Filter>Headers\ResourceManager\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationResourceDef.h">
+      <Filter>Headers\ResourceManager\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="StringManipulator.h">
+      <Filter>Headers\Manipulators</Filter>
+    </ClInclude>
+    <ClInclude Include="LangString.h">
+      <Filter>Headers\ResourceManager\Languages</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -334,6 +349,15 @@
     </ClCompile>
     <ClCompile Include="AnimationManager.cpp">
       <Filter>Sources\GraphicsEngine\Animation Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Language.cpp">
+      <Filter>Sources\ResourceManager\Languages</Filter>
+    </ClCompile>
+    <ClCompile Include="StringResource.cpp">
+      <Filter>Sources\ResourceManager\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="LangString.cpp">
+      <Filter>Sources\ResourceManager\Languages</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

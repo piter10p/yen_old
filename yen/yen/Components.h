@@ -5,3 +5,4 @@
 #include "MoveComponent.h"
 #include "PhysicsComponent.h"
 #include "ComponentManipulator.h"
+#include "StringManipulator.h"
