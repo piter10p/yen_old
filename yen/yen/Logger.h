@@ -15,7 +15,6 @@ namespace yen
 
 		static Flag prepareFile();
 
-		static constexpr const char* LOG_FILE_PATH = "log.txt";
 		static constexpr const char* INFO_SIGN = "@";
 		static constexpr const char* ERROR_SIGN = "!!!";
 		static constexpr const char* UNSURE_SIGN = "??";

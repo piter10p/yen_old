@@ -16,7 +16,7 @@ int main()
 	engine.initialize(configuration);
 
 	yen::AnimationResourceDef animationDef;
-	animationDef.path = "I:\\Backup\\Pietras\\data\\anim";
+	animationDef.path = "anim";
 	animationDef.frameRate = 60;
 	yen::AnimationManipulator animation = engine.resourceManager->addAnimationResource(animationDef);
 	animationDef.path += "2";

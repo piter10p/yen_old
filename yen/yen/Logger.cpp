@@ -2,6 +2,7 @@
 #include "Logger.h"
 #include <iomanip>
 #include <ctime>
+#include "Paths.h"
 
 using namespace yen;
 
@@ -40,7 +41,7 @@ Flag Logger::insertReturn()
 Flag Logger::prepareFile()
 {
 	std::fstream file;
-	file.open(LOG_FILE_PATH, std::ios::out | std::ios::trunc);
+	file.open(Paths::LOG_FILE, std::ios::out | std::ios::trunc);
 
 	if (!file.good())
 		return Flag::ERROR_CAN_NOT_OPEN_FILE;
@@ -59,7 +60,7 @@ Flag Logger::errorLog(unsigned int indentation, std::string message)
 
 Flag Logger::openFileAtEnd(std::fstream *file)
 {
-	file->open(LOG_FILE_PATH, std::ios::out | std::ios::app);
+	file->open(Paths::LOG_FILE, std::ios::out | std::ios::app);
 
 	if (file->good())
 		return Flag::OK;

@@ -237,6 +237,9 @@
     <ClInclude Include="Frame.h">
       <Filter>Headers\GraphicsEngine\AnimationManager</Filter>
     </ClInclude>
+    <ClInclude Include="Paths.h">
+      <Filter>Headers\Others</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

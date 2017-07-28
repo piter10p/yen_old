@@ -175,6 +175,7 @@
     <ClInclude Include="ObjectAccessInterface.h" />
     <ClInclude Include="ObjectManipulator.h" />
     <ClInclude Include="ObjectsManager.h" />
+    <ClInclude Include="Paths.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="PhysicsEngine.h" />
     <ClInclude Include="RenderObject.h" />

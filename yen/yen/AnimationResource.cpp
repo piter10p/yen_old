@@ -1,11 +1,14 @@
 #include "stdafx.h"
 #include "AnimationResource.h"
+#include "Paths.h"
 
 using namespace yen;
 
 AnimationResource::AnimationResource(AnimationResourceDef def, int id)
 {
-	this->path = def.path;
+	this->path = Paths::DATA_FOLDER;
+	this->path += Paths::TEXTURES_FOLDER;
+	this->path += def.path;
 	setId(id);
 }
 
