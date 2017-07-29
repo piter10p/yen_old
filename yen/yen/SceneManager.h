@@ -14,22 +14,22 @@ namespace yen
 		~SceneManager();
 
 		SceneManipulator createScene();
-		Flag removeScene(SceneManipulator);
+		void removeScene(SceneManipulator);
 
-		Flag addObjectToScene(SceneManipulator, ObjectManipulator);
-		Flag removeObjectFromScene(SceneManipulator, ObjectManipulator);
+		void addObjectToScene(SceneManipulator, ObjectManipulator);
+		void removeObjectFromScene(SceneManipulator, ObjectManipulator);
 
-		Flag initializeScene(SceneManipulator);
+		void initializeScene(SceneManipulator);
 
 		void setSceneGravity(SceneManipulator, fVector);
 
-		Flag setActiveCameraofScene(SceneManipulator, ObjectManipulator);
+		void setActiveCameraofScene(SceneManipulator, ObjectManipulator);
 
 		void freezeScene(SceneManipulator);
 		void unFreezeScene(SceneManipulator);
 		bool isSceneFreezed(SceneManipulator);
 
-		Flag codeStepUpdate();
+		void codeStepUpdate();
 
 		bool test();
 

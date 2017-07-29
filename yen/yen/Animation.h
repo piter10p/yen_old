@@ -11,7 +11,7 @@ namespace yen
 		Animation();
 		~Animation();
 
-		Flag load(std::string path);
+		void load(std::string path);
 		void unLoad();
 		void setFrameRate(unsigned int);
 		unsigned int getFrameRate();

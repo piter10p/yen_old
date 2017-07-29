@@ -14,12 +14,12 @@ namespace yen
 
 		void codeStepUpdate(ObjectAccessInterface);
 		void initialization(ObjectAccessInterface);
-		Flag load();
+		void load();
 		void unLoad();
 
-		Flag setActualAnimation(AnimationManipulator);
-		Flag addAnimation(AnimationManipulator);
-		Flag removeAnimation(AnimationManipulator);
+		void setActualAnimation(AnimationManipulator);
+		void addAnimation(AnimationManipulator);
+		void removeAnimation(AnimationManipulator);
 
 	private:
 		GraphicsEngine *graphicsEngine;

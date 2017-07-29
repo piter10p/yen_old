@@ -88,6 +88,9 @@
     <Filter Include="Sources\ResourceManager\Languages">
       <UniqueIdentifier>{8d7e48c3-a751-44df-a695-d7c69c38cdc1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headers\Others\Error">
+      <UniqueIdentifier>{2573d13e-f6e5-4948-83be-9afc7387c7c7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -254,6 +257,9 @@
     </ClInclude>
     <ClInclude Include="LangString.h">
       <Filter>Headers\ResourceManager\Languages</Filter>
+    </ClInclude>
+    <ClInclude Include="Error.h">
+      <Filter>Headers\Others\Error</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

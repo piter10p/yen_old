@@ -4,6 +4,8 @@
 #include "ObjectAccessInterface.h"
 #include "Flag.h"
 #include <vector>
+#include "Error.h"
+#include "Logger.h"
 
 namespace yen
 {
@@ -14,7 +16,7 @@ namespace yen
 
 		virtual void codeStepUpdate(ObjectAccessInterface) = 0;
 		virtual void initialization(ObjectAccessInterface) = 0;
-		virtual Flag load() = 0;
+		virtual void load() = 0;
 		virtual void unLoad() = 0;
 
 		void setObjectData(std::vector<Component*>*components)
@@ -30,20 +32,24 @@ namespace yen
 
 	protected:
 		std::string type;
-		Component **components;
-		int componentsSize;
 
-		Flag getComponent(Component *out, std::string type)
+		Component* getComponent(std::string type)
 		{
 			for (unsigned int i = 0; i < componentsSize; i++)
 			{
 				if (components[i]->getType() == type)
 				{
-					out = components[i];
-					return Flag::OK;
+					return components[i];
 				}
 			}
-			return Flag::ERROR_OBJECT_DONT_HAVE_COMPONENT_OF_THIS_TYPE;
+			Logger::errorLog(0, "Object dont have component of type: " + type + ".");
+			Error e;
+			e.flag = Flag::ERROR_OBJECT_DONT_HAVE_COMPONENT_OF_THIS_TYPE;
+			throw e;
 		}
+
+	private:
+		Component **components;
+		int componentsSize;
 	};
 }

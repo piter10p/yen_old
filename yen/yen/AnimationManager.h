@@ -12,14 +12,14 @@ namespace yen
 		AnimationManager();
 		~AnimationManager();
 
-		Flag setActualAnimation(AnimationManipulator);
+		void setActualAnimation(AnimationManipulator);
 
-		Flag addAnimation(AnimationManipulator);
-		Flag removeAnimation(AnimationManipulator);
+		void addAnimation(AnimationManipulator);
+		void removeAnimation(AnimationManipulator);
 
 		Frame* getActualFrame();
 
-		Flag load();
+		void load();
 		void unLoad();
 
 		void start();

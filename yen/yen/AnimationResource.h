@@ -12,7 +12,7 @@ namespace yen
 		AnimationResource(AnimationResourceDef, int);
 		~AnimationResource();
 
-		Flag load();
+		void load();
 		void unLoad();
 		void setFrameRate(unsigned int);
 

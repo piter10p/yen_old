@@ -12,7 +12,7 @@ namespace yen
 
 		void codeStepUpdate(ObjectAccessInterface);
 		void initialization(ObjectAccessInterface);
-		Flag load();
+		void load();
 		void unLoad();
 
 		void move(fVector);

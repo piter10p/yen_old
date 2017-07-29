@@ -36,9 +36,8 @@ void PhysicsComponent::initialization(ObjectAccessInterface accessInterface)
 	physicsEngine->avtivateBody(worldManipulator, bodyManipulator);
 }
 
-Flag PhysicsComponent::load()
+void PhysicsComponent::load()
 {
-	return Flag::OK;
 }
 
 void PhysicsComponent::unLoad()

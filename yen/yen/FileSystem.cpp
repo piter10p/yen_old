@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "FileSystem.h"
+#include "Error.h"
 
 using namespace yen;
 
@@ -11,14 +12,25 @@ std::vector <std::string> FileSystem::getAllFilesPathsinDirectory(std::string di
 	{
 		boost::filesystem::directory_iterator end_itr;
 
-		boost::filesystem::path path(directoryPath);
-
-		for (boost::filesystem::directory_iterator itr(path); itr != end_itr; ++itr)
+		try
 		{
-			if (isFile(itr)) {
-				fileList.push_back(itr->path().string());
+			boost::filesystem::path path(directoryPath);
+
+			for (boost::filesystem::directory_iterator itr(path); itr != end_itr; ++itr)
+			{
+				if (isFile(itr)) {
+					fileList.push_back(itr->path().string());
+				}
 			}
 		}
+		catch(...)
+		{
+			FileManipulationError e;
+			e.flag = Flag::ERROR_BAD_PATH;
+			e.path = directoryPath;
+			throw e;
+		}
+		
 	}
 
 	return fileList;

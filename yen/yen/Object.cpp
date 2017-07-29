@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "Object.h"
+#include "Error.h"
+#include "Logger.h"
 
 using namespace yen;
 
@@ -24,29 +26,66 @@ fVector Object::getPosition()
 	return position;
 }
 
-Flag Object::addComponent(ComponentManipulator *manipulator, Component *component)
+void Object::addComponent(ComponentManipulator *manipulator, Component *component)
 {
-	if (isAnyComponentOfThisType(component->getType()))
-		return Flag::ERROR_COMPONENT_WITH_THIS_TYPE_HAS_BEEN_ADDED_ALREADY;
+	try
+	{
+		if (isAnyComponentOfThisType(component->getType()))
+		{
+			ManipulatorError e;
+			e.flag = Flag::ERROR_COMPONENT_WITH_THIS_TYPE_HAS_BEEN_ADDED_ALREADY;
+			e.type = "ComponentManipulator";
+			e.id = manipulator->id;
+			throw e;
+		}
 
-	component->setId(getNewId());
-	components.push_back(component);
+		component->setId(getNewId());
+		components.push_back(component);
 
-	manipulator->id = component->getId();
-
-	return Flag::OK;
+		manipulator->id = component->getId();
+	}
+	catch (ManipulatorError e)
+	{
+		Logger::errorLog(0, "Can not add component with id: " + std::to_string(e.id) + " to object with id: " + std::to_string(this->getId()) + ". Component of this type has been added already.");
+		throw e;
+	}
+	catch (...)
+	{
+		Logger::errorLog(0, "Undefined error in Object::addComponent(). Object id: " + std::to_string(this->getId()) + ".");
+		Error e;
+		e.flag = Flag::ERROR_UNDEFINED;
+		throw e;
+	}
 }
 
-Flag Object::removeComponent(ComponentManipulator manipulator)
+void Object::removeComponent(ComponentManipulator manipulator)
 {
-	int index = getComponentListIndex(manipulator.id);
-	if (index != -1)
+	try
 	{
+		unsigned int index = getComponentListIndex(manipulator.id);
 		delete components[index];
 		components.erase(components.begin() + index);
-		return Flag::OK;
+		return;
 	}
-	return Flag::ERROR_NOTHING_FOUND_ID;
+	catch (Error e)
+	{
+		Logger::errorLog(0, "Can not remove component with id: " + std::to_string(manipulator.id) + " from object with id: " + std::to_string(this->getId()) + ". Component with this id is not exists.");
+		throw e;
+	}
+	catch (const std::out_of_range& oor)
+	{
+		Logger::errorLog(0, "Can not remove component with id : " + std::to_string(manipulator.id) + " from object with id : " + std::to_string(this->getId()) + ". Component index is out of range.");
+		Error e;
+		e.flag = Flag::ERROR_INDEX_OUT_OF_LIST_RANGE;
+		throw e;
+	}
+	catch (...)
+	{
+		Logger::errorLog(0, "Undefined error in Object::removeComponent() in object with id: " + std::to_string(this->getId()) + ".");
+		Error e;
+		e.flag = Flag::ERROR_UNDEFINED;
+		throw e;
+	}
 }
 
 void Object::codeStepUpdate(fVector cameraPos)
@@ -73,16 +112,32 @@ void Object::initialization(WorldManipulator worldManipulator)
 	}
 }
 
-Flag Object::load()
+void Object::load()
 {
-	for (int i = 0; i < components.size(); i++)
+	try
 	{
-		Flag flag = components[i]->load();
-		if (flag != Flag::OK)
-			return flag;
+		for (int i = 0; i < components.size(); i++)
+		{
+			components[i]->load();
+		}
 	}
+	catch(Error e)
+	{
+		throw e;
+	}
+	catch (ManipulatorError e)
+	{
+		throw e;
+	}
+	catch (...)
+	{
+		Logger::errorLog(0, "Undefined error in Object::load() in object with id: " + std::to_string(this->getId()) + ".");
+		Error e;
+		e.flag = Flag::ERROR_UNDEFINED;
+		throw e;
+	}
+	
 	loaded = true;
-	return Flag::OK;
 }
 
 void Object::unLoad()
@@ -112,7 +167,7 @@ bool Object::test()
 	public:
 		void codeStepUpdate(ObjectAccessInterface) {};
 		void initialization(ObjectAccessInterface) {};
-		Flag load() { return Flag::OK; };
+		void load() {};
 		void unLoad() {};
 	protected: std::string type = "TestComponent";
 	};
@@ -120,25 +175,24 @@ bool Object::test()
 	TestComponent *component = new TestComponent();
 
 	ComponentManipulator manipulator;
-	Flag flag = addComponent(&manipulator, component);
-	if (flag != Flag::OK)
-		return false;
+	addComponent(&manipulator, component);
 
-	flag = removeComponent(manipulator);
-	if (flag != Flag::OK)
-		return false;
+	removeComponent(manipulator);
 	
 	return true;
 }
 
-int Object::getComponentListIndex(int id)
+unsigned int Object::getComponentListIndex(int id)
 {
 	for (int i = 0; i < components.size(); i++)
 	{
 		if (components[i]->getId() == id)
 			return i;
 	}
-	return -1;
+	Logger::errorLog(0, "Number: " + std::to_string(id) + " is out of range of components list of object with id: " + std::to_string(this->getId()) + ".");
+	Error e;
+	e.flag = Flag::ERROR_NOTHING_FOUND_ID;
+	throw e;
 }
 
 void Object::removeAllComponents()

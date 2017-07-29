@@ -26,30 +26,67 @@ SceneManipulator SceneManager::createScene()
 	return manipulator;
 }
 
-Flag SceneManager::removeScene(SceneManipulator manipulator)
+void SceneManager::removeScene(SceneManipulator manipulator)
 {
-	int index = getSceneListIndex(manipulator.id);
-	if (index != -1)
+	try
 	{
-		scenes.erase(scenes.begin() + index);
-		return Flag::OK;
+		int index = getSceneListIndex(manipulator.id);
+		if (index != -1)
+		{
+			scenes.erase(scenes.begin() + index);
+			return;
+		}
 	}
-	return Flag::ERROR_NOTHING_FOUND_ID;
+	catch (const std::out_of_range& oor)
+	{
+		Logger::errorLog(0, "Can not remove scene with id : " + std::to_string(manipulator.id) + " from Scene Manager. Obejct index is out of range.");
+		Error e;
+		e.flag = Flag::ERROR_INDEX_OUT_OF_LIST_RANGE;
+		throw e;
+	}
+	Logger::errorLog(0, "Can not remove scene with id : " + std::to_string(manipulator.id) + " from Scene Manager. Obejct is missing.");
+	Error e;
+	e.flag = Flag::ERROR_NOTHING_FOUND_ID;
+	throw e;
 }
 
-Flag SceneManager::addObjectToScene(SceneManipulator sceneManipulator, ObjectManipulator objectManipulator)
+void SceneManager::addObjectToScene(SceneManipulator sceneManipulator, ObjectManipulator objectManipulator)
 {
-	return sceneManipulator.scene->addObject(objectManipulator.object);
+	try
+	{
+		sceneManipulator.scene->addObject(objectManipulator.object);
+	}
+	catch (Error e)
+	{
+		throw e;
+	}
+		
+	
 }
 
-Flag SceneManager::removeObjectFromScene(SceneManipulator sceneManipulator, ObjectManipulator objectManipulator)
+void SceneManager::removeObjectFromScene(SceneManipulator sceneManipulator, ObjectManipulator objectManipulator)
 {
-	return sceneManipulator.scene->removeObject(objectManipulator.object);
+	try
+	{
+		sceneManipulator.scene->removeObject(objectManipulator.object);
+	}
+	catch (Error e)
+	{
+		throw e;
+	}
+	
 }
 
-Flag SceneManager::initializeScene(SceneManipulator manipulator)
+void SceneManager::initializeScene(SceneManipulator manipulator)
 {
-	return manipulator.scene->initialization();
+	try
+	{
+		manipulator.scene->initialization();
+	}
+	catch (Error e)
+	{
+		throw e;
+	}
 }
 
 void SceneManager::setSceneGravity(SceneManipulator manipulator, fVector vector)
@@ -57,9 +94,16 @@ void SceneManager::setSceneGravity(SceneManipulator manipulator, fVector vector)
 	manipulator.scene->setGravity(vector);
 }
 
-Flag SceneManager::setActiveCameraofScene(SceneManipulator sManipulator, ObjectManipulator oManipulator)
+void SceneManager::setActiveCameraofScene(SceneManipulator sManipulator, ObjectManipulator oManipulator)
 {
-	return sManipulator.scene->setActiveCamera(oManipulator.object);
+	try
+	{
+		sManipulator.scene->setActiveCamera(oManipulator.object);
+	}
+	catch (Error e)
+	{
+		throw e;
+	}
 }
 
 void SceneManager::freezeScene(SceneManipulator manipulator)
@@ -77,25 +121,26 @@ bool SceneManager::isSceneFreezed(SceneManipulator manipulator)
 	return manipulator.scene->isFreezed();
 }
 
-Flag SceneManager::codeStepUpdate()
+void SceneManager::codeStepUpdate()
 {
-	for (unsigned int i = 0; i < scenes.size(); i++)
+	try
 	{
-		Flag flag = scenes[i].codeStepUpdate();
-
-		if (flag != Flag::OK)
-			return flag;
+		for (unsigned int i = 0; i < scenes.size(); i++)
+		{
+			scenes[i].codeStepUpdate();
+		}
 	}
-
-	return Flag::OK;
+	catch (Error e)
+	{
+		throw e;
+	}
+	
 }
 
 bool SceneManager::test()
 {
 	SceneManipulator manipulator = createScene();
-	Flag flag = removeScene(manipulator);
-	if (flag != Flag::OK)
-		return false;
+	removeScene(manipulator);
 
 	return true;
 }

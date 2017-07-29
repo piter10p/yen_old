@@ -3,6 +3,8 @@
 #include "FileSystem.h"
 #include "boost\convert.hpp"
 #include "boost\numeric\conversion\converter.hpp"
+#include "Error.h"
+#include "Logger.h"
 
 using namespace yen;
 
@@ -15,24 +17,58 @@ Animation::~Animation()
 {
 }
 
-Flag Animation::load(std::string path)
+void Animation::load(std::string path)
 {
-	std::vector <std::string> filesList = FileSystem::getAllFilesPathsinDirectory(path);
+	std::vector <std::string> filesList;
 
-	if (filesList.empty())
-		return Flag::ERROR_DIRECTORY_EMPTY;
-
-	for each (std::string filePath in filesList)
+	try
 	{
-		Frame frame;
+		filesList = FileSystem::getAllFilesPathsinDirectory(path);
 
-		if (frame.load(filePath) != Flag::OK)
-			return Flag::ERROR_CAN_NOT_OPEN_FILE;
 
-		frames.push_back(frame);
+		if (filesList.empty())
+		{
+			FileManipulationError e;
+			e.flag = Flag::ERROR_DIRECTORY_EMPTY;
+			e.path = path;
+			throw e;
+		}
+
+		for each (std::string filePath in filesList)
+		{
+			Frame frame;
+
+			if (frame.load(filePath) != Flag::OK)
+			{
+				FileManipulationError e;
+				e.flag = Flag::ERROR_CAN_NOT_OPEN_FILE;
+				e.path = filePath;
+				throw e;
+			}
+
+			frames.push_back(frame);
+		}
 	}
+	catch(FileManipulationError e)
+	{
+		if (e.flag == Flag::ERROR_BAD_PATH)
+			Logger::errorLog(0, "Can not create file list in directory: \"" + e.path + "\". Is path right?");
+		else if (e.flag == Flag::ERROR_DIRECTORY_EMPTY)
+			Logger::errorLog(0, "Direcotry defined in path: \"" + e.path + "\" is empty.");
+		else if (e.flag == Flag::ERROR_CAN_NOT_OPEN_FILE)
+			Logger::errorLog(0, "Can not open frame file. File path: \"" + e.path + "\".");
+		else
+			Logger::errorLog(0, "Unknown error.");
 
-	return Flag::OK;
+		throw e;
+	}
+	catch (...)
+	{
+		Logger::errorLog(0, "Undefined error in Animation::load()");
+		Error e;
+		e.flag = Flag::ERROR_UNDEFINED;
+		throw e;
+	}
 }
 
 void Animation::unLoad()

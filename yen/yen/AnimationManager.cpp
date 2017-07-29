@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "AnimationManager.h"
+#include "Error.h"
+#include "Logger.h"
 
 using namespace yen;
 
@@ -12,7 +14,7 @@ AnimationManager::~AnimationManager()
 {
 }
 
-Flag AnimationManager::setActualAnimation(AnimationManipulator manipulator)
+void AnimationManager::setActualAnimation(AnimationManipulator manipulator)
 {
 	if (firstAnimationSetted == true)
 		actualAnimation->pause();
@@ -23,31 +25,54 @@ Flag AnimationManager::setActualAnimation(AnimationManipulator manipulator)
 		actualAnimation->restart();
 		actualAnimation->pause();
 		firstAnimationSetted = true;
-		return Flag::OK;
+		return;
 	}
-	return Flag::ERROR_NOTHING_FOUND_ID;
+
+	ManipulatorError e;
+	e.flag = Flag::ERROR_NOTHING_FOUND_ID;
+	e.type = "AnimationManipulator";
+	e.id = manipulator.getId();
+	Logger::errorLog(0, "Can not set actual animation. Animation of this id: " + std::to_string(e.id) + " don't exists.");
+	throw e;
 }
 
-Flag AnimationManager::addAnimation(AnimationManipulator manipulator)
+void AnimationManager::addAnimation(AnimationManipulator manipulator)
 {
-	if (isAnimationAdded(manipulator))
-		return Flag::ERROR_THING_WITH_THIS_ID_IS_ALREADY_EXISTS;	
-
-	animations.push_back(manipulator.animationResource);
-	return Flag::OK;
+	try
+	{
+		if (isAnimationAdded(manipulator))
+		{
+			ManipulatorError e;
+			e.flag = Flag::ERROR_THING_WITH_THIS_ID_IS_ALREADY_EXISTS;
+			e.type = "AnimationManipulator";
+			e.id = manipulator.getId();
+			throw e;
+		}
+		animations.push_back(manipulator.animationResource);
+	}
+	catch (ManipulatorError e)
+	{
+		Logger::errorLog(0, "Can not add animation to Animation Manager. Animation with id: " + std::to_string(e.id) + " has already been added.");
+		throw e;
+	}
 }
 
-Flag AnimationManager::removeAnimation(AnimationManipulator manipulator)
+void AnimationManager::removeAnimation(AnimationManipulator manipulator)
 {
 	for (unsigned int i = 0; i < animations.size(); i++)
 	{
 		if (animations[i]->getId() == manipulator.getId())
 		{
 			animations.erase(animations.begin() + i);
-			return Flag::OK;
+			return;
 		}
 	}
-	return Flag::ERROR_NOTHING_FOUND_ID;
+	ManipulatorError e;
+	e.flag = Flag::ERROR_NOTHING_FOUND_ID;
+	e.type = "AnimationManipulator";
+	e.id = manipulator.getId();
+	Logger::errorLog(0, "Can not remove animation from AnimationManager. Animation with id: " + std::to_string(e.id) + " is not exists");
+	throw e;
 }
 
 Frame* AnimationManager::getActualFrame()
@@ -55,17 +80,25 @@ Frame* AnimationManager::getActualFrame()
 	return actualAnimation->getActualFrame();
 }
 
-Flag AnimationManager::load()
+void AnimationManager::load()
 {
-	Flag flag;
-
-	for (unsigned int i = 0; i < animations.size(); i++)
+	try
 	{
-		flag = animations[i]->load();
-		if (flag != Flag::OK)
-			return flag;
+		for (unsigned int i = 0; i < animations.size(); i++)
+		{
+			animations[i]->load();
+		}
 	}
-	return Flag::OK;
+	catch (FileManipulationError e)
+	{
+		throw e;
+	}
+	catch (...)
+	{
+		Error e;
+		e.flag = Flag::ERROR_UNDEFINED;
+		throw e;
+	}
 }
 
 void AnimationManager::unLoad()

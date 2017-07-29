@@ -13,7 +13,7 @@ namespace yen
 		StringResource(std::string path, int id, Language *actualLanguage);
 		~StringResource();
 
-		Flag load();
+		void load();
 		void unLoad();
 
 	private:

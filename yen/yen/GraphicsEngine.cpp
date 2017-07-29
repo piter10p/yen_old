@@ -29,6 +29,8 @@ void GraphicsEngine::initialize(GraphicsSettings settings, std::string windowNam
 
 void GraphicsEngine::reInitialize(GraphicsSettings settings, std::string windowName)
 {
+	Logger::infoLog(1, "Graphics Engine reinitialization");
+
 	if(window.isOpen())
 		window.close();
 
@@ -40,11 +42,22 @@ void GraphicsEngine::draw(RenderObject rObject)
 	window.draw(*rObject.sprite);
 }
 
-Flag GraphicsEngine::renderFrame()
+void GraphicsEngine::renderFrame()
 {
-	inputsManager->updateInputs(&window);
-	window.clear(sf::Color::White);
-	sceneManager->codeStepUpdate();
-	window.display();
-	return Flag::OK;
+	try
+	{
+		inputsManager->updateInputs(&window);
+		window.clear(sf::Color::White);
+		sceneManager->codeStepUpdate();
+		window.display();
+	}
+	catch (Error e)
+	{
+		throw e;
+	}
+	catch (...)
+	{
+		Logger::errorLog(0, "Undefined error in GraphicsEngine::renderFrame().");
+		throw Error::generateUndefinedError();
+	}
 }

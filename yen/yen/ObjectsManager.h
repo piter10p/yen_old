@@ -12,9 +12,9 @@ namespace yen
 		~ObjectsManager();
 
 		ObjectManipulator createObject(fVector position);
-		Flag removeObject(ObjectManipulator);
-		Flag attachComponent(ComponentManipulator *out, ObjectManipulator, Component*);
-		Flag removeComponent(ObjectManipulator, ComponentManipulator);
+		void removeObject(ObjectManipulator);
+		void attachComponent(ComponentManipulator *out, ObjectManipulator, Component*);
+		void removeComponent(ObjectManipulator, ComponentManipulator);
 		void setLoadDistance(ObjectManipulator, float);
 
 		bool test();
@@ -22,7 +22,7 @@ namespace yen
 	private:
 		std::vector <Object*> objects;
 
-		int getObjectListIndex(int id);
+		unsigned int getObjectListIndex(int id);
 
 		void clearAllObjects();
 	};

@@ -21,7 +21,7 @@ namespace yen
 
 		void draw(RenderObject);
 
-		Flag renderFrame();
+		void renderFrame();
 
 	private:
 		InputManager *inputsManager;

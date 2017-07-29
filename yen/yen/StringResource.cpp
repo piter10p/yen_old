@@ -17,13 +17,11 @@ StringResource::~StringResource()
 {
 }
 
-Flag StringResource::load()
+void StringResource::load()
 {
 	std::string filePath = Paths::DATA_FOLDER;
 	filePath += Paths::LANG_FOLDER;
 	filePath += path;
-
-	return Flag::OK;
 }
 
 void StringResource::unLoad()

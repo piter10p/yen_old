@@ -17,9 +17,9 @@ AnimationResource::~AnimationResource()
 {
 }
 
-Flag AnimationResource::load()
+void AnimationResource::load()
 {
-	return animation.load(path);
+	animation.load(path);
 }
 
 void AnimationResource::unLoad()

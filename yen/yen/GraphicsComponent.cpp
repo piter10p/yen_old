@@ -33,24 +33,24 @@ void GraphicsComponent::initialization(ObjectAccessInterface objectAccessInterfa
 	animationManager.start();
 }
 
-Flag GraphicsComponent::load()
+void GraphicsComponent::load()
 {
-	return animationManager.load();
+	animationManager.load();
 }
 
-Flag GraphicsComponent::setActualAnimation(AnimationManipulator manipulator)
+void GraphicsComponent::setActualAnimation(AnimationManipulator manipulator)
 {
-	return animationManager.setActualAnimation(manipulator);
+	animationManager.setActualAnimation(manipulator);
 }
 
-Flag GraphicsComponent::addAnimation(AnimationManipulator manipulator)
+void GraphicsComponent::addAnimation(AnimationManipulator manipulator)
 {
-	return animationManager.addAnimation(manipulator);
+	animationManager.addAnimation(manipulator);
 }
 
-Flag GraphicsComponent::removeAnimation(AnimationManipulator manipulator)
+void GraphicsComponent::removeAnimation(AnimationManipulator manipulator)
 {
-	return animationManager.removeAnimation(manipulator);
+	animationManager.removeAnimation(manipulator);
 }
 
 sf::Vector2f GraphicsComponent::calculateSpritePosition(fVector objectPosition, fVector cameraPosition)

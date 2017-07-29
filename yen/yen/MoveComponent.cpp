@@ -28,9 +28,8 @@ void MoveComponent::initialization(ObjectAccessInterface accessInterface)
 	timer.start();
 }
 
-Flag MoveComponent::load()
+void MoveComponent::load()
 {
-	return Flag::OK;
 }
 
 void MoveComponent::unLoad()

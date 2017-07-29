@@ -7,6 +7,6 @@ namespace yen
 	class Resource :public Id
 	{
 	public:
-		virtual Flag load() = 0;
+		virtual void load() = 0;
 	};
 }

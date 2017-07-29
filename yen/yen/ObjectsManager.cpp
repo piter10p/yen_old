@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "ObjectsManager.h"
+#include "Error.h"
+#include "Logger.h"
 
 using namespace yen;
 
@@ -28,26 +30,34 @@ ObjectManipulator ObjectsManager::createObject(fVector position)
 	return manipulator;
 }
 
-Flag ObjectsManager::removeObject(ObjectManipulator manipulator)
+void ObjectsManager::removeObject(ObjectManipulator manipulator)
 {
-	int index = getObjectListIndex(manipulator.id);
-
-	if (index != -1)
+	try
 	{
+		int index = getObjectListIndex(manipulator.id);
 		objects.erase(objects.begin() + index);
-		return Flag::OK;
 	}
-	return Flag::ERROR_NOTHING_FOUND_ID;
+	catch (Error e)
+	{
+		throw e;
+	}
+	catch (const std::out_of_range& oor)
+	{
+		Logger::errorLog(0, "Can not remove object with id : " + std::to_string(manipulator.id) + ". Obehct index is out of range.");
+		Error e;
+		e.flag = Flag::ERROR_INDEX_OUT_OF_LIST_RANGE;
+		throw e;
+	}
 }
 
-Flag ObjectsManager::attachComponent(ComponentManipulator *comManipulator, ObjectManipulator objManipulator, Component *component)
+void ObjectsManager::attachComponent(ComponentManipulator *comManipulator, ObjectManipulator objManipulator, Component *component)
 {
-	return objManipulator.object->addComponent(comManipulator, component);
+	objManipulator.object->addComponent(comManipulator, component);
 }
 
-Flag ObjectsManager::removeComponent(ObjectManipulator objManipulator, ComponentManipulator comManipulator)
+void ObjectsManager::removeComponent(ObjectManipulator objManipulator, ComponentManipulator comManipulator)
 {
-	return objManipulator.object->removeComponent(comManipulator);
+	objManipulator.object->removeComponent(comManipulator);
 }
 
 void ObjectsManager::setLoadDistance(ObjectManipulator manipulator, float distance)
@@ -58,20 +68,21 @@ void ObjectsManager::setLoadDistance(ObjectManipulator manipulator, float distan
 bool ObjectsManager::test()
 {
 	ObjectManipulator manipulator = createObject(fVector(0.0f, 0.0f));
-	Flag flag = removeObject(manipulator);
-	if (flag != Flag::OK)
-		return false;
+	removeObject(manipulator);
 	return true;
 }
 
-int ObjectsManager::getObjectListIndex(int id)
+unsigned int ObjectsManager::getObjectListIndex(int id)
 {
 	for (int i = 0; i < objects.size(); i++)
 	{
 		if (objects[i]->getId() == id)
 			return i;
 	}
-	return -1;
+	Logger::errorLog(0, std::to_string(id) + " is out of range Objects Manager objects list.");
+	Error e;
+	e.flag = Flag::ERROR_INDEX_OUT_OF_LIST_RANGE;
+	throw e;
 }
 
 void ObjectsManager::clearAllObjects()

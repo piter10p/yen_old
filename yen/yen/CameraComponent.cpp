@@ -22,9 +22,8 @@ void CameraComponent::initialization(ObjectAccessInterface accessInterface)
 {
 }
 
-Flag CameraComponent::load()
+void CameraComponent::load()
 {
-	return Flag::OK;
 }
 
 

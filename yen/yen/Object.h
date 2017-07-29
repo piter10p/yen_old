@@ -18,12 +18,12 @@ namespace yen
 		void setPosition(fVector);
 		fVector getPosition();
 
-		Flag addComponent(ComponentManipulator *, Component *);
-		Flag removeComponent(ComponentManipulator);
+		void addComponent(ComponentManipulator *, Component *);
+		void removeComponent(ComponentManipulator);
 
 		void codeStepUpdate(fVector cameraPos);
 		void initialization(WorldManipulator);
-		Flag load();
+		void load();
 		void unLoad();
 
 		void removeAllComponents();
@@ -42,7 +42,7 @@ namespace yen
 		std::vector <Component*> components;
 		ObjectAccessInterface objectAccessInterface;
 
-		int getComponentListIndex(int id);
+		unsigned int getComponentListIndex(int id);
 		bool isAnyComponentOfThisType(const std::string type);
 		void fillObjectAccessInterface(WorldManipulator);
 		float loadDistance = 0.0f;

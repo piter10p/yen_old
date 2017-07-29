@@ -12,18 +12,18 @@ namespace yen
 		Scene(PhysicsEngine*);
 		~Scene();
 
-		Flag addObject(Object*);
-		Flag removeObject(Object*);
+		void addObject(Object*);
+		void removeObject(Object*);
 
-		Flag initialization();
+		void initialization();
 
-		Flag setActiveCamera(Object*);
+		void setActiveCamera(Object*);
 
 		void freeze();
 		void unFreeze();
 		bool isFreezed();
 
-		Flag codeStepUpdate();
+		void codeStepUpdate();
 		void setGravity(fVector);
 
 		bool test();
@@ -43,6 +43,6 @@ namespace yen
 		bool isObjectHasToBeLoaded(Object*);
 		bool isObjectHasToBeUnLoaded(Object*);
 
-		Flag loadObjects();
+		void loadObjects();
 	};
 }

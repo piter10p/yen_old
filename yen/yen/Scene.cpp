@@ -15,48 +15,90 @@ Scene::~Scene()
 {
 }
 
-Flag Scene::addObject(Object *object)
+void Scene::addObject(Object *object)
 {
 	if (getIndexOfObjectsListObject(object->getId()) != -1)
-		return Flag::ERROR_THING_WITH_THIS_ID_IS_ALREADY_EXISTS;
-	objects.push_back(object);
-	return Flag::OK;
-}
-
-Flag Scene::removeObject(Object* object)
-{
-	int index = getIndexOfObjectsListObject(object->getId());
-	if (index != -1)
 	{
-		objects.erase(objects.begin() + index);
-		return Flag::OK;
+		Logger::errorLog(0, "Object with id: " + std::to_string(object->getId()) + " has been added already to scene with id: " + std::to_string(this->getId()) + ".");
+		Error e;
+		e.flag = Flag::ERROR_THING_WITH_THIS_ID_IS_ALREADY_EXISTS;
+		throw e;
 	}
-	return Flag::ERROR_NOTHING_FOUND_ID;
+	objects.push_back(object);
 }
 
-Flag Scene::initialization()
+void Scene::removeObject(Object* object)
 {
-	if (!haveActiveCamera())
-		return Flag::ERROR_SCENE_DONT_HAVE_CAMERA;
-
-	Flag flag = loadObjects();
-	if (flag != Flag::OK)
-		return flag;
-
-
-	initialized = true;
-	unFreeze();
-	return Flag::OK;
+	try
+	{
+		int index = getIndexOfObjectsListObject(object->getId());
+		if (index != -1)
+		{
+			objects.erase(objects.begin() + index);
+			return;
+		}
+	}
+	catch (const std::out_of_range& oor)
+	{
+		Logger::errorLog(0, "Can not remove object with id : " + std::to_string(object->getId()) + " from scene with id: " + std::to_string(this->getId()) + ". Obejct index is out of range.");
+		Error e;
+		e.flag = Flag::ERROR_INDEX_OUT_OF_LIST_RANGE;
+		throw e;
+	}
+	catch (...)
+	{
+		Logger::errorLog(0, "Undefined error in Scene::removeObject() in scene with id: " + std::to_string(this->getId()) + ".");
+		Error e;
+		e.flag = Flag::ERROR_UNDEFINED;
+		throw e;
+	}
+	
+	Logger::errorLog(0, "Can not remove object with id : " + std::to_string(object->getId()) + " from scene with id: " + std::to_string(this->getId()) + ". Object is missing.");
+	Error e;
+	e.flag = Flag::ERROR_NOTHING_FOUND_ID;
+	throw e;
 }
 
-Flag Scene::setActiveCamera(Object* object)
+void Scene::initialization()
+{
+	try
+	{
+		if (!haveActiveCamera())
+		{
+			Logger::errorLog(0, "Scene with id: " + std::to_string(this->getId()) + " don't have active camera.");
+			Error e;
+			e.flag = Flag::ERROR_SCENE_DONT_HAVE_CAMERA;
+			throw e;
+		}
+
+		loadObjects();
+		initialized = true;
+		unFreeze();
+	}
+	catch (Error e)
+	{
+		throw e;
+	}
+	catch (...)
+	{
+		Logger::errorLog(0, "Undefined error in Scene::initialization() in sceen with id: " + std::to_string(this->getId()) + ".");
+		Error e;
+		e.flag = Flag::ERROR_UNDEFINED;
+		throw e;
+	}
+}
+
+void Scene::setActiveCamera(Object* object)
 {
 	if (object->haveComponentofType("CameraComponent"))
 	{
 		activeCamera = object;
-		return Flag::OK;
+		return;
 	}
-	return Flag::ERROR_OBJECT_DONT_HAVE_COMPONENT_OF_THIS_TYPE;
+	Logger::errorLog(0, "Can not set active camera in scene with id: " + std::to_string(this->getId()) + ". Object with id: " + std::to_string(object->getId()) + " is not a camera.");
+	Error e;
+	e.flag = Flag::ERROR_OBJECT_DONT_HAVE_COMPONENT_OF_THIS_TYPE;
+	throw e;
 }
 
 void Scene::freeze()
@@ -76,21 +118,24 @@ bool Scene::isFreezed()
 	return freezed;
 }
 
-Flag Scene::codeStepUpdate()
+void Scene::codeStepUpdate()
 {
-	if (!freezed)
+	try
 	{
-		Flag flag = loadObjects();
-		if (flag != Flag::OK)
-			return flag;
-
-		for (unsigned int i = 0; i < objects.size(); i++)
+		if (!freezed)
 		{
-			objects[i]->codeStepUpdate(activeCamera->getPosition());
+			loadObjects();
+
+			for (unsigned int i = 0; i < objects.size(); i++)
+			{
+				objects[i]->codeStepUpdate(activeCamera->getPosition());
+			}
 		}
 	}
-
-	return Flag::OK;
+	catch(Error e)
+	{
+		throw e;
+	}
 }
 
 void Scene::setGravity(fVector vector)
@@ -102,13 +147,8 @@ bool Scene::test()
 {
 	Object object;
 	
-	Flag flag = addObject(&object);
-	if (flag != Flag::OK)
-		return false;
-
-	flag = removeObject(&object);
-	if (flag != Flag::OK)
-		return false;
+	addObject(&object);
+	removeObject(&object);
 
 	return true;
 }
@@ -130,24 +170,32 @@ bool Scene::haveActiveCamera()
 	return false;
 }
 
-Flag Scene::loadObjects()
+void Scene::loadObjects()
 {
-	for (unsigned int i = 0; i < objects.size(); i++)
+	try
 	{
-		if (isObjectHasToBeLoaded(objects[i]))
+		for (unsigned int i = 0; i < objects.size(); i++)
 		{
-			Flag flag = objects[i]->load();
-			if (flag != Flag::OK)
-				return flag;
-			objects[i]->initialization(worldManipulator);
-		}
-		else if(isObjectHasToBeUnLoaded(objects[i]))
-		{
-			objects[i]->unLoad();
+			if (isObjectHasToBeLoaded(objects[i]))
+			{
+				objects[i]->load();
+				objects[i]->initialization(worldManipulator);
+			}
+			else if (isObjectHasToBeUnLoaded(objects[i]))
+			{
+				objects[i]->unLoad();
+			}
 		}
 	}
-
-	return Flag::OK;
+	catch(Error e)
+	{
+		throw e;
+	}
+	catch (FileManipulationError e)
+	{
+		throw e;
+	}
+	
 }
 
 bool Scene::isObjectInLoadRange(Object* object)
