@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "ResourceManager.h"
+#include "Error.h"
 
 using namespace yen;
 
@@ -28,7 +29,7 @@ AnimationManipulator ResourceManager::addAnimationResource(AnimationResourceDef 
 	return manipulator;
 }
 
-Flag ResourceManager::removeAnimationResource(AnimationManipulator manipulator)
+void ResourceManager::removeAnimationResource(AnimationManipulator manipulator)
 {
 	for (unsigned int i = 0; i < animationResources.size(); i++)
 	{
@@ -36,10 +37,13 @@ Flag ResourceManager::removeAnimationResource(AnimationManipulator manipulator)
 		{
 			animationResources.erase(animationResources.begin() + i);
 			delete manipulator.animationResource;
-			return Flag::OK;
+			return;
 		}
 	}
-	return Flag::ERROR_NOTHING_FOUND_ID;
+	Error e;
+	e.flag = Flag::ERROR_NOTHING_FOUND_ID;
+	Logger::errorLog(0, "Can not remove Animation Resource. No thing with id: \"" + std::to_string(manipulator.getId()) + "\" was found.");
+	throw e;
 }
 
 StringManipulator ResourceManager::addStringResource(std::string path)
@@ -53,7 +57,7 @@ StringManipulator ResourceManager::addStringResource(std::string path)
 	return manipulator;
 }
 
-Flag ResourceManager::removeAnimationResource(StringManipulator manipulator)
+void ResourceManager::removeStringResource(StringManipulator manipulator)
 {
 	for (unsigned int i = 0; i < stringResources.size(); i++)
 	{
@@ -61,34 +65,74 @@ Flag ResourceManager::removeAnimationResource(StringManipulator manipulator)
 		{
 			stringResources.erase(stringResources.begin() + i);
 			delete manipulator.resource;
-			return Flag::OK;
+			return;
 		}
 	}
-	return Flag::ERROR_NOTHING_FOUND_ID;
+	Error e;
+	e.flag = Flag::ERROR_NOTHING_FOUND_ID;
+	Logger::errorLog(0, "Can not remove String Resource. No thing with id: \"" + std::to_string(manipulator.id) + "\" was found.");
+	throw e;
 }
 
-Flag ResourceManager::addLanguage(const std::string code)
+std::string ResourceManager::getString(StringManipulator manipulator, std::string stringName)
 {
-	if (isLanguageAlreadyAdded(code))
-		return Flag::ERROR_LANGUAGE_WITH_THIS_CODE_ALREADY_EXISTS;
+	return manipulator.resource->getString(stringName);
+}
 
-	Language *lang = new Language(code);
-	languages.push_back(lang);
+void ResourceManager::addLanguage(const std::string code)
+{
+	try
+	{
+		if (isLanguageAlreadyAdded(code))
+		{
+			Error e;
+			e.flag = Flag::ERROR_LANGUAGE_WITH_THIS_CODE_ALREADY_EXISTS;
+			throw e;
+		}
 
-	return Flag::OK;
+		Language *lang = new Language(code);
+		languages.push_back(lang);
+	}
+	catch (Error e)
+	{
+		if (e.flag == Flag::ERROR_LANGUAGE_WITH_THIS_CODE_ALREADY_EXISTS)
+			Logger::errorLog(0, "Can not add language with code: \"" + code + "\". Language with that code already exists.");
+		else
+			Logger::undefinedErrorLog("ResourceManager::addLanguage()");
+	}
+	catch (...)
+	{
+		Logger::undefinedErrorLog("ResourceManager::addLanguage()");
+	}
+}
+
+void ResourceManager::changeActiveLanguage(unsigned int langIndex)
+{
+	try
+	{
+		actualLanguage = languages[langIndex];
+	}
+	catch (...)
+	{
+		Logger::errorLog(0, "Can not change active language. Possibly index is out of range.");
+	}
 }
 
 bool ResourceManager::test()
 {
-	AnimationResourceDef def;
-	def.path = "ASD";
+	try
+	{
+		AnimationResourceDef def;
+		def.path = "ASD";
 
-	AnimationManipulator manipulator = addAnimationResource(def);
-	Flag flag = removeAnimationResource(manipulator);
-
-	if (flag == Flag::OK)
+		AnimationManipulator manipulator = addAnimationResource(def);
+		removeAnimationResource(manipulator);
 		return true;
-	return false;
+	}
+	catch (...)
+	{
+		return false;
+	}	
 }
 
 bool ResourceManager::isIdSame(Id* manipulator, Resource* resource)

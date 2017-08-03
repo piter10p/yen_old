@@ -6,6 +6,7 @@
 #include <iostream>
 #include <cstdlib>
 #include "yen.h"
+#include "Component.h"
 
 
 int main()
@@ -24,6 +25,10 @@ int main()
 		animationDef.path += "2";
 		animationDef.frameRate = 0;
 		yen::AnimationManipulator animation2 = engine.resourceManager->addAnimationResource(animationDef);
+
+		engine.resourceManager->addLanguage("pl");
+		engine.resourceManager->changeActiveLanguage(1);
+		yen::StringManipulator sManipulator = engine.resourceManager->addStringResource("strings.xml");//------------------------
 
 		yen::ObjectManipulator camera = engine.objectsManager->createObject(yen::fVector(-100.0f, 0.0f));
 		yen::CameraComponent cameraComponent;
@@ -56,7 +61,7 @@ int main()
 
 		engine.sceneManager->addObjectToScene(scene, camera);
 		engine.sceneManager->addObjectToScene(scene, cube);
-		engine.sceneManager->setActiveCameraofScene(scene, cube);
+		engine.sceneManager->setActiveCameraofScene(scene, camera);
 
 		yen::InputDef leftKeyDef;
 		leftKeyDef.type = yen::InputType::KEYBOARD_KEY;

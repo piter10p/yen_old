@@ -17,12 +17,14 @@ namespace yen
 		~ResourceManager();
 
 		AnimationManipulator addAnimationResource(AnimationResourceDef);
-		Flag removeAnimationResource(AnimationManipulator);
+		void removeAnimationResource(AnimationManipulator);
 
 		StringManipulator addStringResource(std::string path);
-		Flag removeAnimationResource(StringManipulator);
+		void removeStringResource(StringManipulator);
+		std::string getString(StringManipulator, std::string stringName);
 
-		Flag addLanguage(const std::string code);
+		void addLanguage(const std::string code);
+		void changeActiveLanguage(unsigned int langIndex);
 
 		bool test();
 

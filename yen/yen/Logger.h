@@ -11,6 +11,7 @@ namespace yen
 		static Flag log(unsigned int indentation, std::string sign, std::string message);
 		static Flag infoLog(unsigned int indentation, std::string message);
 		static Flag errorLog(unsigned int indentation, std::string message);
+		static Flag undefinedErrorLog(std::string whereMessage);
 		static Flag insertReturn();
 
 		static Flag prepareFile();

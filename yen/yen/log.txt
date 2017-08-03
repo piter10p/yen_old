@@ -1,5 +1,5 @@
 ==============================================
-|| YEN Log File || Sat Jul 29 15:33:33 2017 ||
+|| YEN Log File || Thu Aug  3 14:26:49 2017 ||
 ==============================================
 
 
@@ -8,4 +8,3 @@
 		[@]> Creating window
 [@]> Engine initialized
 
-[!!!]> Can not set active camera in scene with id: 0. Object with id: 1 is not a camera.

@@ -3,6 +3,7 @@
 #include "GraphicsEngine.h"
 #include "SFML\Graphics.hpp"
 #include "AnimationManager.h"
+#include "StringManipulator.h"
 
 namespace yen
 {

@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "StringResource.h"
 #include "Paths.h"
-#include <pugixml.hpp>
+#include "Error.h"
+#include "Logger.h"
 
 using namespace yen;
 
@@ -19,12 +20,75 @@ StringResource::~StringResource()
 
 void StringResource::load()
 {
-	std::string filePath = Paths::DATA_FOLDER;
-	filePath += Paths::LANG_FOLDER;
-	filePath += path;
+	std::string filePath = generatePath();
+
+	try
+	{
+		pugi::xml_document doc;
+		openDocument(&doc, filePath);
+		loadStrings(&doc);
+	}
+	catch (Error e)
+	{
+		if (e.flag == Flag::ERROR_CAN_NOT_OPEN_FILE)
+			Logger::errorLog(0, "Can not open string file with path: \"" + filePath + "\".");
+		else
+			Logger::errorLog(0, "Undefined error.");
+	}
+	catch (...)
+	{
+		Logger::errorLog(0, "Undefined error.");
+	}
 }
 
 void StringResource::unLoad()
 {
 
+}
+
+std::string StringResource::getString(std::string stringName)
+{
+	for (unsigned int i = 0; i < strings.size(); i++)
+	{
+		if (strings[i].getName() == stringName)
+			return strings[i].getText();
+	}
+
+	Error e;
+	e.flag = Flag::ERROR_CAN_NOT_FIND_STRING_WITH_SPECIFIC_NAME;
+	Logger::errorLog(0, "String with name: \"" + stringName + "\" was not found.");
+	throw e;
+}
+
+std::string StringResource::generatePath()
+{
+	std::string filePath = Paths::DATA_FOLDER;
+	filePath += Paths::LANG_FOLDER;
+	filePath += actualLanguage->getCode();
+	filePath += "\\";
+	filePath += path;
+
+	return filePath;
+}
+
+void StringResource::openDocument(pugi::xml_document *doc, std::string filePath)
+{
+	pugi::xml_parse_result result = doc->load_file(filePath.c_str());
+	if (result.status != pugi::status_ok)
+	{
+		Error e;
+		e.flag = Flag::ERROR_CAN_NOT_OPEN_FILE;
+		throw e;
+	}
+}
+
+void StringResource::loadStrings(pugi::xml_document *doc)
+{
+	pugi::xml_node root = doc->first_child();
+	
+	for (pugi::xml_node string = root.first_child(); string; string = string.next_sibling())
+	{
+		LangString langString(string.name() , string.child_value());
+		strings.push_back(langString);
+	}
 }

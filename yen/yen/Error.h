@@ -1,6 +1,7 @@
 #pragma once
 #include "Flag.h"
 #include <string>
+#include "Logger.h"
 
 namespace yen
 {

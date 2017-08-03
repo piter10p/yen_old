@@ -58,6 +58,11 @@ Flag Logger::errorLog(unsigned int indentation, std::string message)
 	return log(indentation, ERROR_SIGN, message);
 }
 
+Flag Logger::undefinedErrorLog(std::string whereMessage)
+{
+	return errorLog(0, "Undefined error in: \"" + whereMessage + "\".");
+}
+
 Flag Logger::openFileAtEnd(std::fstream *file)
 {
 	file->open(Paths::LOG_FILE, std::ios::out | std::ios::app);

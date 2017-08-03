@@ -1,6 +1,4 @@
-﻿  SceneManager.cpp
+﻿  GraphicsComponent.cpp
 i:\backup\pietras\visual studio projects\yen\yen\yen\component.h(38): warning C4018: '<': signed/unsigned mismatch
-i:\backup\pietras\visual studio projects\yen\yen\yen\scenemanager.cpp(40): warning C4101: 'oor': unreferenced local variable
-i:\backup\pietras\visual studio projects\yen\yen\yen\scenemanager.cpp(150): warning C4018: '<': signed/unsigned mismatch
   yen.vcxproj -> I:\Backup\Pietras\Visual Studio Projects\yen\yen\Debug\yen.exe
   yen.vcxproj -> I:\Backup\Pietras\Visual Studio Projects\yen\yen\Debug\yen.pdb (Partial PDB)
