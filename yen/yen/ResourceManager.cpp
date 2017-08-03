@@ -79,6 +79,35 @@ std::string ResourceManager::getString(StringManipulator manipulator, std::strin
 	return manipulator.resource->getString(stringName);
 }
 
+FontManipulator ResourceManager::addFontResource(std::string path)
+{
+	FontResource *resource = new FontResource(path);
+	resource->setId(getNewId());
+	fontResources.push_back(resource);
+
+	FontManipulator manipulator;
+	manipulator.resource = resource;
+	manipulator.setId(resource->getId());
+
+	return manipulator;
+}
+void ResourceManager::removeFontResource(FontManipulator manipulator)
+{
+	for (unsigned int i = 0; i < fontResources.size(); i++)
+	{
+		if (isIdSame(&manipulator, fontResources[i]))
+		{
+			fontResources.erase(fontResources.begin() + i);
+			delete manipulator.resource;
+			return;
+		}
+	}
+	Error e;
+	e.flag = Flag::ERROR_NOTHING_FOUND_ID;
+	Logger::errorLog(0, "Can not remove Font Resource. No thing with id: \"" + std::to_string(manipulator.getId()) + "\" was found.");
+	throw e;
+}
+
 void ResourceManager::addLanguage(const std::string code)
 {
 	try
@@ -165,6 +194,12 @@ void ResourceManager::clearAllResources()
 		delete stringResources[i];
 	}
 	stringResources.clear();
+
+	for (unsigned int i = 0; i < fontResources.size(); i++)
+	{
+		delete fontResources[i];
+	}
+	fontResources.clear();
 }
 
 void ResourceManager::clearLanguages()

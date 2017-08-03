@@ -6,6 +6,6 @@ namespace yen
 	class RenderObject
 	{
 	public:
-		sf::Sprite *sprite;
+		sf::Drawable *drawable;
 	};
 }

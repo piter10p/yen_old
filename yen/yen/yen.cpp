@@ -26,6 +26,8 @@ int main()
 		animationDef.frameRate = 0;
 		yen::AnimationManipulator animation2 = engine.resourceManager->addAnimationResource(animationDef);
 
+		yen::FontManipulator fontManipulator = engine.resourceManager->addFontResource("Uni Sans Thin.otf");
+
 		engine.resourceManager->addLanguage("pl");
 		engine.resourceManager->changeActiveLanguage(1);
 		yen::StringManipulator sManipulator = engine.resourceManager->addStringResource("strings.xml");//------------------------
@@ -58,9 +60,22 @@ int main()
 		yen::ComponentManipulator physicsComponentManipulator;
 		engine.objectsManager->attachComponent(&physicsComponentManipulator, cube, &physicsComponent);
 
+		yen::ObjectManipulator text = engine.objectsManager->createObject(yen::fVector(150.0f, 0.0f));
+		engine.objectsManager->setLoadDistance(text, 0.0f);
+		yen::GraphicsComponent textGComp(engine.graphicsEngine, yen::GraphicsComponentContent::TEXT);
+		yen::TextAttributes tAttr;
+		tAttr.charactersSize = 12;
+		tAttr.textColor = yen::Color(0, 0, 0, 255);
+		textGComp.setFontResource(fontManipulator);
+		textGComp.setString(sManipulator, "car");
+		textGComp.setTextAttributes(tAttr);
+		yen::ComponentManipulator textGComptManipulator;
+		engine.objectsManager->attachComponent(&textGComptManipulator, text, &textGComp);
+
 
 		engine.sceneManager->addObjectToScene(scene, camera);
 		engine.sceneManager->addObjectToScene(scene, cube);
+		engine.sceneManager->addObjectToScene(scene, text);
 		engine.sceneManager->setActiveCameraofScene(scene, camera);
 
 		yen::InputDef leftKeyDef;

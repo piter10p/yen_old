@@ -39,7 +39,7 @@ void GraphicsEngine::reInitialize(GraphicsSettings settings, std::string windowN
 
 void GraphicsEngine::draw(RenderObject rObject)
 {
-	window.draw(*rObject.sprite);
+	window.draw(*rObject.drawable);
 }
 
 void GraphicsEngine::renderFrame()

@@ -151,6 +151,7 @@
     <ClInclude Include="BodyDef.h" />
     <ClInclude Include="BodyManipulator.h" />
     <ClInclude Include="CameraComponent.h" />
+    <ClInclude Include="Color.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentManipulator.h" />
     <ClInclude Include="Components.h" />
@@ -159,6 +160,8 @@
     <ClInclude Include="Error.h" />
     <ClInclude Include="FileSystem.h" />
     <ClInclude Include="Flag.h" />
+    <ClInclude Include="FontManipulator.h" />
+    <ClInclude Include="FontResource.h" />
     <ClInclude Include="Frame.h" />
     <ClInclude Include="GraphicsComponent.h" />
     <ClInclude Include="GraphicsEngine.h" />
@@ -206,6 +209,7 @@
     <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="FileSystem.cpp" />
+    <ClCompile Include="FontResource.cpp" />
     <ClCompile Include="Frame.cpp" />
     <ClCompile Include="GraphicsComponent.cpp" />
     <ClCompile Include="GraphicsEngine.cpp" />

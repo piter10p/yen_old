@@ -7,6 +7,7 @@
 #include "IdSetter.h"
 #include "Language.h"
 #include "StringManipulator.h"
+#include "FontManipulator.h"
 
 namespace yen
 {
@@ -23,6 +24,9 @@ namespace yen
 		void removeStringResource(StringManipulator);
 		std::string getString(StringManipulator, std::string stringName);
 
+		FontManipulator addFontResource(std::string path);
+		void removeFontResource(FontManipulator);
+
 		void addLanguage(const std::string code);
 		void changeActiveLanguage(unsigned int langIndex);
 
@@ -31,6 +35,7 @@ namespace yen
 	protected:
 		std::vector <AnimationResource*> animationResources;
 		std::vector <StringResource*> stringResources;
+		std::vector <FontResource*> fontResources;
 
 	private:
 		std::vector <Language*> languages;

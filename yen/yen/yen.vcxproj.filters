@@ -261,6 +261,15 @@
     <ClInclude Include="Error.h">
       <Filter>Headers\Others\Error</Filter>
     </ClInclude>
+    <ClInclude Include="FontResource.h">
+      <Filter>Headers\ResourceManager\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="FontManipulator.h">
+      <Filter>Headers\Manipulators</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Sources\Others</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -364,6 +373,9 @@
     </ClCompile>
     <ClCompile Include="LangString.cpp">
       <Filter>Sources\ResourceManager\Languages</Filter>
+    </ClCompile>
+    <ClCompile Include="FontResource.cpp">
+      <Filter>Sources\ResourceManager\Resources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
