@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "PhysicsEngine.h"
 #include <boost\convert.hpp>
+#include "Error.h"
 
 using namespace yen;
 
@@ -90,6 +91,55 @@ void PhysicsEngine::unActivateBody(WorldManipulator worldManipulator, BodyManipu
 void PhysicsEngine::activateBody(WorldManipulator worldManipulator, BodyManipulator bodyManipulator)
 {
 	worldManipulator.world->activateBody(bodyManipulator);
+}
+
+void PhysicsEngine::applyForceToBody(BodyManipulator bodyManipulator, fVector force)
+{
+	try
+	{
+		b2Vec2 forceB2 = yenfVectorTob2Vec2(force, true);
+		bodyManipulator.body->ApplyForceToCenter(forceB2, true);
+	}
+	catch (...)
+	{
+		Logger::errorLog(0, "Can not apply force to body.");
+		Error e;
+		e.flag = Flag::ERROR_CAN_NOT_EDIT_PHYSICS_BODY;
+		throw e;
+	}
+}
+
+void PhysicsEngine::applyForceToBody(BodyManipulator bodyManipulator, fVector force, fVector forcePoint)
+{
+	try
+	{
+		b2Vec2 forceB2 = yenfVectorTob2Vec2(force, true);
+		b2Vec2 forcePointB2 = yenfVectorTob2Vec2(forcePoint, true);
+		bodyManipulator.body->ApplyForce(forceB2, forcePointB2, true);
+	}
+	catch (...)
+	{
+		Logger::errorLog(0, "Can not apply force to body.");
+		Error e;
+		e.flag = Flag::ERROR_CAN_NOT_EDIT_PHYSICS_BODY;
+		throw e;
+	}
+}
+
+void PhysicsEngine::setVelocityToBody(BodyManipulator bodyManipulator, fVector velocity)
+{
+	try
+	{
+		b2Vec2 velocityB2 = yenfVectorTob2Vec2(velocity, true);
+		bodyManipulator.body->SetLinearVelocity(velocityB2);
+	}
+	catch (...)
+	{
+		Logger::errorLog(0, "Can not set velocity of body.");
+		Error e;
+		e.flag = Flag::ERROR_CAN_NOT_EDIT_PHYSICS_BODY;
+		throw e;
+	}
 }
 
 BodyManipulator PhysicsEngine::createBody(WorldManipulator worldManipulator, BodyDef def)

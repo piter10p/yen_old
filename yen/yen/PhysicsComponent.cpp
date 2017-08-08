@@ -40,6 +40,21 @@ void PhysicsComponent::setResourcesUsed()
 {
 }
 
+void PhysicsComponent::applyForce(fVector force)
+{
+	physicsEngine->applyForceToBody(bodyManipulator, force);
+}
+
+void PhysicsComponent::applyForce(fVector force, fVector forcePoint)
+{
+	physicsEngine->applyForceToBody(bodyManipulator, force, forcePoint);
+}
+
+void PhysicsComponent::setVelocity(fVector velocity)
+{
+	physicsEngine->setVelocityToBody(bodyManipulator, velocity);
+}
+
 void PhysicsComponent::freezed()
 {
 	if (initialized)

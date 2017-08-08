@@ -13,6 +13,10 @@ namespace yen
 		void initialization(ObjectAccessInterface);
 		void setResourcesUsed();
 
+		void applyForce(fVector force);
+		void applyForce(fVector force, fVector forcePoint);
+		void setVelocity(fVector velocity);
+
 		void freezed();
 		void unFreezed();
 

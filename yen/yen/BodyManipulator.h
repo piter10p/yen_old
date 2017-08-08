@@ -6,6 +6,7 @@ namespace yen
 	class BodyManipulator
 	{
 		friend class World;
+		friend class PhysicsEngine;
 	protected:
 		b2Body *body;
 	};

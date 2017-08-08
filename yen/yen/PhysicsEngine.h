@@ -33,6 +33,10 @@ namespace yen
 		void unActivateBody(WorldManipulator, BodyManipulator);
 		void activateBody(WorldManipulator, BodyManipulator);
 
+		void applyForceToBody(BodyManipulator, fVector force);
+		void applyForceToBody(BodyManipulator, fVector force, fVector forcePoint);
+		void setVelocityToBody(BodyManipulator, fVector velocity);
+
 		BodyManipulator createBody(WorldManipulator, BodyDef);
 		Flag removeBody(WorldManipulator, BodyManipulator);
 
