@@ -1,7 +1,4 @@
-﻿  GraphicsComponent.cpp
-i:\backup\pietras\visual studio projects\yen\yen\yen\component.h(38): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  yen.cpp
+﻿  PhysicsComponent.cpp
+i:\backup\pietras\visual studio projects\yen\yen\yen\component.h(40): warning C4018: '<': signed/unsigned mismatch
   yen.vcxproj -> I:\Backup\Pietras\Visual Studio Projects\yen\yen\Debug\yen.exe
   yen.vcxproj -> I:\Backup\Pietras\Visual Studio Projects\yen\yen\Debug\yen.pdb (Partial PDB)

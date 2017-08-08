@@ -3,9 +3,10 @@
 
 using namespace yen;
 
-Scene::Scene(PhysicsEngine *physicsEngine)
+Scene::Scene(PhysicsEngine *physicsEngine, ResourceManager *resourceManager)
 {
 	this->physicsEngine = physicsEngine;
+	this->resourceManager = resourceManager;
 
 	worldManipulator = physicsEngine->createWorld();
 }
@@ -174,17 +175,28 @@ void Scene::loadObjects()
 {
 	try
 	{
+		resourceManager->resetResourceUsage();
+
 		for (unsigned int i = 0; i < objects.size(); i++)
 		{
-			if (isObjectHasToBeLoaded(objects[i]))
+			if (isObjectInLoadRange(objects[i]))
 			{
-				objects[i]->load();
+				objects[i]->setResourcesUsed();
+				objects[i]->unFreeze();
+				
+			}
+			else if (!isObjectInLoadRange(objects[i]))
+			{
+				objects[i]->freeze();
+			}
+		}
+
+		resourceManager->loadResources();
+
+		for (unsigned int i = 0; i < objects.size(); i++)
+		{
+			if (isObjectInLoadRange(objects[i]))
 				objects[i]->initialization(worldManipulator);
-			}
-			else if (isObjectHasToBeUnLoaded(objects[i]))
-			{
-				objects[i]->unLoad();
-			}
 		}
 	}
 	catch(Error e)
@@ -206,20 +218,6 @@ bool Scene::isObjectInLoadRange(Object* object)
 		return true;
 
 	if (fVector::getDistance(activeCamera->getPosition(), object->getPosition()) <= loadDistance)
-		return true;
-	return false;
-}
-
-bool Scene::isObjectHasToBeLoaded(Object* object)
-{
-	if (!object->isLoaded() && isObjectInLoadRange(object))
-		return true;
-	return false;
-}
-
-bool Scene::isObjectHasToBeUnLoaded(Object* object)
-{
-	if (object->isLoaded() && !isObjectInLoadRange(object))
 		return true;
 	return false;
 }

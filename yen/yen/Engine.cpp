@@ -45,9 +45,9 @@ void Engine::initialize(EngineConfiguration configuration)
 	{
 		physicsEngine = new PhysicsEngine();
 		inputManager = new InputManager();
-		sceneManager = new SceneManager(physicsEngine);
-		graphicsEngine = new GraphicsEngine(sceneManager, inputManager);
 		resourceManager = new ResourceManager();
+		sceneManager = new SceneManager(physicsEngine, resourceManager);
+		graphicsEngine = new GraphicsEngine(sceneManager, inputManager);
 		objectsManager = new ObjectsManager();
 		settingsManager = new SettingsManager();
 

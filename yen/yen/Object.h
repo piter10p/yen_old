@@ -23,19 +23,18 @@ namespace yen
 
 		void codeStepUpdate(fVector cameraPos);
 		void initialization(WorldManipulator);
-		void load();
-		void unLoad();
+		void setResourcesUsed();
 
 		void removeAllComponents();
 
 		void setLoadDistance(float distance);
 		float getLoadDistance();
 
-		bool isLoaded();
+		bool isFreezed();
+		void freeze();
+		void unFreeze();
 
 		bool haveComponentofType(const std::string);
-
-		bool test();
 
 	private:
 		fVector position;
@@ -46,7 +45,8 @@ namespace yen
 		bool isAnyComponentOfThisType(const std::string type);
 		void fillObjectAccessInterface(WorldManipulator);
 		float loadDistance = 0.0f;
-		bool loaded = false;
-		
+		bool freezed = true;
+
+		bool initialized = false;
 	};
 }

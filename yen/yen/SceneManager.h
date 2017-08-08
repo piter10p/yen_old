@@ -4,13 +4,14 @@
 #include "SceneManipulator.h"
 #include "IdSetter.h"
 #include "PhysicsEngine.h"
+#include "ResourceManager.h"
 
 namespace yen
 {
 	class SceneManager: public IdSetter
 	{
 	public:
-		SceneManager(PhysicsEngine*);
+		SceneManager(PhysicsEngine*, ResourceManager*);
 		~SceneManager();
 
 		SceneManipulator createScene();
@@ -36,6 +37,7 @@ namespace yen
 	protected:
 		std::vector <Scene> scenes;
 		PhysicsEngine *physicsEngine;
+		ResourceManager *resourceManager;
 
 		int getSceneListIndex(int id);
 	};

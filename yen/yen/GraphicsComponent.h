@@ -29,8 +29,10 @@ namespace yen
 
 		void codeStepUpdate(ObjectAccessInterface);
 		void initialization(ObjectAccessInterface);
-		void load();
-		void unLoad();
+		void setResourcesUsed();
+
+		void freezed();
+		void unFreezed();
 
 		void setActualAnimation(AnimationManipulator);
 		void addAnimation(AnimationManipulator);

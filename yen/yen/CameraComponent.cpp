@@ -22,12 +22,14 @@ void CameraComponent::initialization(ObjectAccessInterface accessInterface)
 {
 }
 
-void CameraComponent::load()
+void CameraComponent::setResourcesUsed()
 {
 }
 
-
-void CameraComponent::unLoad()
+void CameraComponent::freezed()
 {
+}
 
+void CameraComponent::unFreezed()
+{
 }

@@ -3,9 +3,10 @@
 
 using namespace yen;
 
-SceneManager::SceneManager(PhysicsEngine *physicsEngine)
+SceneManager::SceneManager(PhysicsEngine *physicsEngine, ResourceManager* resourceManager)
 {
 	this->physicsEngine = physicsEngine;
+	this->resourceManager = resourceManager;
 }
 
 
@@ -15,7 +16,7 @@ SceneManager::~SceneManager()
 
 SceneManipulator SceneManager::createScene()
 {
-	Scene scene(physicsEngine);
+	Scene scene(physicsEngine, resourceManager);
 	scene.setId(getNewId()) ;
 	scenes.push_back(scene);
 

@@ -87,7 +87,7 @@ void PhysicsEngine::unActivateBody(WorldManipulator worldManipulator, BodyManipu
 	worldManipulator.world->unActivateBody(bodyManipulator);
 }
 
-void PhysicsEngine::avtivateBody(WorldManipulator worldManipulator, BodyManipulator bodyManipulator)
+void PhysicsEngine::activateBody(WorldManipulator worldManipulator, BodyManipulator bodyManipulator)
 {
 	worldManipulator.world->activateBody(bodyManipulator);
 }

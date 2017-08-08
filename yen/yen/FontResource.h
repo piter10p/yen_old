@@ -10,10 +10,11 @@ namespace yen
 		FontResource(std::string path);
 		~FontResource();
 
+		sf::Font& getFont();
+
+	protected:
 		void load();
 		void unLoad();
-
-		sf::Font& getFont();
 
 	private:
 		sf::Font font;

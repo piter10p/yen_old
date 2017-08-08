@@ -16,8 +16,10 @@ namespace yen
 
 		virtual void codeStepUpdate(ObjectAccessInterface) = 0;
 		virtual void initialization(ObjectAccessInterface) = 0;
-		virtual void load() = 0;
-		virtual void unLoad() = 0;
+		virtual void setResourcesUsed() = 0;
+
+		virtual void freezed() = 0;
+		virtual void unFreezed() = 0;
 
 		void setObjectData(std::vector<Component*>*components)
 		{

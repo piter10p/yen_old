@@ -19,8 +19,7 @@ namespace yen
 
 		Frame* getActualFrame();
 
-		void load();
-		void unLoad();
+		void setResourcesUsed();
 
 		void start();
 		void pause();

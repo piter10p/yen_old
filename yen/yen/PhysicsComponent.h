@@ -11,8 +11,10 @@ namespace yen
 
 		void codeStepUpdate(ObjectAccessInterface);
 		void initialization(ObjectAccessInterface);
-		void load();
-		void unLoad();
+		void setResourcesUsed();
+
+		void freezed();
+		void unFreezed();
 
 	private:
 		PhysicsEngine *physicsEngine;

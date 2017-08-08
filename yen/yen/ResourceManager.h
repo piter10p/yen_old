@@ -30,6 +30,10 @@ namespace yen
 		void addLanguage(const std::string code);
 		void changeActiveLanguage(unsigned int langIndex);
 
+		void resetResourceUsage();
+
+		void loadResources();
+
 		bool test();
 
 	protected:

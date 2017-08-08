@@ -80,13 +80,13 @@ Frame* AnimationManager::getActualFrame()
 	return actualAnimation->getActualFrame();
 }
 
-void AnimationManager::load()
+void AnimationManager::setResourcesUsed()
 {
 	try
 	{
 		for (unsigned int i = 0; i < animations.size(); i++)
 		{
-			animations[i]->load();
+			animations[i]->used();
 		}
 	}
 	catch (FileManipulationError e)
@@ -98,14 +98,6 @@ void AnimationManager::load()
 		Error e;
 		e.flag = Flag::ERROR_UNDEFINED;
 		throw e;
-	}
-}
-
-void AnimationManager::unLoad()
-{
-	for (unsigned int i = 0; i < animations.size(); i++)
-	{
-		animations[i]->unLoad();
 	}
 }
 

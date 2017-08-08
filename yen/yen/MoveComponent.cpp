@@ -28,11 +28,15 @@ void MoveComponent::initialization(ObjectAccessInterface accessInterface)
 	timer.start();
 }
 
-void MoveComponent::load()
+void MoveComponent::setResourcesUsed()
 {
 }
 
-void MoveComponent::unLoad()
+void MoveComponent::freezed()
+{
+}
+
+void MoveComponent::unFreezed()
 {
 }
 

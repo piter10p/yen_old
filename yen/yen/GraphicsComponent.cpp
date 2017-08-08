@@ -50,26 +50,23 @@ void GraphicsComponent::initialization(ObjectAccessInterface objectAccessInterfa
 	}
 }
 
-void GraphicsComponent::load()
+void GraphicsComponent::setResourcesUsed()
 {
 	if(graphicsComponentContent == GraphicsComponentContent::SPRITE)
-		animationManager.load();
+		animationManager.setResourcesUsed();
 	else if (graphicsComponentContent == GraphicsComponentContent::TEXT)
 	{
-		fontResource->load();
-		stringResource->load();
+		fontResource->used();
+		stringResource->used();
 	}
 }
 
-void GraphicsComponent::unLoad()
+void GraphicsComponent::freezed()
 {
-	if (graphicsComponentContent == GraphicsComponentContent::SPRITE)
-		animationManager.unLoad();
-	else if (graphicsComponentContent == GraphicsComponentContent::TEXT)
-	{
-		fontResource->unLoad();
-		stringResource->unLoad();
-	}
+}
+
+void GraphicsComponent::unFreezed()
+{
 }
 
 void GraphicsComponent::setActualAnimation(AnimationManipulator manipulator)

@@ -31,7 +31,7 @@ namespace yen
 
 		fVector getBodyPosition(WorldManipulator, BodyManipulator);
 		void unActivateBody(WorldManipulator, BodyManipulator);
-		void avtivateBody(WorldManipulator, BodyManipulator);
+		void activateBody(WorldManipulator, BodyManipulator);
 
 		BodyManipulator createBody(WorldManipulator, BodyDef);
 		Flag removeBody(WorldManipulator, BodyManipulator);

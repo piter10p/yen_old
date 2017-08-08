@@ -33,14 +33,21 @@ void PhysicsComponent::initialization(ObjectAccessInterface accessInterface)
 		worldManipulator = accessInterface.getWorldManipulator();
 		initialized = true;
 	}
-	physicsEngine->avtivateBody(worldManipulator, bodyManipulator);
+	physicsEngine->activateBody(worldManipulator, bodyManipulator);
 }
 
-void PhysicsComponent::load()
+void PhysicsComponent::setResourcesUsed()
 {
 }
 
-void PhysicsComponent::unLoad()
+void PhysicsComponent::freezed()
 {
-	physicsEngine->unActivateBody(worldManipulator, bodyManipulator);
+	if (initialized)
+		physicsEngine->unActivateBody(worldManipulator, bodyManipulator);
+}
+
+void PhysicsComponent::unFreezed()
+{
+	if (initialized)
+		physicsEngine->activateBody(worldManipulator, bodyManipulator);
 }

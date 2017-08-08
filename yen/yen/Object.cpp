@@ -90,7 +90,7 @@ void Object::removeComponent(ComponentManipulator manipulator)
 
 void Object::codeStepUpdate(fVector cameraPos)
 {
-	if (loaded)
+	if (!freezed)
 	{
 		objectAccessInterface.cameraPosition = cameraPos;
 
@@ -103,22 +103,27 @@ void Object::codeStepUpdate(fVector cameraPos)
 
 void Object::initialization(WorldManipulator worldManipulator)
 {
-	fillObjectAccessInterface(worldManipulator);
-
-	for (int i = 0; i < components.size(); i++)
+	if (!initialized)
 	{
-		components[i]->initialization(objectAccessInterface);
-		components[i]->setObjectData(&components);
+		fillObjectAccessInterface(worldManipulator);
+
+		for (int i = 0; i < components.size(); i++)
+		{
+			components[i]->initialization(objectAccessInterface);
+			components[i]->setObjectData(&components);
+		}
+
+		initialized = true;
 	}
 }
 
-void Object::load()
+void Object::setResourcesUsed()
 {
 	try
 	{
 		for (int i = 0; i < components.size(); i++)
 		{
-			components[i]->load();
+			components[i]->setResourcesUsed();
 		}
 	}
 	catch(Error e)
@@ -136,18 +141,6 @@ void Object::load()
 		e.flag = Flag::ERROR_UNDEFINED;
 		throw e;
 	}
-	
-	loaded = true;
-}
-
-void Object::unLoad()
-{
-	for (int i = 0; i < components.size(); i++)
-	{
-		components[i]->unLoad();
-	}
-
-	loaded = false;
 }
 
 bool Object::haveComponentofType(const std::string type)
@@ -158,28 +151,6 @@ bool Object::haveComponentofType(const std::string type)
 			return true;
 	}
 	return false;
-}
-
-bool Object::test()
-{
-	class TestComponent : public Component
-	{
-	public:
-		void codeStepUpdate(ObjectAccessInterface) {};
-		void initialization(ObjectAccessInterface) {};
-		void load() {};
-		void unLoad() {};
-	protected: std::string type = "TestComponent";
-	};
-
-	TestComponent *component = new TestComponent();
-
-	ComponentManipulator manipulator;
-	addComponent(&manipulator, component);
-
-	removeComponent(manipulator);
-	
-	return true;
 }
 
 unsigned int Object::getComponentListIndex(int id)
@@ -210,9 +181,29 @@ float Object::getLoadDistance()
 	return loadDistance;
 }
 
-bool Object::isLoaded()
+bool Object::isFreezed()
 {
-	return loaded;
+	return freezed;
+}
+
+void Object::freeze()
+{
+	freezed = true;
+
+	for (unsigned int i = 0; i < components.size(); i++)
+	{
+		components[i]->freezed();
+	}
+}
+
+void Object::unFreeze()
+{
+	freezed = false;
+
+	for (unsigned int i = 0; i < components.size(); i++)
+	{
+		components[i]->unFreezed();
+	}
 }
 
 bool Object::isAnyComponentOfThisType(const std::string type)

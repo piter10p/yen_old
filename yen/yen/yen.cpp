@@ -60,6 +60,14 @@ int main()
 		yen::ComponentManipulator physicsComponentManipulator;
 		engine.objectsManager->attachComponent(&physicsComponentManipulator, cube, &physicsComponent);
 
+		yen::ObjectManipulator cube2 = engine.objectsManager->createObject(yen::fVector(-40.0f, 0.0f));
+		engine.objectsManager->setLoadDistance(cube2, 200.0f);
+		yen::GraphicsComponent graphicsComponent2(engine.graphicsEngine);
+		graphicsComponent2.addAnimation(animation);
+		graphicsComponent2.setActualAnimation(animation);
+		yen::ComponentManipulator c2GraphicsComponentManipulator;
+		engine.objectsManager->attachComponent(&c2GraphicsComponentManipulator, cube2, &graphicsComponent2);
+
 		yen::ObjectManipulator text = engine.objectsManager->createObject(yen::fVector(150.0f, 0.0f));
 		engine.objectsManager->setLoadDistance(text, 0.0f);
 		yen::GraphicsComponent textGComp(engine.graphicsEngine, yen::GraphicsComponentContent::TEXT);
@@ -76,6 +84,7 @@ int main()
 		engine.sceneManager->addObjectToScene(scene, camera);
 		engine.sceneManager->addObjectToScene(scene, cube);
 		engine.sceneManager->addObjectToScene(scene, text);
+		engine.sceneManager->addObjectToScene(scene, cube2);
 		engine.sceneManager->setActiveCameraofScene(scene, camera);
 
 		yen::InputDef leftKeyDef;

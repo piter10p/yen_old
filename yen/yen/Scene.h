@@ -3,13 +3,14 @@
 #include <vector>
 #include "Id.h"
 #include "PhysicsEngine.h"
+#include "ResourceManager.h"
 
 namespace yen
 {
 	class Scene :public Id
 	{
 	public:
-		Scene(PhysicsEngine*);
+		Scene(PhysicsEngine*, ResourceManager *resourceManager);
 		~Scene();
 
 		void addObject(Object*);
@@ -36,12 +37,11 @@ namespace yen
 
 		WorldManipulator worldManipulator;
 		PhysicsEngine *physicsEngine;
+		ResourceManager *resourceManager;
 
 		int getIndexOfObjectsListObject(int id);
 		bool haveActiveCamera();
 		bool isObjectInLoadRange(Object*);
-		bool isObjectHasToBeLoaded(Object*);
-		bool isObjectHasToBeUnLoaded(Object*);
 
 		void loadObjects();
 	};

@@ -147,6 +147,24 @@ void ResourceManager::changeActiveLanguage(unsigned int langIndex)
 	}
 }
 
+void ResourceManager::resetResourceUsage()
+{
+	for (unsigned int i = 0; i < animationResources.size(); i++)
+	{
+		animationResources[i]->resetUsed();
+	}
+
+	for (unsigned int i = 0; i < stringResources.size(); i++)
+	{
+		stringResources[i]->resetUsed();
+	}
+
+	for (unsigned int i = 0; i < fontResources.size(); i++)
+	{
+		fontResources[i]->resetUsed();
+	}
+}
+
 bool ResourceManager::test()
 {
 	try
@@ -216,4 +234,22 @@ void ResourceManager::addDefaultLanguage()
 	Language *lang = new Language("default");
 	actualLanguage = lang;
 	languages.push_back(lang);
+}
+
+void ResourceManager::loadResources()
+{
+	for (unsigned int i = 0; i < animationResources.size(); i++)
+	{
+		animationResources[i]->loadOperations();
+	}
+
+	for (unsigned int i = 0; i < stringResources.size(); i++)
+	{
+		stringResources[i]->loadOperations();
+	}
+
+	for (unsigned int i = 0; i < fontResources.size(); i++)
+	{
+		fontResources[i]->loadOperations();
+	}
 }
