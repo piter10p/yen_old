@@ -6,6 +6,7 @@ using namespace yen;
 MoveComponent::MoveComponent(fVector position)
 {
 	this->position = position;
+	this->type = "MoveComponent";
 }
 
 

@@ -6,7 +6,6 @@
 #include <iostream>
 #include <cstdlib>
 #include "yen.h"
-#include "Component.h"
 
 
 int main()

@@ -15,7 +15,6 @@ CameraComponent::~CameraComponent()
 
 void CameraComponent::codeStepUpdate(ObjectAccessInterface accessInterface)
 {
-
 }
 
 void CameraComponent::initialization(ObjectAccessInterface accessInterface)

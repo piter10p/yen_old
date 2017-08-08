@@ -9,6 +9,7 @@ PhysicsComponent::PhysicsComponent(PhysicsEngine *physicsEngine, BodyDef bodyDef
 	this->physicsEngine = physicsEngine;
 	this->bodyDef = bodyDef;
 	this->centerOffset = centerOffset;
+	this->type = "PhysicsComponent";
 }
 
 

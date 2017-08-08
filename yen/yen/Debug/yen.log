@@ -1,5 +1,4 @@
-﻿  yen.cpp
+﻿  CameraComponent.cpp
 i:\backup\pietras\visual studio projects\yen\yen\yen\component.h(40): warning C4018: '<': signed/unsigned mismatch
-cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
   yen.vcxproj -> I:\Backup\Pietras\Visual Studio Projects\yen\yen\Debug\yen.exe
   yen.vcxproj -> I:\Backup\Pietras\Visual Studio Projects\yen\yen\Debug\yen.pdb (Partial PDB)
