@@ -12,17 +12,21 @@ SceneManager::SceneManager(PhysicsEngine *physicsEngine, ResourceManager* resour
 
 SceneManager::~SceneManager()
 {
+	for (unsigned int i = 0; i < scenes.size(); i++)
+	{
+		delete scenes[i];
+	}
 }
 
 SceneManipulator SceneManager::createScene()
 {
-	Scene scene(physicsEngine, resourceManager);
-	scene.setId(getNewId()) ;
+	Scene *scene = new Scene(physicsEngine);
+	scene->setId(getNewId()) ;
 	scenes.push_back(scene);
 
 	SceneManipulator manipulator;
-	manipulator.id = scene.getId();
-	manipulator.scene = &scenes[getSceneListIndex(scene.getId())];
+	manipulator.id = scene->getId();
+	manipulator.scene = scene;
 
 	return manipulator;
 }
@@ -34,6 +38,7 @@ void SceneManager::removeScene(SceneManipulator manipulator)
 		int index = getSceneListIndex(manipulator.id);
 		if (index != -1)
 		{
+			delete scenes[index];
 			scenes.erase(scenes.begin() + index);
 			return;
 		}
@@ -128,7 +133,8 @@ void SceneManager::codeStepUpdate()
 	{
 		for (unsigned int i = 0; i < scenes.size(); i++)
 		{
-			scenes[i].codeStepUpdate();
+			loadScenes();
+			scenes[i]->codeStepUpdate();
 		}
 	}
 	catch (Error e)
@@ -136,6 +142,23 @@ void SceneManager::codeStepUpdate()
 		throw e;
 	}
 	
+}
+
+void SceneManager::loadScenes()
+{
+	resourceManager->resetResourceUsage();
+
+	for (unsigned int i = 0; i < scenes.size(); i++)
+	{
+		scenes[i]->loadObjects();
+	}
+
+	resourceManager->loadResources();
+
+	for (unsigned int i = 0; i < scenes.size(); i++)
+	{
+		scenes[i]->initializeObjects();
+	}
 }
 
 bool SceneManager::test()
@@ -150,7 +173,7 @@ int SceneManager::getSceneListIndex(int id)
 {
 	for (int i = 0; i < scenes.size(); i++)
 	{
-		if (scenes[i].getId() == id)
+		if (scenes[i]->getId() == id)
 			return i;
 	}
 	return -1;

@@ -10,7 +10,7 @@ namespace yen
 	class Scene :public Id
 	{
 	public:
-		Scene(PhysicsEngine*, ResourceManager *resourceManager);
+		Scene(PhysicsEngine*);
 		~Scene();
 
 		void addObject(Object*);
@@ -29,6 +29,9 @@ namespace yen
 
 		bool test();
 
+		void loadObjects();
+		void initializeObjects();
+
 	private:
 		std::vector <Object*> objects;
 		bool freezed = true;
@@ -37,12 +40,9 @@ namespace yen
 
 		WorldManipulator worldManipulator;
 		PhysicsEngine *physicsEngine;
-		ResourceManager *resourceManager;
 
 		int getIndexOfObjectsListObject(int id);
 		bool haveActiveCamera();
 		bool isObjectInLoadRange(Object*);
-
-		void loadObjects();
 	};
 }

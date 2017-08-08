@@ -3,10 +3,9 @@
 
 using namespace yen;
 
-Scene::Scene(PhysicsEngine *physicsEngine, ResourceManager *resourceManager)
+Scene::Scene(PhysicsEngine *physicsEngine)
 {
 	this->physicsEngine = physicsEngine;
-	this->resourceManager = resourceManager;
 
 	worldManipulator = physicsEngine->createWorld();
 }
@@ -125,8 +124,6 @@ void Scene::codeStepUpdate()
 	{
 		if (!freezed)
 		{
-			loadObjects();
-
 			for (unsigned int i = 0; i < objects.size(); i++)
 			{
 				objects[i]->codeStepUpdate(activeCamera->getPosition());
@@ -175,8 +172,6 @@ void Scene::loadObjects()
 {
 	try
 	{
-		resourceManager->resetResourceUsage();
-
 		for (unsigned int i = 0; i < objects.size(); i++)
 		{
 			if (isObjectInLoadRange(objects[i]))
@@ -190,14 +185,6 @@ void Scene::loadObjects()
 				objects[i]->freeze();
 			}
 		}
-
-		resourceManager->loadResources();
-
-		for (unsigned int i = 0; i < objects.size(); i++)
-		{
-			if (isObjectInLoadRange(objects[i]))
-				objects[i]->initialization(worldManipulator);
-		}
 	}
 	catch(Error e)
 	{
@@ -208,6 +195,15 @@ void Scene::loadObjects()
 		throw e;
 	}
 	
+}
+
+void Scene::initializeObjects()
+{
+	for (unsigned int i = 0; i < objects.size(); i++)
+	{
+		if (isObjectInLoadRange(objects[i]))
+			objects[i]->initialization(worldManipulator);
+	}
 }
 
 bool Scene::isObjectInLoadRange(Object* object)

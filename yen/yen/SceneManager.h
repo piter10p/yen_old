@@ -30,12 +30,14 @@ namespace yen
 		void unFreezeScene(SceneManipulator);
 		bool isSceneFreezed(SceneManipulator);
 
+		void loadScenes();
+
 		void codeStepUpdate();
 
 		bool test();
 
 	protected:
-		std::vector <Scene> scenes;
+		std::vector <Scene*> scenes;
 		PhysicsEngine *physicsEngine;
 		ResourceManager *resourceManager;
 

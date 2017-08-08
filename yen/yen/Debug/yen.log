@@ -1,4 +1,16 @@
-﻿  CameraComponent.cpp
+﻿  SceneManager.cpp
 i:\backup\pietras\visual studio projects\yen\yen\yen\component.h(40): warning C4018: '<': signed/unsigned mismatch
+i:\backup\pietras\visual studio projects\yen\yen\yen\scenemanager.cpp(46): warning C4101: 'oor': unreferenced local variable
+i:\backup\pietras\visual studio projects\yen\yen\yen\scenemanager.cpp(174): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  Compiling...
+  Engine.cpp
+i:\backup\pietras\visual studio projects\yen\yen\yen\component.h(40): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  yen.cpp
+  SettingsManager.cpp
+  GraphicsEngine.cpp
+  GraphicsComponent.cpp
   yen.vcxproj -> I:\Backup\Pietras\Visual Studio Projects\yen\yen\Debug\yen.exe
   yen.vcxproj -> I:\Backup\Pietras\Visual Studio Projects\yen\yen\Debug\yen.pdb (Partial PDB)

@@ -122,7 +122,7 @@ int main()
 				if (engine.inputManager->isKeyPressed(leftKey))
 					moveComponent.move(yen::fVector(0.1f, 0.0f));
 				if (engine.inputManager->isKeyPressed(rightKey))
-					physicsComponent.applyForce(yen::fVector(5.0f, 0.0f));
+					moveComponent.move(yen::fVector(-0.1f, 0.0f));
 				if (engine.inputManager->isKeyPressed(escapeKey))
 					engine.stop();
 				if (engine.inputManager->isKeyPressed(spaceKey))
