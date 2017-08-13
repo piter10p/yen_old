@@ -7,6 +7,7 @@ using namespace yen;
 Engine::Engine()
 {
 	Logger::prepareFile();
+	resourceManager = new ResourceManager();
 }
 
 
@@ -16,18 +17,20 @@ Engine::~Engine()
 	{
 		delete graphicsEngine;
 		delete sceneManager;
-		delete resourceManager;
 		delete objectsManager;
 		delete settingsManager;
 		delete inputManager;
 		delete physicsEngine;
 	}
+	delete resourceManager;
 }
 
 void Engine::step()
 {
 	if (running)
 	{
+		graphicsEngine->clearFrame();
+		sceneManager->codeStepUpdate();
 		graphicsEngine->renderFrame();
 		physicsEngine->step();
 	}
@@ -45,13 +48,14 @@ void Engine::initialize(EngineConfiguration configuration)
 	{
 		physicsEngine = new PhysicsEngine();
 		inputManager = new InputManager();
-		resourceManager = new ResourceManager();
 		sceneManager = new SceneManager(physicsEngine, resourceManager);
-		graphicsEngine = new GraphicsEngine(sceneManager, inputManager);
+		graphicsEngine = new GraphicsEngine(inputManager);
 		objectsManager = new ObjectsManager();
 		settingsManager = new SettingsManager();
 
-		settingsManager->setDefaults();
+		settingsManager->loadSettings();
+
+		resourceManager->changeActiveLanguage(settingsManager->getLanguage());
 
 		graphicsEngine->initialize(settingsManager->getGraphicsSettings(), configuration.windowName);
 		physicsEngine->initialize();

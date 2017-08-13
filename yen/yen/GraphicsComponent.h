@@ -42,6 +42,8 @@ namespace yen
 		void setFontResource(FontManipulator);
 		void setTextAttributes(TextAttributes);
 
+		RenderObject getRenderObject();
+
 	private:
 		GraphicsEngine *graphicsEngine;
 		AnimationManager animationManager;
@@ -55,7 +57,7 @@ namespace yen
 		GraphicsComponentContent graphicsComponentContent;
 		
 
-		sf::Vector2f calculateSpritePosition(fVector objectPosition, fVector cameraPosition);
+		sf::Vector2f fVector2sfVector(fVector objectPosition);
 		sf::Color yenColorToSfColor(Color);
 	};
 }

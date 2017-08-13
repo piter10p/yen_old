@@ -47,7 +47,7 @@ namespace yen
 
 		static float getDistance(fVector vector1, fVector vector2)
 		{
-			return sqrt(pow((vector1.getY() - vector1.getX()), 2.0f) + pow((vector2.getY() - vector2.getX()), 2.0f)); // square root( (A.y - A.x)^2 + (B.y - B.x)^2 )
+			return sqrt(pow((vector2.getX() - vector1.getX()), 2.0f) + pow((vector2.getY() - vector1.getY()), 2.0f)); // square root( (B.x - A.x)^2 + (B.y - A.y)^2 )
 		}
 
 		void operator+=(fVector &vectorIn)
@@ -132,5 +132,60 @@ namespace yen
 	private:
 		unsigned int x;
 		unsigned int y;
+	};
+
+	class fRect
+	{
+	public:
+		fRect()
+		{
+			zero();
+		}
+
+		fRect(fVector position, fVector size)
+		{
+			this->position = position;
+			this->size = size;
+		}
+
+		float getX()
+		{
+			return position.getX();
+		}
+
+		float getY()
+		{
+			return position.getY();
+		}
+
+		float getWidth()
+		{
+			return size.getX();
+		}
+
+		float getHeight()
+		{
+			return size.getY();
+		}
+
+		float setPosition(fVector position)
+		{
+			this->position = position;
+		}
+
+		float setSize(fVector size)
+		{
+			this->size = size;
+		}
+
+		void zero()
+		{
+			position.zero();
+			size.zero();
+		}
+
+	private:
+		fVector position;
+		fVector size;
 	};
 }

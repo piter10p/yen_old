@@ -4,6 +4,7 @@
 #include "Id.h"
 #include "PhysicsEngine.h"
 #include "ResourceManager.h"
+#include "CameraComponent.h"
 
 namespace yen
 {
@@ -17,8 +18,6 @@ namespace yen
 		void removeObject(Object*);
 
 		void initialization();
-
-		void setActiveCamera(Object*);
 
 		void freeze();
 		void unFreeze();
@@ -36,13 +35,15 @@ namespace yen
 		std::vector <Object*> objects;
 		bool freezed = true;
 		bool initialized = false;
-		Object *activeCamera;
+
+		bool haveCamera();
 
 		WorldManipulator worldManipulator;
 		PhysicsEngine *physicsEngine;
 
 		int getIndexOfObjectsListObject(int id);
-		bool haveActiveCamera();
 		bool isObjectInLoadRange(Object*);
+
+		std::vector <Object*> getCameraObejcts();
 	};
 }

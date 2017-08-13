@@ -14,6 +14,8 @@ int main()
 	{
 		yen::Engine engine;
 
+		engine.resourceManager->addLanguage("pl");
+
 		EngineConfiguration configuration;
 		engine.initialize(configuration);
 
@@ -27,17 +29,14 @@ int main()
 
 		yen::FontManipulator fontManipulator = engine.resourceManager->addFontResource("Uni Sans Thin.otf");
 
-		engine.resourceManager->addLanguage("pl");
-		engine.resourceManager->changeActiveLanguage(1);
+		
 		yen::StringManipulator sManipulator = engine.resourceManager->addStringResource("strings.xml");//------------------------
 
-		yen::ObjectManipulator camera = engine.objectsManager->createObject(yen::fVector(-100.0f, 0.0f));
-		yen::CameraComponent cameraComponent;
-		yen::MoveComponent moveComponent(yen::fVector(-100.0f, 0.0f));
+		yen::ObjectManipulator camera = engine.objectsManager->createObject(yen::fVector(engine.settingsManager->getGraphicsSettings().resolution.getX() / 2.0f, engine.settingsManager->getGraphicsSettings().resolution.getY() / 2.0f));
+		yen::CameraComponent cameraComponent(engine.graphicsEngine);
+		cameraComponent.setSize(yen::fVector(engine.settingsManager->getGraphicsSettings().resolution.getX(), engine.settingsManager->getGraphicsSettings().resolution.getY()));
 		yen::ComponentManipulator cameraComponentManipulator;
-		yen::ComponentManipulator moveComponentManipulator;
 		engine.objectsManager->attachComponent(&cameraComponentManipulator, camera, &cameraComponent);
-		engine.objectsManager->attachComponent(&moveComponentManipulator, camera, &moveComponent);
 
 
 		yen::SceneManipulator scene = engine.sceneManager->createScene();
@@ -45,22 +44,24 @@ int main()
 
 
 		yen::ObjectManipulator cube = engine.objectsManager->createObject(yen::fVector(0.0f, 0.0f));
-		engine.objectsManager->setLoadDistance(cube, 200.0f);
+		engine.objectsManager->setLoadDistance(cube, 600.0f);
 		yen::GraphicsComponent graphicsComponent(engine.graphicsEngine);
 		graphicsComponent.addAnimation(animation);
 		graphicsComponent.addAnimation(animation2);
 		graphicsComponent.setActualAnimation(animation);
 		yen::BodyDef bodyDef;
 		bodyDef.type = yen::BodyType::DYNAMIC;
-		bodyDef.shapeSize = yen::fVector(10.0f, 10.0f);
-		yen::PhysicsComponent physicsComponent(engine.physicsEngine, bodyDef, yen::fVector(5.0f, 5.0f));
+		bodyDef.shapeSize = yen::fVector(100.0f, 100.0f);
+		bodyDef.offset = yen::fVector(50.0f, 50.0f);
+		bodyDef.position = yen::fVector(100.0f, 0.0f);
+		yen::PhysicsComponent physicsComponent(engine.physicsEngine, bodyDef);
 		yen::ComponentManipulator graphicsComponentManipulator;
 		engine.objectsManager->attachComponent(&graphicsComponentManipulator, cube, &graphicsComponent);
 		yen::ComponentManipulator physicsComponentManipulator;
 		engine.objectsManager->attachComponent(&physicsComponentManipulator, cube, &physicsComponent);
 
-		yen::ObjectManipulator cube2 = engine.objectsManager->createObject(yen::fVector(-40.0f, 0.0f));
-		engine.objectsManager->setLoadDistance(cube2, 200.0f);
+		yen::ObjectManipulator cube2 = engine.objectsManager->createObject(yen::fVector(0.0f, 0.0f));
+		engine.objectsManager->setLoadDistance(cube2, 600.0f);
 		yen::GraphicsComponent graphicsComponent2(engine.graphicsEngine);
 		graphicsComponent2.addAnimation(animation);
 		graphicsComponent2.setActualAnimation(animation);
@@ -84,7 +85,6 @@ int main()
 		engine.sceneManager->addObjectToScene(scene, cube);
 		engine.sceneManager->addObjectToScene(scene, text);
 		engine.sceneManager->addObjectToScene(scene, cube2);
-		engine.sceneManager->setActiveCameraofScene(scene, camera);
 
 		yen::InputDef leftKeyDef;
 		leftKeyDef.type = yen::InputType::KEYBOARD_KEY;
@@ -119,10 +119,10 @@ int main()
 			{
 				engine.step();
 
-				if (engine.inputManager->isKeyPressed(leftKey))
-					moveComponent.move(yen::fVector(0.1f, 0.0f));
-				if (engine.inputManager->isKeyPressed(rightKey))
-					moveComponent.move(yen::fVector(-0.1f, 0.0f));
+				//if (engine.inputManager->isKeyPressed(leftKey))
+					//moveComponent.move(yen::fVector(0.1f, 0.0f));
+				//if (engine.inputManager->isKeyPressed(rightKey))
+					//moveComponent.move(yen::fVector(-0.1f, 0.0f));
 				if (engine.inputManager->isKeyPressed(escapeKey))
 					engine.stop();
 				if (engine.inputManager->isKeyPressed(spaceKey))

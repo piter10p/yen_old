@@ -63,7 +63,7 @@ void Scene::initialization()
 {
 	try
 	{
-		if (!haveActiveCamera())
+		if (!haveCamera())
 		{
 			Logger::errorLog(0, "Scene with id: " + std::to_string(this->getId()) + " don't have active camera.");
 			Error e;
@@ -88,19 +88,6 @@ void Scene::initialization()
 	}
 }
 
-void Scene::setActiveCamera(Object* object)
-{
-	if (object->haveComponentofType("CameraComponent"))
-	{
-		activeCamera = object;
-		return;
-	}
-	Logger::errorLog(0, "Can not set active camera in scene with id: " + std::to_string(this->getId()) + ". Object with id: " + std::to_string(object->getId()) + " is not a camera.");
-	Error e;
-	e.flag = Flag::ERROR_OBJECT_DONT_HAVE_COMPONENT_OF_THIS_TYPE;
-	throw e;
-}
-
 void Scene::freeze()
 {
 	freezed = true;
@@ -122,12 +109,34 @@ void Scene::codeStepUpdate()
 {
 	try
 	{
+		std::vector<GraphicsComponent*> graphicsComponents;
+		std::vector<CameraComponent*> cameraComponents;
+
+		for (unsigned int i = 0; i < objects.size(); i++)
+		{
+			if (!objects[i]->isFreezed())
+			{
+				GraphicsComponent* gc = objects[i]->getGraphicsComponent();
+				if (gc != nullptr)
+					graphicsComponents.push_back(gc);
+
+				CameraComponent* cc = objects[i]->getCameraComponent();
+				if (cc != nullptr)
+					cameraComponents.push_back(cc);
+			}
+		}
+
 		if (!freezed)
 		{
 			for (unsigned int i = 0; i < objects.size(); i++)
 			{
-				objects[i]->codeStepUpdate(activeCamera->getPosition());
+				objects[i]->codeStepUpdate();
 			}
+		}
+
+		for (unsigned int i = 0; i < cameraComponents.size(); i++)
+		{
+			cameraComponents[i]->draw(&graphicsComponents);
 		}
 	}
 	catch(Error e)
@@ -159,13 +168,6 @@ int Scene::getIndexOfObjectsListObject(int id)
 			return i;
 	}
 	return -1;
-}
-
-bool Scene::haveActiveCamera()
-{
-	if (activeCamera->haveComponentofType("CameraComponent"))
-		return true;
-	return false;
 }
 
 void Scene::loadObjects()
@@ -213,7 +215,37 @@ bool Scene::isObjectInLoadRange(Object* object)
 	if (loadDistance == 0.0f)
 		return true;
 
-	if (fVector::getDistance(activeCamera->getPosition(), object->getPosition()) <= loadDistance)
-		return true;
+	std::vector <Object*> cameras = getCameraObejcts();
+
+	for (unsigned int i = 0; i < cameras.size(); i++)
+	{
+		if (fVector::getDistance(cameras[i]->getPosition(), object->getPosition()) <= loadDistance)
+			return true;
+	}
+	return false;
+}
+
+std::vector <Object*> Scene::getCameraObejcts()
+{
+	std::vector<Object*> cameraObjects;
+
+	for (unsigned int i = 0; i < objects.size(); i++)
+	{
+		CameraComponent* cc = objects[i]->getCameraComponent();
+		if (cc != nullptr)
+			cameraObjects.push_back(objects[i]);
+	}
+
+	return cameraObjects;
+}
+
+bool Scene::haveCamera()
+{
+	for (unsigned int i = 0; i < objects.size(); i++)
+	{
+		CameraComponent* cc = objects[i]->getCameraComponent();
+		if (cc != nullptr)
+			return true;
+	}
 	return false;
 }

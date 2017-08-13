@@ -88,12 +88,10 @@ void Object::removeComponent(ComponentManipulator manipulator)
 	}
 }
 
-void Object::codeStepUpdate(fVector cameraPos)
+void Object::codeStepUpdate()
 {
 	if (!freezed)
 	{
-		objectAccessInterface.cameraPosition = cameraPos;
-
 		for (int i = 0; i < components.size(); i++)
 		{
 			components[i]->codeStepUpdate(objectAccessInterface);
@@ -221,4 +219,24 @@ void Object::fillObjectAccessInterface(WorldManipulator worldManipulator)
 {
 	objectAccessInterface.position = &this->position;
 	objectAccessInterface.worldManipulator = worldManipulator;
+}
+
+GraphicsComponent* Object::getGraphicsComponent()
+{
+	for (unsigned int i = 0; i < components.size(); i++)
+	{
+		if (components[i]->getType() == "GraphicsComponent")
+			return (GraphicsComponent*)components[i];
+	}
+	return nullptr;
+}
+
+CameraComponent* Object::getCameraComponent()
+{
+	for (unsigned int i = 0; i < components.size(); i++)
+	{
+		if (components[i]->getType() == "CameraComponent")
+			return (CameraComponent*)components[i];
+	}
+	return nullptr;
 }

@@ -5,9 +5,8 @@
 
 using namespace yen;
 
-GraphicsEngine::GraphicsEngine(SceneManager *sceneManager, InputManager *inputsManager)
+GraphicsEngine::GraphicsEngine(InputManager *inputsManager)
 {
-	this->sceneManager = sceneManager;
 	this->inputsManager = inputsManager;
 }
 
@@ -42,13 +41,16 @@ void GraphicsEngine::draw(RenderObject rObject)
 	window.draw(*rObject.drawable);
 }
 
+void GraphicsEngine::setView(sf::View view)
+{
+	window.setView(view);
+}
+
 void GraphicsEngine::renderFrame()
 {
 	try
 	{
 		inputsManager->updateInputs(&window);
-		window.clear(sf::Color::White);
-		sceneManager->codeStepUpdate();
 		window.display();
 	}
 	catch (Error e)
@@ -60,4 +62,9 @@ void GraphicsEngine::renderFrame()
 		Logger::errorLog(0, "Undefined error in GraphicsEngine::renderFrame().");
 		throw Error::generateUndefinedError();
 	}
+}
+
+void GraphicsEngine::clearFrame()
+{
+	window.clear(sf::Color::White);
 }

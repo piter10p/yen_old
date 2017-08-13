@@ -19,5 +19,6 @@ namespace yen
 		bool isSensor = false;
 		fVector shapeSize = fVector(0.0f, 0.0f);
 		fVector position = fVector(0.0f, 0.0f);
+		fVector offset = fVector(0.0f, 0.0f);
 	};
 }

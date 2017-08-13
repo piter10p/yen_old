@@ -11,5 +11,6 @@ namespace yen
 		static constexpr const char* LANG_FOLDER = "lang\\";
 		static constexpr const char* FONTS_FOLDER = "fonts\\";
 		static constexpr const char* LOG_FILE = "log.txt";
+		static constexpr const char* CONFIG_FILE = "config.conf";
 	};
 }

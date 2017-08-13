@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <ctime>
 #include "Paths.h"
+#include <iostream>
 
 using namespace yen;
 
@@ -15,6 +16,8 @@ Flag Logger::log(unsigned int indentation, std::string sign, std::string message
 
 	std::string logText = prepareLogText(indentation, sign, message);
 	file << logText << "\n";
+
+	std::cout << logText << std::endl;
 
 	closeFile(&file);
 	return Flag::OK;
@@ -33,6 +36,8 @@ Flag Logger::insertReturn()
 		return ERROR_CAN_NOT_OPEN_FILE;
 
 	file << "\n";
+
+	std::cout << std::endl;
 
 	closeFile(&file);
 	return Flag::OK;

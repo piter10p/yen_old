@@ -14,14 +14,11 @@ namespace yen
 		void move(fVector);
 
 		fVector getPosition();
-		fVector getCameraPosition();
-
 		WorldManipulator getWorldManipulator();
 
 		friend class Object;
 	protected:
 		fVector *position;
-		fVector cameraPosition;
 		WorldManipulator worldManipulator;
 	};
 }

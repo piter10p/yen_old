@@ -18,25 +18,17 @@ GraphicsComponent::~GraphicsComponent()
 
 void GraphicsComponent::codeStepUpdate(ObjectAccessInterface objectAccessInterface)
 {
-	RenderObject rObject;
-
 	if (graphicsComponentContent == GraphicsComponentContent::SPRITE)
 	{
 		Frame *frame = animationManager.getActualFrame();
 		sprite.setTexture(*frame->getTexture());
 
-		sprite.setPosition(calculateSpritePosition(objectAccessInterface.getPosition(), objectAccessInterface.getCameraPosition()));
-
-		rObject.drawable = &sprite;
+		sprite.setPosition(fVector2sfVector(objectAccessInterface.getPosition()));
 	}
 	else if (graphicsComponentContent == GraphicsComponentContent::TEXT)
 	{
-		text.setPosition(calculateSpritePosition(objectAccessInterface.getPosition(), objectAccessInterface.getCameraPosition()));
-
-		rObject.drawable = &text;
+		text.setPosition(fVector2sfVector(objectAccessInterface.getPosition()));
 	}
-
-	graphicsEngine->draw(rObject);
 }
 
 void GraphicsComponent::initialization(ObjectAccessInterface objectAccessInterface)
@@ -102,10 +94,8 @@ void GraphicsComponent::setTextAttributes(TextAttributes attributes)
 	//text.setFillColor(sf::Color::Black);
 }
 
-sf::Vector2f GraphicsComponent::calculateSpritePosition(fVector objectPosition, fVector cameraPosition)
+sf::Vector2f GraphicsComponent::fVector2sfVector(fVector objectPosition)
 {
-	objectPosition -= cameraPosition;
-
 	return sf::Vector2f(objectPosition.getX(), objectPosition.getY());
 }
 
@@ -120,4 +110,20 @@ sf::Color GraphicsComponent::yenColorToSfColor(Color in)
 
 
 	return out;
+}
+
+RenderObject GraphicsComponent::getRenderObject()
+{
+	RenderObject rObject;
+
+	if (graphicsComponentContent == GraphicsComponentContent::SPRITE)
+	{
+		rObject.drawable = &sprite;
+	}
+	else if (graphicsComponentContent == GraphicsComponentContent::TEXT)
+	{
+		rObject.drawable = &text;
+	}
+
+	return rObject;
 }

@@ -6,7 +6,7 @@ namespace yen
 	class PhysicsComponent : public Component
 	{
 	public:
-		PhysicsComponent(PhysicsEngine*, BodyDef, fVector);
+		PhysicsComponent(PhysicsEngine*, BodyDef);
 		~PhysicsComponent();
 
 		void codeStepUpdate(ObjectAccessInterface);

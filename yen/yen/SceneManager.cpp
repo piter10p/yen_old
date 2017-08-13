@@ -100,18 +100,6 @@ void SceneManager::setSceneGravity(SceneManipulator manipulator, fVector vector)
 	manipulator.scene->setGravity(vector);
 }
 
-void SceneManager::setActiveCameraofScene(SceneManipulator sManipulator, ObjectManipulator oManipulator)
-{
-	try
-	{
-		sManipulator.scene->setActiveCamera(oManipulator.object);
-	}
-	catch (Error e)
-	{
-		throw e;
-	}
-}
-
 void SceneManager::freezeScene(SceneManipulator manipulator)
 {
 	manipulator.scene->freeze();

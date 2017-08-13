@@ -28,7 +28,7 @@ namespace yen
 		void removeFontResource(FontManipulator);
 
 		void addLanguage(const std::string code);
-		void changeActiveLanguage(unsigned int langIndex);
+		void changeActiveLanguage(std::string code);
 
 		void resetResourceUsage();
 

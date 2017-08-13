@@ -28,11 +28,6 @@ fVector ObjectAccessInterface::getPosition()
 	return *this->position;
 }
 
-fVector ObjectAccessInterface::getCameraPosition()
-{
-	return cameraPosition;
-}
-
 WorldManipulator ObjectAccessInterface::getWorldManipulator()
 {
 	return worldManipulator;

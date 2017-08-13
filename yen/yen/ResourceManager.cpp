@@ -135,11 +135,15 @@ void ResourceManager::addLanguage(const std::string code)
 	}
 }
 
-void ResourceManager::changeActiveLanguage(unsigned int langIndex)
+void ResourceManager::changeActiveLanguage(std::string code)
 {
 	try
 	{
-		actualLanguage = languages[langIndex];
+		for (unsigned int i = 0; i < languages.size(); i++)
+		{
+			if (languages[i]->getCode() == code)
+				actualLanguage = languages[i];
+		}
 	}
 	catch (...)
 	{

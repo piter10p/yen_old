@@ -4,11 +4,11 @@
 
 using namespace yen;
 
-PhysicsComponent::PhysicsComponent(PhysicsEngine *physicsEngine, BodyDef bodyDef, fVector centerOffset)
+PhysicsComponent::PhysicsComponent(PhysicsEngine *physicsEngine, BodyDef bodyDef)
 {
 	this->physicsEngine = physicsEngine;
 	this->bodyDef = bodyDef;
-	this->centerOffset = centerOffset;
+	this->centerOffset = bodyDef.offset;
 	this->type = "PhysicsComponent";
 }
 

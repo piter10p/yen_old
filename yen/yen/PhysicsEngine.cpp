@@ -187,6 +187,7 @@ b2BodyDef PhysicsEngine::createBodyDef(BodyDef bodyDef)
 {
 	b2BodyDef def;
 	def.position = yenfVectorTob2Vec2(bodyDef.position, true);
+	def.position += yenfVectorTob2Vec2(bodyDef.offset, true);
 	if (bodyDef.type == BodyType::STATIC)
 		def.type = b2BodyType::b2_staticBody;
 	if (bodyDef.type == BodyType::DYNAMIC)

@@ -1,5 +1,6 @@
 #pragma once
 #include "Vector.h"
+#include <string>
 
 namespace yen
 {
@@ -14,5 +15,7 @@ namespace yen
 	struct Settings
 	{
 		GraphicsSettings graphicsSettings;
+
+		std::string language;
 	};
 }

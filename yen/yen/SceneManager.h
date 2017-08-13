@@ -24,8 +24,6 @@ namespace yen
 
 		void setSceneGravity(SceneManipulator, fVector);
 
-		void setActiveCameraofScene(SceneManipulator, ObjectManipulator);
-
 		void freezeScene(SceneManipulator);
 		void unFreezeScene(SceneManipulator);
 		bool isSceneFreezed(SceneManipulator);
