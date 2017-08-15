@@ -78,3 +78,92 @@ body {
     font-size: 28px;
     text-align: center;
 }
+
+.class-name {
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    width: 100%;
+    margin-top: 80px;
+    font-size: 42px;
+}
+
+.short-description {
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.section-header {
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    width: 100%;
+    margin-top: 50px;
+    font-size: 28px;
+}
+
+.short-method-list-object {
+    width: 100%;
+    background-color: #edf0f7;
+    
+}
+
+.short-method-list-type {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 15%;
+    text-align: right;
+    vertical-align: text-top;
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    border-left: 6px solid #cdd9f4;
+}
+
+.short-method-list-name {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    text-align: left;
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+}
+
+.short-method-list-desc {
+    color: grey;
+    margin: 0;
+    font-size: 15px;
+}
+
+.short-method-list-name-text {
+    color: #567e25;
+    text-decoration: none;
+}
+
+table {
+    border-spacing: 0 2px;
+    width: 100%;
+    font-size: 18px;
+}
+
+.det-method-list-object {
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 1px;
+    margin-top: 30px;
+}
+
+.det-method-list-name {
+    background-color: #eeeeee;
+    border-radius: 5px 5px 0 0;
+    border-bottom: solid 1px;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.det-method-list-body {
+    border-radius: 0 0 5px 5px;
+    padding: 10px;
+}
+
+tab1 {
+    padding-left: 4em;
+}

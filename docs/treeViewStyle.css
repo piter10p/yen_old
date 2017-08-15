@@ -1,3 +1,14 @@
+.container-treeviw {
+    margin: 0;
+    width: 15%;
+    height: 100%;
+    padding: 0;
+    float: right;
+    overflow: auto;
+    border-style: groove;
+    padding: 20px;
+}
+
 .css-treeview ul,
 .css-treeview li {
     padding: 0;

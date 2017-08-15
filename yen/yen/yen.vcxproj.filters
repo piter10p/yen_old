@@ -183,9 +183,6 @@
     <ClInclude Include="Time.h">
       <Filter>Headers\Others</Filter>
     </ClInclude>
-    <ClInclude Include="SettingsManager.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Headers\InputManager</Filter>
     </ClInclude>
@@ -198,9 +195,6 @@
     <ClInclude Include="Keys.h">
       <Filter>Headers\InputManager</Filter>
     </ClInclude>
-    <ClInclude Include="InputManipulator.h">
-      <Filter>Headers\InputManager</Filter>
-    </ClInclude>
     <ClInclude Include="PhysicsEngine.h">
       <Filter>Headers\PhysicsEngine</Filter>
     </ClInclude>
@@ -208,12 +202,6 @@
       <Filter>Headers\PhysicsEngine</Filter>
     </ClInclude>
     <ClInclude Include="World.h">
-      <Filter>Headers\PhysicsEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="BodyManipulator.h">
-      <Filter>Headers\PhysicsEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="WorldManipulator.h">
       <Filter>Headers\PhysicsEngine</Filter>
     </ClInclude>
     <ClInclude Include="PhysicsComponent.h">
@@ -270,6 +258,18 @@
     <ClInclude Include="Color.h">
       <Filter>Sources\Others</Filter>
     </ClInclude>
+    <ClInclude Include="BodyManipulator.h">
+      <Filter>Headers\Manipulators</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldManipulator.h">
+      <Filter>Headers\Manipulators</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManipulator.h">
+      <Filter>Headers\Manipulators</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingsManager.h">
+      <Filter>Headers\Others</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -314,9 +314,6 @@
     <ClCompile Include="IdSetter.cpp">
       <Filter>Sources\Others</Filter>
     </ClCompile>
-    <ClCompile Include="Frame.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
     <ClCompile Include="FileSystem.cpp">
       <Filter>Sources\Others</Filter>
     </ClCompile>
@@ -331,9 +328,6 @@
     </ClCompile>
     <ClCompile Include="Time.cpp">
       <Filter>Sources\Others</Filter>
-    </ClCompile>
-    <ClCompile Include="SettingsManager.cpp">
-      <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>Sources\InputManager</Filter>
@@ -376,6 +370,12 @@
     </ClCompile>
     <ClCompile Include="FontResource.cpp">
       <Filter>Sources\ResourceManager\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingsManager.cpp">
+      <Filter>Sources\Others</Filter>
+    </ClCompile>
+    <ClCompile Include="Frame.cpp">
+      <Filter>Sources\GraphicsEngine\Animation Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
