@@ -44,7 +44,7 @@ int main()
 
 
 		yen::ObjectManipulator cube = engine.objectsManager->createObject(yen::fVector(0.0f, 0.0f));
-		engine.objectsManager->setLoadDistance(cube, 600.0f);
+		engine.objectsManager->setLoadDistance(cube, 500.0f);
 		yen::GraphicsComponent graphicsComponent(engine.graphicsEngine);
 		graphicsComponent.addAnimation(animation);
 		graphicsComponent.addAnimation(animation2);

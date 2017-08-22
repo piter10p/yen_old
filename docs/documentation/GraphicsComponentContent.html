@@ -1,0 +1,123 @@
+<html>
+  <head>
+    <title>GraphicsComponentContent Documentation</title>
+    <link href="../style.css" rel="stylesheet" type="text/css" />
+    <link href="../treeViewStyle.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../highlight/styles/default.css" />
+    <script src="../highlight/highlight.pack.js">
+    </script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="container">
+        <img src="../../logo/yen outline.png" alt="logo" class="logo" />
+        <div class="navbar-buttons-container">
+          <a href="documentation.html">
+            <div class="navbar-button">
+              <p class="navbar-button-text">Documentation</p>
+            </div>
+          </a>
+          <a href="#">
+            <div class="navbar-button">
+              <p class="navbar-button-text">Manual</p>
+            </div>
+          </a>
+          <a href="../index.html">
+            <div class="navbar-button">
+              <p class="navbar-button-text">Home</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="positionbar">
+      <div class="container">
+        <a class="positionbar-text">Documentation&gt;&gt;Components&gt;&gt;GraphicsComponentContent</a>
+      </div>
+    </div>
+    <div id="treeView">
+      <div class="container-treeviw">
+        <div class="css-treeview">
+          <ul>
+            <li>
+              <input type="checkbox" id="item-0" />
+              <label for="item-0">Components</label>
+              <ul>
+                <li>
+                  <a href="Component.html">Component</a>
+                </li>
+                <li>
+                  <a href="CameraComponent.html">CameraComponent</a>
+                </li>
+                <li>
+                  <a href="GraphicsComponent.html">GraphicsComponent</a>
+                </li>
+                <li>
+                  <a href="MoveComponent.html">MoveComponent</a>
+                </li>
+                <li>
+                  <a href="PhysicsComponent.html">PhysicsComponent</a>
+                </li>
+                <li>
+                  <a href="GraphicsComponentContent.html">GraphicsComponentContent</a>
+                </li>
+                <li>
+                  <a href="TextAttributes.html">TextAttributes</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <input type="checkbox" id="item-1" />
+              <label for="item-1">GraphicsEngine</label>
+              <ul>
+                <li>
+                  <input type="checkbox" id="item-1-0" />
+                  <label for="item-1-0">AnimationManager</label>
+                  <ul>
+                    <li>
+                      <a href="Animation.html">Animation</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="GraphicsEngine.html">GraphicsEngine</a>
+                </li>
+                <li>
+                  <a href="RenderObject.html">RenderObject</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="class-name">enum yen::GraphicsComponentContent</div>
+      <div class="short-description">Enum used in Graphics Component to define what will Component display (Text or Sprite).</div>
+      <pre>
+        <code>GraphicsComponent.h</code>
+      </pre>
+      <div class="section-header">Usage Example</div>
+      <pre>
+        <code>//Create Engine
+yen::Engine engine;
+EngineConfiguration configuration;
+engine.initialize(configuration);
+
+//Creating font
+yen::FontManipulator fontManipulator = engine.resourceManager-&gt;addFontResource("my_font.otf");
+
+//Creating object rendered as tekst
+yen::ObjectManipulator tekstObject = engine.objectsManager-&gt;createObject(yen::fVector(0.0f, 0.0f));
+yen::GraphicsComponent tekstGraphicsComponent(engine.graphicsEngine, yen::GraphicsComponentContent::TEXT);//&lt;--------------------Here used
+yen::ComponentManipulator tekstGraphicsComponentManipulator;
+engine.objectsManager-&gt;attachComponent(&amp;tekstGraphicsComponentManipulator, tekstObject, &amp;tekstGraphicsComponent);
+
+//Create scene and add Camera object to it
+yen::SceneManipulator scene = engine.sceneManager-&gt;createScene();
+engine.sceneManager-&gt;addObjectToScene(scene, tekstObject);</code>
+      </pre>
+    </div>
+  </body>
+</html>

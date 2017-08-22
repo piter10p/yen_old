@@ -1,0 +1,378 @@
+<html>
+  <head>
+    <title>GraphicsComponent Documentation</title>
+    <link href="../style.css" rel="stylesheet" type="text/css" />
+    <link href="../treeViewStyle.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../highlight/styles/default.css" />
+    <script src="../highlight/highlight.pack.js">
+    </script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="container">
+        <img src="../../logo/yen outline.png" alt="logo" class="logo" />
+        <div class="navbar-buttons-container">
+          <a href="documentation.html">
+            <div class="navbar-button">
+              <p class="navbar-button-text">Documentation</p>
+            </div>
+          </a>
+          <a href="#">
+            <div class="navbar-button">
+              <p class="navbar-button-text">Manual</p>
+            </div>
+          </a>
+          <a href="../index.html">
+            <div class="navbar-button">
+              <p class="navbar-button-text">Home</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="positionbar">
+      <div class="container">
+        <a class="positionbar-text">Documentation&gt;&gt;Components&gt;&gt;GraphicsComponent</a>
+      </div>
+    </div>
+    <div id="treeView">
+      <div class="container-treeviw">
+        <div class="css-treeview">
+          <ul>
+            <li>
+              <input type="checkbox" id="item-0" />
+              <label for="item-0">Components</label>
+              <ul>
+                <li>
+                  <a href="Component.html">Component</a>
+                </li>
+                <li>
+                  <a href="CameraComponent.html">CameraComponent</a>
+                </li>
+                <li>
+                  <a href="GraphicsComponent.html">GraphicsComponent</a>
+                </li>
+                <li>
+                  <a href="MoveComponent.html">MoveComponent</a>
+                </li>
+                <li>
+                  <a href="PhysicsComponent.html">PhysicsComponent</a>
+                </li>
+                <li>
+                  <a href="GraphicsComponentContent.html">GraphicsComponentContent</a>
+                </li>
+                <li>
+                  <a href="TextAttributes.html">TextAttributes</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <input type="checkbox" id="item-1" />
+              <label for="item-1">GraphicsEngine</label>
+              <ul>
+                <li>
+                  <input type="checkbox" id="item-1-0" />
+                  <label for="item-1-0">AnimationManager</label>
+                  <ul>
+                    <li>
+                      <a href="Animation.html">Animation</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="GraphicsEngine.html">GraphicsEngine</a>
+                </li>
+                <li>
+                  <a href="RenderObject.html">RenderObject</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="class-name">class yen::GraphicsComponent</div>
+      <div class="short-description">Component used for rendering objects on scene.</div>
+      <pre>
+        <code>GraphicsComponent.h</code>
+      </pre>
+      <div class="section-header">Public Member Methods</div>
+      <table>
+        <tr class="short-method-list-object">
+          <td class="short-method-list-type">
+          </td>
+          <td class="short-method-list-name">
+            <a class="short-method-list-name-text" href="#Constructor">Constructor</a> (yen::GraphicsEngine*, yen::GraphicsComponentContent content)
+                        <p class="short-method-list-desc">Constructor.</p></td>
+        </tr>
+        <tr class="short-method-list-object">
+          <td class="short-method-list-type">void</td>
+          <td class="short-method-list-name">
+            <a class="short-method-list-name-text" href="#codeStepUpdate">codeStepUpdate</a> (yen::ObjectAccessInterface)
+                        <p class="short-method-list-desc">Called every time frame rendered.</p></td>
+        </tr>
+        <tr class="short-method-list-object">
+          <td class="short-method-list-type">void</td>
+          <td class="short-method-list-name">
+            <a class="short-method-list-name-text" href="#initialization">initialization</a> (yen::ObjectAccessInterface)
+                        <p class="short-method-list-desc">Called on component initialization.</p></td>
+        </tr>
+        <tr class="short-method-list-object">
+          <td class="short-method-list-type">void</td>
+          <td class="short-method-list-name">
+            <a class="short-method-list-name-text" href="#setResourcesUsed">setResourcesUsed</a> ()
+                        <p class="short-method-list-desc">Called when object is used.</p></td>
+        </tr>
+        <tr class="short-method-list-object">
+          <td class="short-method-list-type">void</td>
+          <td class="short-method-list-name">
+            <a class="short-method-list-name-text" href="#freezed">freezed</a> ()
+                        <p class="short-method-list-desc">Called when object is freezed.</p></td>
+        </tr>
+        <tr class="short-method-list-object">
+          <td class="short-method-list-type">void</td>
+          <td class="short-method-list-name">
+            <a class="short-method-list-name-text" href="#unFreezed">unFreezed</a> ()
+                        <p class="short-method-list-desc">Called when object is un freezed.</p></td>
+        </tr>
+        <tr class="short-method-list-object">
+          <td class="short-method-list-type">void</td>
+          <td class="short-method-list-name">
+            <a class="short-method-list-name-text" href="#setActualAnimation">setActualAnimation</a> (yen::AnimationManipulator)
+                        <p class="short-method-list-desc">Sets actualy played animation.</p></td>
+        </tr>
+        <tr class="short-method-list-object">
+          <td class="short-method-list-type">void</td>
+          <td class="short-method-list-name">
+            <a class="short-method-list-name-text" href="#addAnimation">addAnimation</a> (yen::AnimationManipulator)
+                        <p class="short-method-list-desc">Adds animation.</p></td>
+        </tr>
+        <tr class="short-method-list-object">
+          <td class="short-method-list-type">void</td>
+          <td class="short-method-list-name">
+            <a class="short-method-list-name-text" href="#removeAnimation">removeAnimation</a> (yen::AnimationManipulator)
+                        <p class="short-method-list-desc">Removes animation.</p></td>
+        </tr>
+        <tr class="short-method-list-object">
+          <td class="short-method-list-type">void</td>
+          <td class="short-method-list-name">
+            <a class="short-method-list-name-text" href="#setString">setString</a> (yen::StringManipulator, std::string stringName)
+                        <p class="short-method-list-desc">Sets string of text.</p></td>
+        </tr>
+        <tr class="short-method-list-object">
+          <td class="short-method-list-type">void</td>
+          <td class="short-method-list-name">
+            <a class="short-method-list-name-text" href="#setFontResource">setFontResource</a> (yen::FontManipulator)
+                        <p class="short-method-list-desc">Sets text font.</p></td>
+        </tr>
+        <tr class="short-method-list-object">
+          <td class="short-method-list-type">void</td>
+          <td class="short-method-list-name">
+            <a class="short-method-list-name-text" href="#setTextAttributes">setTextAttributes</a> (yen::TextAttributes)
+                        <p class="short-method-list-desc">Sets text attributes.</p></td>
+        </tr>
+        <tr class="short-method-list-object">
+          <td class="short-method-list-type">yen::RenderObject</td>
+          <td class="short-method-list-name">
+            <a class="short-method-list-name-text" href="#getRenderObject">getRenderObject</a> ()
+                        <p class="short-method-list-desc">Returns actual Render Object.</p></td>
+        </tr>
+      </table>
+      <div class="section-header">Detailed Description</div>
+      <p>Component working with Graphics Engine. Every object with this component can be renered as sprite or text.</p>
+      <div class="section-header">Usage Example</div>
+      <pre>
+        <code>//Create Engine
+yen::Engine engine;
+EngineConfiguration configuration;
+engine.initialize(configuration);
+
+//Creating font
+yen::FontManipulator fontManipulator = engine.resourceManager-&gt;addFontResource("my_font.otf");
+
+//Creating animation
+yen::AnimationResourceDef animationDef;
+animationDef.path = "my_animation_path";
+animationDef.frameRate = 60;
+yen::AnimationManipulator animation = engine.resourceManager-&gt;addAnimationResource(animationDef);
+
+
+//Creating object rendered as tekst
+yen::ObjectManipulator tekstObject = engine.objectsManager-&gt;createObject(yen::fVector(0.0f, 0.0f));
+yen::GraphicsComponent tekstGraphicsComponent(engine.graphicsEngine, yen::GraphicsComponentContent::TEXT);
+yen::ComponentManipulator tekstGraphicsComponentManipulator;
+engine.objectsManager-&gt;attachComponent(&amp;tekstGraphicsComponentManipulator, tekstObject, &amp;tekstGraphicsComponent); 
+
+yen::TextAttributes tAttr;
+tAttr.charactersSize = 12;
+tAttr.textColor = yen::Color(0, 0, 0, 255);
+textGComp.setFontResource(fontManipulator);
+textGComp.setString(sManipulator, "car");
+textGComp.setTextAttributes(tAttr);
+
+//Creating object rendered as sprite
+yen::ObjectManipulator spriteObject = engine.objectsManager-&gt;createObject(yen::fVector(100.0f, 0.0f));
+yen::GraphicsComponent spriteGraphicsComponent(engine.graphicsEngine);
+spriteGraphicsComponent.addAnimation(animation);
+spriteGraphicsComponent.setActualAnimation(animation);
+
+//Create scene and add Camera object to it
+yen::SceneManipulator scene = engine.sceneManager-&gt;createScene();
+engine.sceneManager-&gt;addObjectToScene(scene, tekstObject);
+engine.sceneManager-&gt;addObjectToScene(scene, spriteObject);</code>
+      </pre>
+      <div class="section-header">Member Function Documentation</div>
+      <div class="det-method-list-object">
+        <a name="Constructor" />
+        <div class="det-method-list-name">Constructor (yen::GraphicsEngine*, yen::GraphicsComponentContent content = yen::GraphicsComponentContent::SPRITE)</div>
+        <div class="det-method-list-body">
+          <p>Constructor.</p>
+          <p>
+            <b>Arguments:</b>
+          </p>
+          <p>
+            <tab1>
+              <b>1)</b> yen::GraphicsEngine* - Graphics Engine getted from yen::Engine.</tab1>
+          </p>
+          <p>
+            <tab1>
+              <b>2)</b> yen::GraphicsComponentContent - sets type of rendered content. Default value is yen::GraphicsComponentContent::SPRITE.</tab1>
+          </p>
+        </div>
+      </div>
+      <div class="det-method-list-object">
+        <a name="codeStepUpdate" />
+        <div class="det-method-list-name">void codeStepUpdate (ObjectAccessInterface)</div>
+        <div class="det-method-list-body">
+          <p>Method called every time frame rendered. Used for main component operations.</p>
+        </div>
+      </div>
+      <div class="det-method-list-object">
+        <a name="initialization" />
+        <div class="det-method-list-name">void initialization (ObjectAccessInterface)</div>
+        <div class="det-method-list-body">
+          <p>Method called on component initialization. Used for prepare component to work.</p>
+        </div>
+      </div>
+      <div class="det-method-list-object">
+        <a name="setResourcesUsed" />
+        <div class="det-method-list-name">void setResourcesUsed (ObjectAccessInterface)</div>
+        <div class="det-method-list-body">
+          <p>Method called when object is in camera range. Used for set resourced used by component used.</p>
+        </div>
+      </div>
+      <div class="det-method-list-object">
+        <a name="freezed" />
+        <div class="det-method-list-name">void freezed ()</div>
+        <div class="det-method-list-body">
+          <p>Method called when object is freezed. Used for freeze component.</p>
+        </div>
+      </div>
+      <div class="det-method-list-object">
+        <a name="unFreezed" />
+        <div class="det-method-list-name">void unFreezed ()</div>
+        <div class="det-method-list-body">
+          <p>Method called when object is un freezed. Used for un freeze component.</p>
+        </div>
+      </div>
+      <div class="det-method-list-object">
+        <a name="setActualAnimation" />
+        <div class="det-method-list-name">void setActualAnimation (yen::AnimationManipulator)</div>
+        <div class="det-method-list-body">
+          <p>Method sets actualy played sprite animation by Component.</p>
+          <p>
+            <b>Arguments:</b>
+          </p>
+          <p>
+            <tab1>yen::AnimationManipulator - manipulator of choosen animation.</tab1>
+          </p>
+        </div>
+      </div>
+      <div class="det-method-list-object">
+        <a name="addAnimation" />
+        <div class="det-method-list-name">void addAnimation (yen::AnimationManipulator)</div>
+        <div class="det-method-list-body">
+          <p>Method adds new animation to animations list in Component.</p>
+          <p>
+            <b>Arguments:</b>
+          </p>
+          <p>
+            <tab1>yen::AnimationManipulator - manipulator of choosen animation.</tab1>
+          </p>
+        </div>
+      </div>
+      <div class="det-method-list-object">
+        <a name="removeAnimation" />
+        <div class="det-method-list-name">void removeAnimation (yen::AnimationManipulator)</div>
+        <div class="det-method-list-body">
+          <p>Method removes animation from animations list in Component.</p>
+          <p>
+            <b>Arguments:</b>
+          </p>
+          <p>
+            <tab1>yen::AnimationManipulator - manipulator of choosen animation.</tab1>
+          </p>
+        </div>
+      </div>
+      <div class="det-method-list-object">
+        <a name="setString" />
+        <div class="det-method-list-name">void setString (yen::StringManipulator, std::string stringName)</div>
+        <div class="det-method-list-body">
+          <p>Method sets text string displayed by Component.</p>
+          <p>
+            <b>Arguments:</b>
+          </p>
+          <p>
+            <tab1>
+              <b>1)</b> yen::StringManipulator - manipulator of choosen String Resource.</tab1>
+          </p>
+          <p>
+            <tab1>
+              <b>2)</b> std::string stringName - name of choosen string in String Resource.</tab1>
+          </p>
+        </div>
+      </div>
+      <div class="det-method-list-object">
+        <a name="setFontResource" />
+        <div class="det-method-list-name">void setFontResource (yen::FontManipulator)</div>
+        <div class="det-method-list-body">
+          <p>Method sets font of text displayed.</p>
+          <p>
+            <b>Arguments:</b>
+          </p>
+          <p>
+            <tab1>yen::FontManipulator - manipulator of choosen Font Resource.</tab1>
+          </p>
+        </div>
+      </div>
+      <div class="det-method-list-object">
+        <a name="setTextAttributes" />
+        <div class="det-method-list-name">void setTextAttributes (yen::TextAttributes)</div>
+        <div class="det-method-list-body">
+          <p>Method setts displayed text attributes like characters size etc.</p>
+          <p>
+            <b>Arguments:</b>
+          </p>
+          <p>
+            <tab1>yen::TextAttributes - struct of attributes.</tab1>
+          </p>
+        </div>
+      </div>
+      <div class="det-method-list-object">
+        <a name="getRenderObject" />
+        <div class="det-method-list-name">yen::RenderObject getRenderObject ()</div>
+        <div class="det-method-list-body">
+          <p>Method returns Render Object ready to display by Graphics Engine.</p>
+          <p>
+            <b>Returns:</b>
+          </p>
+          <p>
+            <tab1>yen::RenderObject -  Render Object ready to display by Graphics Engine.</tab1>
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

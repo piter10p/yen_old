@@ -48,13 +48,14 @@
             <div class="class-name" >class yen::GraphicsComponent</div>
 
             <div class="short-description">Component used for rendering objects on scene.</div>
+            <pre><code>GraphicsComponent.h</code></pre>
 
             <div class="section-header">Public Member Methods</div>
             <table>
                 <tr class="short-method-list-object">
                     <td class="short-method-list-type"></td>
                     <td class="short-method-list-name">
-                        <a class="short-method-list-name-text" href="#codeStepUpdate">Constructor</a> (yen::GraphicsEngine&#42;, yen::GraphicsComponentContent content)
+                        <a class="short-method-list-name-text" href="#Constructor">Constructor</a> (yen::GraphicsEngine&#42;, yen::GraphicsComponentContent content)
                         <p class="short-method-list-desc">Constructor.</p>
                     </td>
                 </tr>
@@ -201,7 +202,19 @@ engine.sceneManager->addObjectToScene(scene, spriteObject);</code></pre>
 
             <div class="section-header">Member Function Documentation</div>
             
-            <div class="det-method-list-object"><a name="codeStepUpdate" />
+            <div class="det-method-list-object">
+                <a name="Constructor" />
+                <div class="det-method-list-name">Constructor (yen::GraphicsEngine&#42;, yen::GraphicsComponentContent content = yen::GraphicsComponentContent::SPRITE)</div>
+                <div class="det-method-list-body">
+                    <p>Constructor.</p>
+                    <p><b>Arguments:</b></p>
+                    <p><tab1><b>1)</b> yen::GraphicsEngine&#42; - Graphics Engine getted from yen::Engine.</tab1></p>
+                    <p><tab1><b>2)</b> yen::GraphicsComponentContent - sets type of rendered content. Default value is yen::GraphicsComponentContent::SPRITE.</tab1></p>
+                </div>
+            </div>
+
+            <div class="det-method-list-object">
+                <a name="codeStepUpdate" />
                 <div class="det-method-list-name">void codeStepUpdate (ObjectAccessInterface)</div>
                 <div class="det-method-list-body">
                     <p>Method called every time frame rendered. Used for main component operations.</p>
@@ -220,7 +233,7 @@ engine.sceneManager->addObjectToScene(scene, spriteObject);</code></pre>
                 <a name="setResourcesUsed" />
                 <div class="det-method-list-name">void setResourcesUsed (ObjectAccessInterface)</div>
                 <div class="det-method-list-body">
-                    <p>Method when object is in camera range. Used for set resourced used by component used.</p>
+                    <p>Method called when object is in camera range. Used for set resourced used by component used.</p>
                 </div>
             </div>
 
@@ -241,75 +254,73 @@ engine.sceneManager->addObjectToScene(scene, spriteObject);</code></pre>
             </div>
 
             <div class="det-method-list-object">
-                <a name="setSize" />
-                <div class="det-method-list-name">void setSize (yen::fVector)</div>
+                <a name="setActualAnimation" />
+                <div class="det-method-list-name">void setActualAnimation (yen::AnimationManipulator)</div>
                 <div class="det-method-list-body">
-                    <p>Method sets size of camera.</p>
-                    <p>Size value means area of scene that camera recording.</p>
+                    <p>Method sets actualy played sprite animation by Component.</p>
                     <p><b>Arguments:</b></p>
-                    <p><tab1>yen::fVector - size of camera</tab1></p>
+                    <p><tab1>yen::AnimationManipulator - manipulator of choosen animation.</tab1></p>
                 </div>
             </div>
 
             <div class="det-method-list-object">
-                <a name="setZoom" />
-                <div class="det-method-list-name">void setZoom (float)</div>
+                <a name="addAnimation" />
+                <div class="det-method-list-name">void addAnimation (yen::AnimationManipulator)</div>
                 <div class="det-method-list-body">
-                    <p>Method sets zoom of camera.</p>
-                    <p>Zoom value affects on area of scene that camera recording. Lower value gives smaller area.</p>
+                    <p>Method adds new animation to animations list in Component.</p>
                     <p><b>Arguments:</b></p>
-                    <p><tab1>float - value of zoom.</tab1></p>
+                    <p><tab1>yen::AnimationManipulator - manipulator of choosen animation.</tab1></p>
                 </div>
             </div>
 
             <div class="det-method-list-object">
-                <a name="setRotation" />
-                <div class="det-method-list-name">void setRotation (float angle)</div>
+                <a name="removeAnimation" />
+                <div class="det-method-list-name">void removeAnimation (yen::AnimationManipulator)</div>
                 <div class="det-method-list-body">
-                    <p>Method sets rotation of camera.</p>
+                    <p>Method removes animation from animations list in Component.</p>
                     <p><b>Arguments:</b></p>
-                    <p><tab1>float - value of rotation in degrees.</tab1></p>
+                    <p><tab1>yen::AnimationManipulator - manipulator of choosen animation.</tab1></p>
                 </div>
             </div>
 
             <div class="det-method-list-object">
-                <a name="setViewPort" />
-                <div class="det-method-list-name">void setViewPort (yen::fRect)</div>
+                <a name="setString" />
+                <div class="det-method-list-name">void setString (yen::StringManipulator, std::string stringName)</div>
                 <div class="det-method-list-body">
-                    <p>Method sets View Port of camera.</p>
-                    <p>View Port value determines how that, what camera see will be rendered in window.</p>
-                    <p>View Port values is an factor. </p>
+                    <p>Method sets text string displayed by Component.</p>
                     <p><b>Arguments:</b></p>
-                    <p><tab1>yen::fRect - View Port.</tab1></p>
-                    <p><tab1>X and Y values means position on screen (0.0f and 0.0f is top left corner, 0.5f, 0.0f is right side of window).</tab1></p>
-                    <p><tab1>Width and Height values means size of View (1.0f and 1.0f means size of window, 0.5f, 0.5f means a quarter of a window).</tab1></p>
+                    <p><tab1><b>1)</b> yen::StringManipulator - manipulator of choosen String Resource.</tab1></p>
+                    <p><tab1><b>2)</b> std::string stringName - name of choosen string in String Resource.</tab1></p>
                 </div>
             </div>
 
             <div class="det-method-list-object">
-                <a name="setActive" />
-                <div class="det-method-list-name">void setActive (bool)</div>
+                <a name="setFontResource" />
+                <div class="det-method-list-name">void setFontResource (yen::FontManipulator)</div>
                 <div class="det-method-list-body">
-                    <p>Method sets camera active or unactive.</p>
-                    <p>Active camera render that, what it see on screen.</p>
-                </div>
-            </div>
-
-            <div class="det-method-list-object">
-                <a name="isActive" />
-                <div class="det-method-list-name">bool isActive ()</div>
-                <div class="det-method-list-body">
-                    <p>Method returns that, is camera active.</p>
-                </div>
-            </div>
-
-            <div class="det-method-list-object">
-                <a name="draw" />
-                <div class="det-method-list-name">void draw (std::vector &#60;GraphicsComponent&#42;&#62;&#42;)</div>
-                <div class="det-method-list-body">
-                    <p>Method draws objects of scene from camera perspective.</p>
+                    <p>Method sets font of text displayed.</p>
                     <p><b>Arguments:</b></p>
-                    <p><tab1>std::vector &#60;GraphicsComponent&#42;&#62;&#42; - list of GraphicsComponents of objects on scene.</tab1></p>
+                    <p><tab1>yen::FontManipulator - manipulator of choosen Font Resource.</tab1></p>
+                </div>
+            </div>
+
+            <div class="det-method-list-object">
+                <a name="setTextAttributes" />
+                <div class="det-method-list-name">void setTextAttributes (yen::TextAttributes)</div>
+                <div class="det-method-list-body">
+                    <p>Method setts displayed text attributes like characters size etc.</p>
+                    <p><b>Arguments:</b></p>
+                    <p><tab1>yen::TextAttributes - struct of attributes.</tab1></p>
+                </div>
+            </div>
+
+            <div class="det-method-list-object">
+                <a name="getRenderObject" />
+                <div class="det-method-list-name">yen::RenderObject getRenderObject ()</div>
+                <div class="det-method-list-body">
+                    <p>Method returns Render Object ready to display by Graphics Engine.</p>
+                    <p><b>Returns:</b></p>
+                    <p><tab1>yen::RenderObject -  Render Object ready to display by Graphics Engine.</tab1></p>
                 </div>
             </div>
         </div>
