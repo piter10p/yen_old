@@ -18,17 +18,15 @@ InputManager::~InputManager()
 	}
 }
 
-Flag InputManager::createInput(InputManipulator* manipulator, InputDef def)
+void InputManager::createInput(InputManipulator* manipulator, InputDef def)
 {
 	if (def.name.empty())
-		return Flag::ERROR_DEF_OBJECT_IS_NOT_FILLED_PROPERLY;
+		throw Flag::ERROR_DEF_OBJECT_IS_NOT_FILLED_PROPERLY;
 	
 	if (def.type == InputType::KEYBOARD_KEY)
 		createKeyInput(manipulator, def);
 
 	manipulator->id = getNewId();
-	
-	return Flag::OK;
 }
 
 Flag InputManager::removeInput(InputManipulator manipulator)

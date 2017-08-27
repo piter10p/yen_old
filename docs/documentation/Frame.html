@@ -1,0 +1,159 @@
+<html>
+  <head>
+    <title>Frame Documentation</title>
+    <link href="../style.css" rel="stylesheet" type="text/css" />
+    <link href="../treeViewStyle.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../highlight/styles/default.css" />
+    <script src="../highlight/highlight.pack.js">
+    </script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="container">
+        <img src="../../logo/yen outline.png" alt="logo" class="logo" />
+        <div class="navbar-buttons-container">
+          <a href="documentation.html">
+            <div class="navbar-button">
+              <p class="navbar-button-text">Documentation</p>
+            </div>
+          </a>
+          <a href="#">
+            <div class="navbar-button">
+              <p class="navbar-button-text">Manual</p>
+            </div>
+          </a>
+          <a href="../index.html">
+            <div class="navbar-button">
+              <p class="navbar-button-text">Home</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="positionbar">
+      <div class="container">
+        <a class="positionbar-text">Documentation&gt;&gt;GraphicsEngine&gt;&gt;AnimationManager&gt;&gt;Frame</a>
+      </div>
+    </div>
+    <div id="treeView">
+      <div class="container-treeviw">
+        <div class="css-treeview">
+          <ul>
+            <li>
+              <input type="checkbox" id="item-0" />
+              <label for="item-0">Components</label>
+              <ul>
+                <li>
+                  <a href="Component.html">Component</a>
+                </li>
+                <li>
+                  <a href="CameraComponent.html">CameraComponent</a>
+                </li>
+                <li>
+                  <a href="GraphicsComponent.html">GraphicsComponent</a>
+                </li>
+                <li>
+                  <a href="MoveComponent.html">MoveComponent</a>
+                </li>
+                <li>
+                  <a href="PhysicsComponent.html">PhysicsComponent</a>
+                </li>
+                <li>
+                  <a href="GraphicsComponentContent.html">GraphicsComponentContent</a>
+                </li>
+                <li>
+                  <a href="TextAttributes.html">TextAttributes</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <input type="checkbox" id="item-1" />
+              <label for="item-1">GraphicsEngine</label>
+              <ul>
+                <li>
+                  <input type="checkbox" id="item-1-0" />
+                  <label for="item-1-0">AnimationManager</label>
+                  <ul>
+                    <li>
+                      <a href="Animation.html">Animation</a>
+                    </li>
+                    <li>
+                      <a href="AnimationManager.html">AnimationManager</a>
+                    </li>
+                    <li>
+                      <a href="Frame.html">Frame</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="GraphicsEngine.html">GraphicsEngine</a>
+                </li>
+                <li>
+                  <a href="RenderObject.html">RenderObject</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="class-name">class yen::Frame</div>
+      <div class="short-description">Frame of animation. Contains image and loads it.</div>
+      <pre>
+        <code>Frame.h</code>
+      </pre>
+      <div class="section-header">Public Member Methods</div>
+      <table>
+        <tr class="short-method-list-object">
+          <td class="short-method-list-type">void</td>
+          <td class="short-method-list-name">
+            <a class="short-method-list-name-text" href="#load">load</a> (std::string path)
+                        <p class="short-method-list-desc">Loads frame from image.</p></td>
+        </tr>
+        <tr class="short-method-list-object">
+          <td class="short-method-list-type">sf::Texture*</td>
+          <td class="short-method-list-name">
+            <a class="short-method-list-name-text" href="#getTexture">getTexture</a> ()
+                        <p class="short-method-list-desc">Returns frame image.</p></td>
+        </tr>
+      </table>
+      <div class="section-header">Detailed Description</div>
+      <p>This class stores one frame of animation and loads frame from image.</p>
+      <div class="section-header">Member Methods Documentation</div>
+      <div class="det-method-list-object">
+        <a name="load" />
+        <div class="det-method-list-name">void load (std::string path)</div>
+        <div class="det-method-list-body">
+          <p>Method loads frame image from file to memory.</p>
+          <p>
+            <b>Arguments:</b>
+          </p>
+          <p>
+            <tab1>std::string path - path to folder from animation have to be loaded.</tab1>
+          </p>
+          <p>
+            <b>Throws:</b>
+          </p>
+          <p>
+            <tab1>yen::Flag</tab1>
+          </p>
+        </div>
+      </div>
+      <div class="det-method-list-object">
+        <a name="getTexture" />
+        <div class="det-method-list-name">sf::Texture* getTexture ()</div>
+        <div class="det-method-list-body">
+          <p>Method returns pointer to stored frame image.</p>
+          <p>
+            <b>Returns:</b>
+          </p>
+          <p>
+            <tab1>&gt;sf::Texture* - pointer to image.</tab1>
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -15,7 +15,7 @@ namespace yen
 		InputManager();
 		~InputManager();
 
-		Flag createInput(InputManipulator*, InputDef);
+		void createInput(InputManipulator*, InputDef);
 		Flag removeInput(InputManipulator);
 
 		void updateInputs(sf::RenderWindow *window);

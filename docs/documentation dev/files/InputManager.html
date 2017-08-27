@@ -1,0 +1,252 @@
+<html>
+	<head>
+		<title>InputManager Documentation</title>
+		<link href="../style.css" rel="stylesheet" type="text/css" />
+        <link href="../treeViewStyle.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="../highlight/styles/default.css" />
+        <script src="../highlight/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+	</head>
+	
+	<body>
+		<div class="navbar">
+			<div class="container">
+				<img src="../../logo/yen outline.png" alt="logo" class="logo"/>
+				
+				<div class="navbar-buttons-container">
+                    <a href="documentation.html">
+                        <div class="navbar-button">
+                            <p class="navbar-button-text">Documentation</p>
+                        </div>
+                    </a>
+					
+				
+					<a href="#">
+                        <div class="navbar-button">
+						    <p class="navbar-button-text">Manual</p>
+					    </div>
+                    </a>
+					
+					<a href="../index.html">
+                        <div class="navbar-button">
+						    <p class="navbar-button-text">Home</p>
+					    </div>
+                    </a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="positionbar">
+			<div class="container">
+				<a class="positionbar-text">Documentation>>GraphicsEngine>>InputManager>>InputManager</a>
+			</div>
+		</div>
+
+        <div id="treeView" />
+
+        <div class="container">
+            <div class="class-name" >class yen::InputManager</div>
+
+            <div class="short-description">Manage engine inputs.</div>
+            <pre><code>InputManager.h</code></pre>
+
+            <div class="section-header">Public Member Methods</div>
+            <table>
+                <tr class="short-method-list-object">
+                    <td class="short-method-list-type">void</td>
+                    <td class="short-method-list-name">
+                        <a class="short-method-list-name-text" href="#createInput">createInput</a> (yen::InputManipulator&#42;, yen::InputDef)
+                        <p class="short-method-list-desc">Creates new input.</p>
+                    </td>
+                </tr>
+
+                <tr class="short-method-list-object">
+                    <td class="short-method-list-type">void</td>
+                    <td class="short-method-list-name">
+                        <a class="short-method-list-name-text" href="#unLoad">unLoad</a> ()
+                        <p class="short-method-list-desc">UnLoads animation.</p>
+                    </td>
+                </tr>
+
+                <tr class="short-method-list-object">
+                    <td class="short-method-list-type">void</td>
+                    <td class="short-method-list-name">
+                        <a class="short-method-list-name-text" href="#setFrameRate">setFrameRate</a> (unsigned int)
+                        <p class="short-method-list-desc">Sets animation frame rate (frames per second).</p>
+                    </td>
+                </tr>
+
+                <tr class="short-method-list-object">
+                    <td class="short-method-list-type">unsigned int</td>
+                    <td class="short-method-list-name">
+                        <a class="short-method-list-name-text" href="#getFrameRate">getFrameRate</a> ()
+                        <p class="short-method-list-desc">Returns animation frame rate.</p>
+                    </td>
+                </tr>
+
+                <tr class="short-method-list-object">
+                    <td class="short-method-list-type">yen::Frame&#42;</td>
+                    <td class="short-method-list-name">
+                        <a class="short-method-list-name-text" href="#getActualFrame">getActualFrame</a> ()
+                        <p class="short-method-list-desc">Returns actualy played frame.</p>
+                    </td>
+                </tr>
+
+                <tr class="short-method-list-object">
+                    <td class="short-method-list-type">void</td>
+                    <td class="short-method-list-name">
+                        <a class="short-method-list-name-text" href="#start">start</a> ()
+                        <p class="short-method-list-desc">Starts playing animation.</p>
+                    </td>
+                </tr>
+
+                <tr class="short-method-list-object">
+                    <td class="short-method-list-type">void</td>
+                    <td class="short-method-list-name">
+                        <a class="short-method-list-name-text" href="#pause">pause</a> ()
+                        <p class="short-method-list-desc">Pause playing animation.</p>
+                    </td>
+                </tr>
+
+                <tr class="short-method-list-object">
+                    <td class="short-method-list-type">void</td>
+                    <td class="short-method-list-name">
+                        <a class="short-method-list-name-text" href="#restart">restart</a> ()
+                        <p class="short-method-list-desc">Restart playing animation.</p>
+                    </td>
+                </tr>
+
+                <tr class="short-method-list-object">
+                    <td class="short-method-list-type">bool</td>
+                    <td class="short-method-list-name">
+                        <a class="short-method-list-name-text" href="#isPlaying">isPlaying</a> ()
+                        <p class="short-method-list-desc">Retuns that, is animation playing right now.</p>
+                    </td>
+                </tr>
+
+            </table>
+
+            <div class="section-header">Detailed Description</div>
+            <p>This class loads animations to memory and unloads it, contains all frames and controls animation playing.</p>
+
+            <div class="section-header">Usage Example</div>
+            <pre><code>//Creating Engine
+yen::Engine engine;
+EngineConfiguration configuration;
+engine.initialize(configuration);
+                
+//Creating animation
+yen::AnimationResourceDef animationDef;
+animationDef.path = "anim";//Folder name
+animationDef.frameRate = 60;//Animation speed is 60 frames per second
+yen::AnimationManipulator animation = engine.resourceManager->addAnimationResource(animationDef);
+                
+//Creating Graphics Object
+yen::ObjectManipulator cube = engine.objectsManager->createObject(yen::fVector(0.0f, 0.0f));
+engine.objectsManager->setLoadDistance(cube, 500.0f);
+yen::GraphicsComponent graphicsComponent(engine.graphicsEngine);
+graphicsComponent.addAnimation(animation);
+graphicsComponent.addAnimation(animation2);
+graphicsComponent.setActualAnimation(animation);
+yen::ComponentManipulator graphicsComponentManipulator;
+engine.objectsManager->attachComponent(&amp;graphicsComponentManipulator, cube, &amp;graphicsComponent);
+                
+//Creating Scene
+yen::SceneManipulator scene = engine.sceneManager->createScene();
+engine.sceneManager->setSceneGravity(scene, yen::fVector(0.0f, 10.0f));
+                
+//Adding object to scene
+engine.sceneManager->addObjectToScene(scene, cube);
+                
+//Scene initializing
+engine.sceneManager->initializeScene(scene);</code></pre>
+
+            <div class="section-header">Member Methods Documentation</div>
+
+            <div class="det-method-list-object">
+                <a name="load" />
+                <div class="det-method-list-name">void load (std::string path)</div>
+                <div class="det-method-list-body">
+                    <p>Method loads animation frames from all files in folder (in order by file name) to memory.</p>
+                    <p><b>Arguments:</b></p>
+                    <p><tab1>std::string path - path to folder from animation have to be loaded.</tab1></p>
+                </div>
+            </div>
+
+            <div class="det-method-list-object">
+                <a name="unLoad" />
+                <div class="det-method-list-name">void unLoad ()</div>
+                <div class="det-method-list-body">
+                    <p>Method unloads animation frames from memory.</p>
+                </div>
+            </div>
+
+            <div class="det-method-list-object">
+                <a name="setFrameRate" />
+                <div class="det-method-list-name">void setFrameRate (unsigned int)</div>
+                <div class="det-method-list-body">
+                    <p>Method sets animation frame rate.</p>
+                    <p>Frame rate value is expressed in frames per second.</p>
+                    <p><b>Arguments:</b></p>
+                    <p><tab1>unsigned int - frame rate.</tab1></p>
+                </div>
+            </div>
+
+            <div class="det-method-list-object">
+                <a name="getFrameRate" />
+                <div class="det-method-list-name">unsigned int getFrameRate ()</div>
+                <div class="det-method-list-body">
+                    <p>Method returns animation frame rate.</p>
+                    <p>Frame rate value is expressed in frames per second.</p>
+                    <p><b>Returns:</b></p>
+                    <p><tab1>unsigned int - frame rate.</tab1></p>
+                </div>
+            </div>
+
+            <div class="det-method-list-object">
+                <a name="getActualFrame" />
+                <div class="det-method-list-name">yen::Frame&#42; getActualFrame ()</div>
+                <div class="det-method-list-body">
+                    <p>Method returns animation's actual frame.</p>
+                    <p><b>Returns:</b></p>
+                    <p><tab1>Frame&#42; - actual frame.</tab1></p>
+                </div>
+            </div>
+
+            <div class="det-method-list-object">
+                <a name="start" />
+                <div class="det-method-list-name">void start ()</div>
+                <div class="det-method-list-body">
+                    <p>Method makes animation played.</p>
+                </div>
+            </div>
+
+            <div class="det-method-list-object">
+                <a name="pause" />
+                <div class="det-method-list-name">void pause ()</div>
+                <div class="det-method-list-body">
+                    <p>Method makes animation paused.</p>
+                </div>
+            </div>
+
+            <div class="det-method-list-object">
+                <a name="restart" />
+                <div class="det-method-list-name">void restart ()</div>
+                <div class="det-method-list-body">
+                    <p>Method makes animation restarted.</p>
+                </div>
+            </div>
+
+            <div class="det-method-list-object">
+                <a name="isPlaying" />
+                <div class="det-method-list-name">bool isPlaying ()</div>
+                <div class="det-method-list-body">
+                    <p>Method returns that, is animation playing at the moment.</p>
+                    <p><b>Returns:</b></p>
+                    <p><tab1>bool - true when animation is playing at the momend, false if not.</tab1></p>
+                </div>
+            </div>
+
+        </div>
+	</body>
+</html>
