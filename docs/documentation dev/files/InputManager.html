@@ -63,64 +63,24 @@
                 <tr class="short-method-list-object">
                     <td class="short-method-list-type">void</td>
                     <td class="short-method-list-name">
-                        <a class="short-method-list-name-text" href="#unLoad">unLoad</a> ()
-                        <p class="short-method-list-desc">UnLoads animation.</p>
+                        <a class="short-method-list-name-text" href="#removeInput">removeInput</a> (yen::InputManipulator)
+                        <p class="short-method-list-desc">Removes input.</p>
                     </td>
                 </tr>
 
                 <tr class="short-method-list-object">
                     <td class="short-method-list-type">void</td>
                     <td class="short-method-list-name">
-                        <a class="short-method-list-name-text" href="#setFrameRate">setFrameRate</a> (unsigned int)
-                        <p class="short-method-list-desc">Sets animation frame rate (frames per second).</p>
-                    </td>
-                </tr>
-
-                <tr class="short-method-list-object">
-                    <td class="short-method-list-type">unsigned int</td>
-                    <td class="short-method-list-name">
-                        <a class="short-method-list-name-text" href="#getFrameRate">getFrameRate</a> ()
-                        <p class="short-method-list-desc">Returns animation frame rate.</p>
-                    </td>
-                </tr>
-
-                <tr class="short-method-list-object">
-                    <td class="short-method-list-type">yen::Frame&#42;</td>
-                    <td class="short-method-list-name">
-                        <a class="short-method-list-name-text" href="#getActualFrame">getActualFrame</a> ()
-                        <p class="short-method-list-desc">Returns actualy played frame.</p>
-                    </td>
-                </tr>
-
-                <tr class="short-method-list-object">
-                    <td class="short-method-list-type">void</td>
-                    <td class="short-method-list-name">
-                        <a class="short-method-list-name-text" href="#start">start</a> ()
-                        <p class="short-method-list-desc">Starts playing animation.</p>
-                    </td>
-                </tr>
-
-                <tr class="short-method-list-object">
-                    <td class="short-method-list-type">void</td>
-                    <td class="short-method-list-name">
-                        <a class="short-method-list-name-text" href="#pause">pause</a> ()
-                        <p class="short-method-list-desc">Pause playing animation.</p>
-                    </td>
-                </tr>
-
-                <tr class="short-method-list-object">
-                    <td class="short-method-list-type">void</td>
-                    <td class="short-method-list-name">
-                        <a class="short-method-list-name-text" href="#restart">restart</a> ()
-                        <p class="short-method-list-desc">Restart playing animation.</p>
+                        <a class="short-method-list-name-text" href="#updateInputs">updateInputs</a> (sf::RenderWindow &#42;window)
+                        <p class="short-method-list-desc">Catches events from window.</p>
                     </td>
                 </tr>
 
                 <tr class="short-method-list-object">
                     <td class="short-method-list-type">bool</td>
                     <td class="short-method-list-name">
-                        <a class="short-method-list-name-text" href="#isPlaying">isPlaying</a> ()
-                        <p class="short-method-list-desc">Retuns that, is animation playing right now.</p>
+                        <a class="short-method-list-name-text" href="#isKeyPressed">isKeyPressed</a> (InputManipulator)
+                        <p class="short-method-list-desc">Returns is keyboard key pressed.</p>
                     </td>
                 </tr>
 
@@ -135,115 +95,79 @@ yen::Engine engine;
 EngineConfiguration configuration;
 engine.initialize(configuration);
                 
-//Creating animation
-yen::AnimationResourceDef animationDef;
-animationDef.path = "anim";//Folder name
-animationDef.frameRate = 60;//Animation speed is 60 frames per second
-yen::AnimationManipulator animation = engine.resourceManager->addAnimationResource(animationDef);
-                
-//Creating Graphics Object
-yen::ObjectManipulator cube = engine.objectsManager->createObject(yen::fVector(0.0f, 0.0f));
-engine.objectsManager->setLoadDistance(cube, 500.0f);
-yen::GraphicsComponent graphicsComponent(engine.graphicsEngine);
-graphicsComponent.addAnimation(animation);
-graphicsComponent.addAnimation(animation2);
-graphicsComponent.setActualAnimation(animation);
-yen::ComponentManipulator graphicsComponentManipulator;
-engine.objectsManager->attachComponent(&amp;graphicsComponentManipulator, cube, &amp;graphicsComponent);
-                
-//Creating Scene
-yen::SceneManipulator scene = engine.sceneManager->createScene();
-engine.sceneManager->setSceneGravity(scene, yen::fVector(0.0f, 10.0f));
+//Creating key
+yen::InputDef leftKeyDef;
+leftKeyDef.type = yen::InputType::KEYBOARD_KEY;
+leftKeyDef.name = "leftKey";
+leftKeyDef.key = yen::inputs::Key::Left;
+
+//Creating input               
+yen::InputManipulator leftKey;
+engine.inputManager->createInput(&amp;leftKey, leftKeyDef);
                 
 //Adding object to scene
 engine.sceneManager->addObjectToScene(scene, cube);
                 
 //Scene initializing
-engine.sceneManager->initializeScene(scene);</code></pre>
+engine.sceneManager->initializeScene(scene);
+
+if (engine.run() == yen::Flag::OK)
+{
+	while (engine.isRunning())
+	{
+		engine.step();
+
+		if (engine.inputManager->isKeyPressed(escapeKey))
+        {
+            //do something
+        }
+	}
+}</code></pre>
 
             <div class="section-header">Member Methods Documentation</div>
 
             <div class="det-method-list-object">
-                <a name="load" />
-                <div class="det-method-list-name">void load (std::string path)</div>
+                <a name="createInput" />
+                <div class="det-method-list-name">void createInput (yen::InputManipulator&#42;, yen::InputDef)</div>
                 <div class="det-method-list-body">
-                    <p>Method loads animation frames from all files in folder (in order by file name) to memory.</p>
+                    <p>Methods creates new input in manager.</p>
                     <p><b>Arguments:</b></p>
-                    <p><tab1>std::string path - path to folder from animation have to be loaded.</tab1></p>
+                    <p><tab1>1) yen::InputManipulator&#42; - pointer to input manipulator.</tab1></p>
+                    <p><tab1>2) yen::InputDef - InputDef object contains data of input.</tab1></p>
+                    <p><b>Throws:</b></p>
+                    <p><tab1>yen::Flag</tab1></p>
                 </div>
             </div>
 
             <div class="det-method-list-object">
-                <a name="unLoad" />
-                <div class="det-method-list-name">void unLoad ()</div>
+                <a name="removeInput" />
+                <div class="det-method-list-name">void removeInput (yen::InputManipulator)</div>
                 <div class="det-method-list-body">
-                    <p>Method unloads animation frames from memory.</p>
-                </div>
-            </div>
-
-            <div class="det-method-list-object">
-                <a name="setFrameRate" />
-                <div class="det-method-list-name">void setFrameRate (unsigned int)</div>
-                <div class="det-method-list-body">
-                    <p>Method sets animation frame rate.</p>
-                    <p>Frame rate value is expressed in frames per second.</p>
+                    <p>Method removes input.</p>
                     <p><b>Arguments:</b></p>
-                    <p><tab1>unsigned int - frame rate.</tab1></p>
+                    <p><tab1>yen::InputManipulator - manipulator of input.</tab1></p>
                 </div>
             </div>
 
             <div class="det-method-list-object">
-                <a name="getFrameRate" />
-                <div class="det-method-list-name">unsigned int getFrameRate ()</div>
+                <a name="updateInputs" />
+                <div class="det-method-list-name">void updateInputs (sf::RenderWindow &#42;window)</div>
                 <div class="det-method-list-body">
-                    <p>Method returns animation frame rate.</p>
-                    <p>Frame rate value is expressed in frames per second.</p>
+                    <p>Method updates all specified inputs with events catched by widnow.</p>
+                    <p><b>Arguments:</b></p>
+                    <p><tab1>sf::RenderWindow &#42;window - window to catch from.</tab1></p>
+                </div>
+            </div>
+
+            <div class="det-method-list-object">
+                <a name="isKeyPressed" />
+                <div class="det-method-list-name">bool isKeyPressed (yen::InputManipulator)</div>
+                <div class="det-method-list-body">
+                    <p>Method returns that, is key actualy pressed.</p>
+                    <p><b>Arguments:</b></p>
+                    <p><tab1>yen::InputManipulator - manipulator of input.</tab1></p>
                     <p><b>Returns:</b></p>
-                    <p><tab1>unsigned int - frame rate.</tab1></p>
-                </div>
-            </div>
-
-            <div class="det-method-list-object">
-                <a name="getActualFrame" />
-                <div class="det-method-list-name">yen::Frame&#42; getActualFrame ()</div>
-                <div class="det-method-list-body">
-                    <p>Method returns animation's actual frame.</p>
-                    <p><b>Returns:</b></p>
-                    <p><tab1>Frame&#42; - actual frame.</tab1></p>
-                </div>
-            </div>
-
-            <div class="det-method-list-object">
-                <a name="start" />
-                <div class="det-method-list-name">void start ()</div>
-                <div class="det-method-list-body">
-                    <p>Method makes animation played.</p>
-                </div>
-            </div>
-
-            <div class="det-method-list-object">
-                <a name="pause" />
-                <div class="det-method-list-name">void pause ()</div>
-                <div class="det-method-list-body">
-                    <p>Method makes animation paused.</p>
-                </div>
-            </div>
-
-            <div class="det-method-list-object">
-                <a name="restart" />
-                <div class="det-method-list-name">void restart ()</div>
-                <div class="det-method-list-body">
-                    <p>Method makes animation restarted.</p>
-                </div>
-            </div>
-
-            <div class="det-method-list-object">
-                <a name="isPlaying" />
-                <div class="det-method-list-name">bool isPlaying ()</div>
-                <div class="det-method-list-body">
-                    <p>Method returns that, is animation playing at the moment.</p>
-                    <p><b>Returns:</b></p>
-                    <p><tab1>bool - true when animation is playing at the momend, false if not.</tab1></p>
+                    <p><tab1>Ibool - true if key is actualy pressed, false if not.</tab1></p>
                 </div>
             </div>
 

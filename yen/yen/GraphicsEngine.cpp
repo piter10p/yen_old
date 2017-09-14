@@ -53,10 +53,6 @@ void GraphicsEngine::renderFrame()
 		inputsManager->updateInputs(&window);
 		window.display();
 	}
-	catch (Error e)
-	{
-		throw e;
-	}
 	catch (...)
 	{
 		Logger::errorLog(0, "Undefined error in GraphicsEngine::renderFrame().");

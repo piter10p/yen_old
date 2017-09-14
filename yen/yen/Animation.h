@@ -13,7 +13,6 @@ namespace yen
 
 		void load(std::string path);
 		void unLoad();
-		//void setResourcesUsed();
 		void setFrameRate(unsigned int);
 		unsigned int getFrameRate();
 

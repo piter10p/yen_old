@@ -192,9 +192,6 @@
     <ClInclude Include="KeyboardInput.h">
       <Filter>Headers\InputManager\Inputs</Filter>
     </ClInclude>
-    <ClInclude Include="Keys.h">
-      <Filter>Headers\InputManager</Filter>
-    </ClInclude>
     <ClInclude Include="PhysicsEngine.h">
       <Filter>Headers\PhysicsEngine</Filter>
     </ClInclude>
@@ -269,6 +266,9 @@
     </ClInclude>
     <ClInclude Include="SettingsManager.h">
       <Filter>Headers\Others</Filter>
+    </ClInclude>
+    <ClInclude Include="Keys.h">
+      <Filter>Headers\InputManager\Inputs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

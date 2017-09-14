@@ -12,10 +12,11 @@ Frame::~Frame()
 {
 }
 
-void Frame::load(std::string path)
+Flag Frame::load(std::string path)
 {
 	if (!texture.loadFromFile(path))
-		throw Flag::ERROR_CAN_NOT_OPEN_FILE;
+		return Flag::ERROR_CAN_NOT_OPEN_FILE;
+	return Flag::OK;
 }
 
 sf::Texture* Frame::getTexture()

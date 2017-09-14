@@ -11,7 +11,7 @@ namespace yen
 		Frame();
 		~Frame();
 
-		void load(std::string path);
+		Flag load(std::string path);
 		sf::Texture* getTexture();
 
 	private:

@@ -10,10 +10,13 @@ namespace yen
 	public:
 		Flag flag;
 
+		std::string message;
+
 		static Error generateUndefinedError()
 		{
 			Error e;
 			e.flag = Flag::ERROR_UNDEFINED;
+			e.message = "Undefined Error";
 			return e;
 		}
 	};

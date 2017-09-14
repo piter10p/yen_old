@@ -82,22 +82,9 @@ Frame* AnimationManager::getActualFrame()
 
 void AnimationManager::setResourcesUsed()
 {
-	try
+	for (unsigned int i = 0; i < animations.size(); i++)
 	{
-		for (unsigned int i = 0; i < animations.size(); i++)
-		{
-			animations[i]->used();
-		}
-	}
-	catch (FileManipulationError e)
-	{
-		throw e;
-	}
-	catch (...)
-	{
-		Error e;
-		e.flag = Flag::ERROR_UNDEFINED;
-		throw e;
+		animations[i]->used();
 	}
 }
 

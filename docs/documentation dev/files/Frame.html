@@ -53,7 +53,7 @@
             <div class="section-header">Public Member Methods</div>
             <table>
                 <tr class="short-method-list-object">
-                    <td class="short-method-list-type">void</td>
+                    <td class="short-method-list-type">yen::Flag</td>
                     <td class="short-method-list-name">
                         <a class="short-method-list-name-text" href="#load">load</a> (std::string path)
                         <p class="short-method-list-desc">Loads frame from image.</p>
@@ -78,13 +78,13 @@
 
             <div class="det-method-list-object">
                 <a name="load" />
-                <div class="det-method-list-name">void load (std::string path)</div>
+                <div class="det-method-list-name">yen::Flag load (std::string path)</div>
                 <div class="det-method-list-body">
                     <p>Method loads frame image from file to memory.</p>
                     <p><b>Arguments:</b></p>
                     <p><tab1>std::string path - path to folder from animation have to be loaded.</tab1></p>
-                    <p><b>Throws:</b></p>
-                    <p><tab1>yen::Flag</tab1></p>
+                    <p><b>Returns:</b></p>
+                    <p><tab1>yen::Flag - yen::Flag::ERROR_CAN_NOT_OPEN_FILE if can not load file.</tab1></p>
                 </div>
             </div>
 

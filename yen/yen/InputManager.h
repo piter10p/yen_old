@@ -16,7 +16,7 @@ namespace yen
 		~InputManager();
 
 		void createInput(InputManipulator*, InputDef);
-		Flag removeInput(InputManipulator);
+		void removeInput(InputManipulator);
 
 		void updateInputs(sf::RenderWindow *window);
 
@@ -27,7 +27,7 @@ namespace yen
 
 		void createKeyInput(InputManipulator*, InputDef);
 
-		Flag removeKeyInput(InputManipulator);
+		void removeKeyInput(InputManipulator);
 
 		void setKeyboardInputsPressed(sf::Keyboard::Key);
 		void setKeyboardInputsReleased(sf::Keyboard::Key);

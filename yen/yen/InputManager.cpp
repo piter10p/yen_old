@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "InputManager.h"
 #include "KeyboardInput.h"
+#include "Error.h"
 
 using namespace yen;
 
@@ -29,10 +30,12 @@ void InputManager::createInput(InputManipulator* manipulator, InputDef def)
 	manipulator->id = getNewId();
 }
 
-Flag InputManager::removeInput(InputManipulator manipulator)
+void InputManager::removeInput(InputManipulator manipulator)
 {
 	if (manipulator.input->getType() == InputType::KEYBOARD_KEY)
-		return removeKeyInput(manipulator);
+	{
+		removeKeyInput(manipulator);
+	}
 }
 
 void InputManager::updateInputs(sf::RenderWindow *window)
@@ -61,7 +64,7 @@ void InputManager::createKeyInput(InputManipulator* manipulator, InputDef def)
 	keyboardInputs.push_back(input);
 }
 
-Flag InputManager::removeKeyInput(InputManipulator manipulator)
+void InputManager::removeKeyInput(InputManipulator manipulator)
 {
 	for (unsigned int i = 0; i < keyboardInputs.size(); i++)
 	{
@@ -70,11 +73,16 @@ Flag InputManager::removeKeyInput(InputManipulator manipulator)
 			delete keyboardInputs[i];
 			keyboardInputs.erase(keyboardInputs.begin() + i);
 
-			return Flag::OK;
+			return;
 		}
 	}
-
-	return Flag::ERROR_NOTHING_FOUND_ID;
+	ManipulatorError e;
+	e.flag = Flag::ERROR_NOTHING_FOUND_ID;
+	e.type = "InputManipulator";
+	e.id = manipulator.id;
+	e.message = "InputManager did not found object of this manipulator";
+	Logger::errorLog(0, e.message);
+	throw e;
 }
 
 void InputManager::setKeyboardInputsPressed(sf::Keyboard::Key sfKey)

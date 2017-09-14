@@ -1,5 +1,28 @@
-﻿  yen.cpp
+﻿  InputManager.cpp
+  Frame.cpp
+  Generating Code...
+i:\backup\pietras\visual studio projects\yen\yen\yen\inputmanager.cpp(36): warning C4715: 'yen::InputManager::removeInput': not all control paths return a value
+  Compiling...
+  yen.cpp
 i:\backup\pietras\visual studio projects\yen\yen\yen\component.h(40): warning C4018: '<': signed/unsigned mismatch
 i:\backup\pietras\visual studio projects\yen\yen\yen\yen.cpp(37): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  PhysicsComponent.cpp
+  ObjectAccessInterface.cpp
+  MoveComponent.cpp
+  SettingsManager.cpp
+  SceneManager.cpp
+  Scene.cpp
+  ResourceManager.cpp
+  ObjectsManager.cpp
+  Object.cpp
+  GraphicsEngine.cpp
+  GraphicsComponent.cpp
+  Engine.cpp
+  CameraComponent.cpp
+  AnimationResource.cpp
+  AnimationManager.cpp
+  Animation.cpp
   yen.vcxproj -> I:\Backup\Pietras\Visual Studio Projects\yen\yen\Debug\yen.exe
   yen.vcxproj -> I:\Backup\Pietras\Visual Studio Projects\yen\yen\Debug\yen.pdb (Partial PDB)
