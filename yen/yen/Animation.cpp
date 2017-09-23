@@ -52,21 +52,24 @@ void Animation::load(std::string path)
 	catch(FileManipulationError e)
 	{
 		if (e.flag == Flag::ERROR_BAD_PATH)
-			Logger::errorLog(0, "Can not create file list in directory: \"" + e.path + "\". Is path right?");
+			e.message = "Can not create file list in directory: \"" + e.path + "\". Is path right?";
 		else if (e.flag == Flag::ERROR_DIRECTORY_EMPTY)
-			Logger::errorLog(0, "Direcotry defined in path: \"" + e.path + "\" is empty.");
+			e.message = "Direcotry defined in path: \"" + e.path + "\" is empty.";			
 		else if (e.flag == Flag::ERROR_CAN_NOT_OPEN_FILE)
-			Logger::errorLog(0, "Can not open frame file. File path: \"" + e.path + "\".");
+			e.message = "Can not open frame file. File path: \"" + e.path + "\".";
 		else
-			Logger::errorLog(0, "Unknown error.");
-
+			e.message = "Unknown error.";
+			
+		Logger::errorLog(0, e.message);
 		throw e;
 	}
 	catch (...)
 	{
-		Logger::errorLog(0, "Undefined error in Animation::load()");
 		Error e;
 		e.flag = Flag::ERROR_UNDEFINED;
+		e.message = "Undefined error in Animation::load()";
+		Logger::errorLog(0, e.message);
+		
 		throw e;
 	}
 }

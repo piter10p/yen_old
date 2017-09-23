@@ -42,7 +42,8 @@ void ResourceManager::removeAnimationResource(AnimationManipulator manipulator)
 	}
 	Error e;
 	e.flag = Flag::ERROR_NOTHING_FOUND_ID;
-	Logger::errorLog(0, "Can not remove Animation Resource. No thing with id: \"" + std::to_string(manipulator.getId()) + "\" was found.");
+	e.message = "Can not remove Animation Resource. No thing with id: \"" + std::to_string(manipulator.getId()) + "\" was found.";
+	Logger::errorLog(0, e.message);
 	throw e;
 }
 
@@ -69,8 +70,9 @@ void ResourceManager::removeStringResource(StringManipulator manipulator)
 		}
 	}
 	Error e;
+	e.message = "Can not remove String Resource. No thing with id: \"" + std::to_string(manipulator.id) + "\" was found.";
 	e.flag = Flag::ERROR_NOTHING_FOUND_ID;
-	Logger::errorLog(0, "Can not remove String Resource. No thing with id: \"" + std::to_string(manipulator.id) + "\" was found.");
+	Logger::errorLog(0, e.message);
 	throw e;
 }
 
@@ -103,8 +105,9 @@ void ResourceManager::removeFontResource(FontManipulator manipulator)
 		}
 	}
 	Error e;
+	e.message = "Can not remove Font Resource. No thing with id: \"" + std::to_string(manipulator.getId()) + "\" was found.";
 	e.flag = Flag::ERROR_NOTHING_FOUND_ID;
-	Logger::errorLog(0, "Can not remove Font Resource. No thing with id: \"" + std::to_string(manipulator.getId()) + "\" was found.");
+	Logger::errorLog(0, e.message);
 	throw e;
 }
 

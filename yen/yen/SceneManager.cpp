@@ -45,13 +45,15 @@ void SceneManager::removeScene(SceneManipulator manipulator)
 	}
 	catch (const std::out_of_range& oor)
 	{
-		Logger::errorLog(0, "Can not remove scene with id : " + std::to_string(manipulator.id) + " from Scene Manager. Obejct index is out of range.");
 		Error e;
+		e.message = "Can not remove scene with id : " + std::to_string(manipulator.id) + " from Scene Manager. Obejct index is out of range.";
+		Logger::errorLog(0, e.message);
 		e.flag = Flag::ERROR_INDEX_OUT_OF_LIST_RANGE;
 		throw e;
 	}
-	Logger::errorLog(0, "Can not remove scene with id : " + std::to_string(manipulator.id) + " from Scene Manager. Obejct is missing.");
 	Error e;
+	e.message = "Can not remove scene with id : " + std::to_string(manipulator.id) + " from Scene Manager. Obejct is missing.";
+	Logger::errorLog(0, e.message);
 	e.flag = Flag::ERROR_NOTHING_FOUND_ID;
 	throw e;
 }

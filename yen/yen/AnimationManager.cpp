@@ -32,7 +32,8 @@ void AnimationManager::setActualAnimation(AnimationManipulator manipulator)
 	e.flag = Flag::ERROR_NOTHING_FOUND_ID;
 	e.type = "AnimationManipulator";
 	e.id = manipulator.getId();
-	Logger::errorLog(0, "Can not set actual animation. Animation of this id: " + std::to_string(e.id) + " don't exists.");
+	e.message = "Can not set actual animation. Animation of this id: " + std::to_string(e.id) + " don't exists.";
+	Logger::errorLog(0, e.message);
 	throw e;
 }
 
@@ -52,7 +53,8 @@ void AnimationManager::addAnimation(AnimationManipulator manipulator)
 	}
 	catch (ManipulatorError e)
 	{
-		Logger::errorLog(0, "Can not add animation to Animation Manager. Animation with id: " + std::to_string(e.id) + " has already been added.");
+		e.message = "Can not add animation to Animation Manager. Animation with id: " + std::to_string(e.id) + " has already been added.";
+		Logger::errorLog(0, e.message);
 		throw e;
 	}
 }
@@ -71,7 +73,8 @@ void AnimationManager::removeAnimation(AnimationManipulator manipulator)
 	e.flag = Flag::ERROR_NOTHING_FOUND_ID;
 	e.type = "AnimationManipulator";
 	e.id = manipulator.getId();
-	Logger::errorLog(0, "Can not remove animation from AnimationManager. Animation with id: " + std::to_string(e.id) + " is not exists");
+	e.message = "Can not remove animation from AnimationManager. Animation with id: " + std::to_string(e.id) + " is not exists";
+	Logger::errorLog(0, e.message);
 	throw e;
 }
 

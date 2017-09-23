@@ -3,6 +3,7 @@
 #include "Vector.h"
 #include "Paths.h"
 #include "Logger.h"
+#include "Error.h"
 
 using namespace yen;
 
@@ -88,7 +89,11 @@ void SettingsManager::saveSettings()
 	}
 	catch (...)
 	{
-		Logger::errorLog(0, "Can not save configuration file with path: \"" + (std::string)Paths::CONFIG_FILE + "\".");
+		Error e;
+		e.message = "Can not save configuration file with path: \"" + (std::string)Paths::CONFIG_FILE + "\".";
+		e.flag = Flag::ERROR_CAN_NOT_SAVE_FILE;
+		Logger::errorLog(0, e.message);
+		throw e;
 	}
 }
 
@@ -145,7 +150,11 @@ bool SettingsManager::load(pugi::xml_document* doc)
 	}
 	catch (...)
 	{
-		Logger::errorLog(0, "Can not load data from config file with path: \"" + (std::string)Paths::CONFIG_FILE + "\". Creating new.");
+		Error e;
+		e.message = "Can not load data from config file with path: \"" + (std::string)Paths::CONFIG_FILE + "\". Creating new.";
+		e.flag = ERROR_CAN_NOT_READ_FILE;
+		Logger::errorLog(0, e.message);
+		throw e;
 		return false;
 	}
 	return true;

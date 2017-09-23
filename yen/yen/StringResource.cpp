@@ -31,9 +31,11 @@ void StringResource::load()
 	catch (Error e)
 	{
 		if (e.flag == Flag::ERROR_CAN_NOT_OPEN_FILE)
-			Logger::errorLog(0, "Can not open string file with path: \"" + filePath + "\".");
+			e.message = "Can not open string file with path: \"" + filePath + "\".";
 		else
-			Logger::errorLog(0, "Undefined error.");
+			e.message = "Undefined error.";
+
+		Logger::errorLog(0, e.message);
 	}
 	catch (...)
 	{
@@ -56,7 +58,8 @@ std::string StringResource::getString(std::string stringName)
 
 	Error e;
 	e.flag = Flag::ERROR_CAN_NOT_FIND_STRING_WITH_SPECIFIC_NAME;
-	Logger::errorLog(0, "String with name: \"" + stringName + "\" was not found.");
+	e.message = "String with name: \"" + stringName + "\" was not found.";
+	Logger::errorLog(0, e.message);
 	throw e;
 }
 

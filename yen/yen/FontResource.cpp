@@ -22,8 +22,9 @@ void FontResource::load()
 	if (font.loadFromFile(filePath) != true)
 	{
 		Error e;
+		e.message = "Can not load font file: \"" + filePath + "\".";
 		e.flag = Flag::ERROR_CAN_NOT_OPEN_FILE;
-		Logger::errorLog(0, "Can not load font file: \"" + filePath + "\".");
+		Logger::errorLog(0, e.message);
 		throw e;
 	}
 }

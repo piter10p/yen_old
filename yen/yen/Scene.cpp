@@ -19,8 +19,9 @@ void Scene::addObject(Object *object)
 {
 	if (getIndexOfObjectsListObject(object->getId()) != -1)
 	{
-		Logger::errorLog(0, "Object with id: " + std::to_string(object->getId()) + " has been added already to scene with id: " + std::to_string(this->getId()) + ".");
 		Error e;
+		e.message = "Object with id: " + std::to_string(object->getId()) + " has been added already to scene with id: " + std::to_string(this->getId()) + ".";
+		Logger::errorLog(0, e.message);
 		e.flag = Flag::ERROR_THING_WITH_THIS_ID_IS_ALREADY_EXISTS;
 		throw e;
 	}
@@ -40,21 +41,24 @@ void Scene::removeObject(Object* object)
 	}
 	catch (const std::out_of_range& oor)
 	{
-		Logger::errorLog(0, "Can not remove object with id : " + std::to_string(object->getId()) + " from scene with id: " + std::to_string(this->getId()) + ". Obejct index is out of range.");
 		Error e;
+		e.message = "Can not remove object with id : " + std::to_string(object->getId()) + " from scene with id: " + std::to_string(this->getId()) + ". Obejct index is out of range.";
+		Logger::errorLog(0, e.message);
 		e.flag = Flag::ERROR_INDEX_OUT_OF_LIST_RANGE;
 		throw e;
 	}
 	catch (...)
 	{
-		Logger::errorLog(0, "Undefined error in Scene::removeObject() in scene with id: " + std::to_string(this->getId()) + ".");
 		Error e;
+		e.message = "Undefined error in Scene::removeObject() in scene with id: " + std::to_string(this->getId()) + ".";
+		Logger::errorLog(0, e.message);
 		e.flag = Flag::ERROR_UNDEFINED;
 		throw e;
 	}
 	
-	Logger::errorLog(0, "Can not remove object with id : " + std::to_string(object->getId()) + " from scene with id: " + std::to_string(this->getId()) + ". Object is missing.");
 	Error e;
+	e.message = "Can not remove object with id : " + std::to_string(object->getId()) + " from scene with id: " + std::to_string(this->getId()) + ". Object is missing.";
+	Logger::errorLog(0, e.message);
 	e.flag = Flag::ERROR_NOTHING_FOUND_ID;
 	throw e;
 }
@@ -65,8 +69,9 @@ void Scene::initialization()
 	{
 		if (!haveCamera())
 		{
-			Logger::errorLog(0, "Scene with id: " + std::to_string(this->getId()) + " don't have active camera.");
 			Error e;
+			e.message = "Scene with id: " + std::to_string(this->getId()) + " don't have active camera.";
+			Logger::errorLog(0, e.message);
 			e.flag = Flag::ERROR_SCENE_DONT_HAVE_CAMERA;
 			throw e;
 		}
@@ -81,8 +86,9 @@ void Scene::initialization()
 	}
 	catch (...)
 	{
-		Logger::errorLog(0, "Undefined error in Scene::initialization() in sceen with id: " + std::to_string(this->getId()) + ".");
 		Error e;
+		e.message = "Undefined error in Scene::initialization() in sceen with id: " + std::to_string(this->getId()) + ".";
+		Logger::errorLog(0, e.message);
 		e.flag = Flag::ERROR_UNDEFINED;
 		throw e;
 	}

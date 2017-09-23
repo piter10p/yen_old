@@ -43,8 +43,9 @@ void ObjectsManager::removeObject(ObjectManipulator manipulator)
 	}
 	catch (const std::out_of_range& oor)
 	{
-		Logger::errorLog(0, "Can not remove object with id : " + std::to_string(manipulator.id) + ". Obehct index is out of range.");
 		Error e;
+		e.message = "Can not remove object with id : " + std::to_string(manipulator.id) + ". Obehct index is out of range.";
+		Logger::errorLog(0, e.message);
 		e.flag = Flag::ERROR_INDEX_OUT_OF_LIST_RANGE;
 		throw e;
 	}
@@ -79,8 +80,9 @@ unsigned int ObjectsManager::getObjectListIndex(int id)
 		if (objects[i]->getId() == id)
 			return i;
 	}
-	Logger::errorLog(0, std::to_string(id) + " is out of range Objects Manager objects list.");
 	Error e;
+	e.message = std::to_string(id) + " is out of range Objects Manager objects list.";
+	Logger::errorLog(0, e.message);
 	e.flag = Flag::ERROR_INDEX_OUT_OF_LIST_RANGE;
 	throw e;
 }

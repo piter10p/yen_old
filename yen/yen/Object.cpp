@@ -46,13 +46,15 @@ void Object::addComponent(ComponentManipulator *manipulator, Component *componen
 	}
 	catch (ManipulatorError e)
 	{
-		Logger::errorLog(0, "Can not add component with id: " + std::to_string(e.id) + " to object with id: " + std::to_string(this->getId()) + ". Component of this type has been added already.");
+		e.message = "Can not add component with id: " + std::to_string(e.id) + " to object with id: " + std::to_string(this->getId()) + ". Component of this type has been added already.";
+		Logger::errorLog(0, e.message);
 		throw e;
 	}
 	catch (...)
 	{
-		Logger::errorLog(0, "Undefined error in Object::addComponent(). Object id: " + std::to_string(this->getId()) + ".");
 		Error e;
+		e.message = "Undefined error in Object::addComponent(). Object id: " + std::to_string(this->getId()) + ".";
+		Logger::errorLog(0, e.message);
 		e.flag = Flag::ERROR_UNDEFINED;
 		throw e;
 	}
@@ -69,20 +71,23 @@ void Object::removeComponent(ComponentManipulator manipulator)
 	}
 	catch (Error e)
 	{
-		Logger::errorLog(0, "Can not remove component with id: " + std::to_string(manipulator.id) + " from object with id: " + std::to_string(this->getId()) + ". Component with this id is not exists.");
+		e.message = "Can not remove component with id: " + std::to_string(manipulator.id) + " from object with id: " + std::to_string(this->getId()) + ". Component with this id is not exists.";
+		Logger::errorLog(0, e.message);
 		throw e;
 	}
 	catch (const std::out_of_range& oor)
 	{
-		Logger::errorLog(0, "Can not remove component with id : " + std::to_string(manipulator.id) + " from object with id : " + std::to_string(this->getId()) + ". Component index is out of range.");
 		Error e;
+		e.message = "Can not remove component with id : " + std::to_string(manipulator.id) + " from object with id : " + std::to_string(this->getId()) + ". Component index is out of range.";
+		Logger::errorLog(0, e.message);
 		e.flag = Flag::ERROR_INDEX_OUT_OF_LIST_RANGE;
 		throw e;
 	}
 	catch (...)
 	{
-		Logger::errorLog(0, "Undefined error in Object::removeComponent() in object with id: " + std::to_string(this->getId()) + ".");
 		Error e;
+		e.message = "Undefined error in Object::removeComponent() in object with id: " + std::to_string(this->getId()) + ".";
+		Logger::errorLog(0, e.message);
 		e.flag = Flag::ERROR_UNDEFINED;
 		throw e;
 	}
@@ -134,8 +139,9 @@ void Object::setResourcesUsed()
 	}
 	catch (...)
 	{
-		Logger::errorLog(0, "Undefined error in Object::load() in object with id: " + std::to_string(this->getId()) + ".");
 		Error e;
+		e.message = "Undefined error in Object::load() in object with id: " + std::to_string(this->getId()) + ".";
+		Logger::errorLog(0, e.message);
 		e.flag = Flag::ERROR_UNDEFINED;
 		throw e;
 	}
@@ -158,8 +164,9 @@ unsigned int Object::getComponentListIndex(int id)
 		if (components[i]->getId() == id)
 			return i;
 	}
-	Logger::errorLog(0, "Number: " + std::to_string(id) + " is out of range of components list of object with id: " + std::to_string(this->getId()) + ".");
 	Error e;
+	e.message = "Number: " + std::to_string(id) + " is out of range of components list of object with id: " + std::to_string(this->getId()) + ".";
+	Logger::errorLog(0, e.message);
 	e.flag = Flag::ERROR_NOTHING_FOUND_ID;
 	throw e;
 }

@@ -102,8 +102,9 @@ void PhysicsEngine::applyForceToBody(BodyManipulator bodyManipulator, fVector fo
 	}
 	catch (...)
 	{
-		Logger::errorLog(0, "Can not apply force to body.");
 		Error e;
+		e.message = "Can not apply force to body.";
+		Logger::errorLog(0, e.message);
 		e.flag = Flag::ERROR_CAN_NOT_EDIT_PHYSICS_BODY;
 		throw e;
 	}
@@ -119,8 +120,9 @@ void PhysicsEngine::applyForceToBody(BodyManipulator bodyManipulator, fVector fo
 	}
 	catch (...)
 	{
-		Logger::errorLog(0, "Can not apply force to body.");
 		Error e;
+		e.message = "Can not apply force to body.";
+		Logger::errorLog(0, e.message);
 		e.flag = Flag::ERROR_CAN_NOT_EDIT_PHYSICS_BODY;
 		throw e;
 	}
@@ -135,8 +137,9 @@ void PhysicsEngine::setVelocityToBody(BodyManipulator bodyManipulator, fVector v
 	}
 	catch (...)
 	{
-		Logger::errorLog(0, "Can not set velocity of body.");
 		Error e;
+		e.message = "Can not set velocity of body.";
+		Logger::errorLog(0, e.message);
 		e.flag = Flag::ERROR_CAN_NOT_EDIT_PHYSICS_BODY;
 		throw e;
 	}
