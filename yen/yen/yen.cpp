@@ -16,7 +16,7 @@ int main()
 
 		engine.resourceManager->addLanguage("pl");
 
-		EngineConfiguration configuration;
+		yen::EngineConfiguration configuration;
 		engine.initialize(configuration);
 
 		yen::AnimationResourceDef animationDef;

@@ -1,0 +1,11 @@
+YEN: Your Easy Engine Software License
+
+Version 0.1 September 2017
+
+Copyright (C) 2017 Piotr Paszko
+
+TERMS AND CONDITIONS:
+
+1. Nobody outside creator of YEN: Your Easy Engine can not copy, use or distibute any part of YEN: Your Easy Engine project (includes source code, releases etc.).
+2. YEN: Your Easy Engine is intellectual property of its creator.
+3. The creator reserves all rights to his own software which he owns in Poland, European Union and other countries.

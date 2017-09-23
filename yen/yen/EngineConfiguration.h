@@ -1,8 +1,11 @@
 #pragma once
 #include <string>
 
-struct EngineConfiguration
+namespace yen
 {
-	std::string windowName = "YEN: Your Easy Engine";
-};
+	struct EngineConfiguration
+	{
+		std::string windowName = "YEN: Your Easy Engine";
+	};
+}
 
